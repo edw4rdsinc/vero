@@ -83,15 +83,15 @@
     <!-- HEADER & NAVIGATION -->
     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-800">Vero Autoglass</a>
+            <a href="index.html" class="text-2xl font-bold text-gray-800">Vero Autoglass</a>
             
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#guide" class="text-gray-600 hover:text-orange-600">Why Vero</a>
+                <a href="about.html" class="text-gray-600 hover:text-orange-600">Why Vero</a>
                 <a href="#plan" class="text-gray-600 hover:text-orange-600">How It Works</a>
                 <a href="#testimonials" class="text-gray-600 hover:text-orange-600">Reviews</a>
             </nav>
-            <a href="#cta" class="hidden md:block bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-orange-700 transition-colors duration-300">
+            <a href="contact.html" class="hidden md:block bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-orange-700 transition-colors duration-300">
                 Get Your Quote
             </a>
 
@@ -109,10 +109,10 @@
         <!-- Mobile Menu -->
         <div x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
             <div class="flex flex-col items-center py-8 space-y-6">
-                <a href="#guide" @click="isOpen = false" class="text-lg text-gray-700 hover:text-orange-600">Why Vero</a>
+                <a href="about.html" @click="isOpen = false" class="text-lg text-gray-700 hover:text-orange-600">Why Vero</a>
                 <a href="#plan" @click="isOpen = false" class="text-lg text-gray-700 hover:text-orange-600">How It Works</a>
                 <a href="#testimonials" @click="isOpen = false" class="text-lg text-gray-700 hover:text-orange-600">Reviews</a>
-                <a href="#cta" @click="isOpen = false" class="bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-700 transition-colors duration-300">
+                <a href="contact.html" @click="isOpen = false" class="bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-700 transition-colors duration-300">
                     Get Your Quote
                 </a>
             </div>
@@ -127,7 +127,7 @@
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in">Your Windshield Fixed Right, Without the Runaround</h1>
                 <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in" style="transition-delay: 100ms;">Skip the confusing quotes and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 200ms;">
-                    <a href="#cta" class="bg-orange-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-orange-700 transition-colors duration-300">
+                    <a href="contact.html" class="bg-orange-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-orange-700 transition-colors duration-300">
                         Get Your Quote
                     </a>
                     <a href="#plan" class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-orange-600 transition-colors duration-300">
@@ -237,7 +237,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-12 fade-in">
-                    <a href="#cta" class="bg-orange-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-orange-700 transition-colors duration-300">
+                    <a href="contact.html" class="bg-orange-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-orange-700 transition-colors duration-300">
                         Start with Your Quote
                     </a>
                 </div>
@@ -326,7 +326,7 @@
                 <div class="fade-in">
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Ready to Get This Handled?</h2>
                     <p class="text-lg text-orange-100 max-w-2xl mx-auto mb-8">No pressure, no games. Just quality auto glass work from people who respect your time and your money.</p>
-                    <a href="#" class="bg-white text-orange-600 font-bold px-10 py-4 rounded-lg text-xl hover:bg-gray-100 transition-colors duration-300 shadow-lg">
+                    <a href="contact.html" class="bg-white text-orange-600 font-bold px-10 py-4 rounded-lg text-xl hover:bg-gray-100 transition-colors duration-300 shadow-lg">
                         Get Your Quote Now
                     </a>
                 </div>
@@ -380,14 +380,14 @@
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-6 text-center">
             <h3 class="text-xl font-bold">Vero Autoglass</h3>
-            <p class="my-4 text-gray-400">Your Windshield Fixed Right, Without the Runaround.</p>
+            <p class="my-4 text-gray-400">Quality auto glass without the games.</p>
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a href="services.html" class="text-gray-400 hover:text-white">Services</a>
                 <a href="about.html" class="text-gray-400 hover:text-white">About</a>
                 <a href="insurance.html" class="text-gray-400 hover:text-white">Insurance</a>
                 <a href="contact.html" class="text-gray-400 hover:text-white">Contact</a>
             </div>
-            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Vero Autoglass. All Rights Reserved.</p>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2024 Vero Autoglass. All Rights Reserved.</p>
         </div>
     </footer>
     
@@ -407,5 +407,4 @@
     </script>
 </body>
 </html>
-
 
