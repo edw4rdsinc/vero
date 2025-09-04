@@ -22,22 +22,24 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-gray-800">Vero Autoglass</a>
             <nav class="hidden md:flex space-x-8 items-center">
-                <a href="about.html" class="text-gray-600 hover:text-orange-600">Why Vero</a>
-                <a href="index.html#plan" class="text-gray-600 hover:text-orange-600">How It Works</a>
-                <a href="index.html#testimonials" class="text-gray-600 hover:text-orange-600">Reviews</a>
+                <a href="services.html" class="text-gray-600 hover:text-orange-600">Services</a>
+                <a href="insurance.html" class="text-gray-600 hover:text-orange-600">Insurance</a>
+                <a href="about.html" class="text-gray-600 hover:text-orange-600">About Us</a>
+                <a href="contact.html" class="text-orange-600 font-semibold">Contact Us</a>
             </nav>
-            <a href="contact.html" class="hidden md:block bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-orange-700">Get Your Quote</a>
+            <a href="contact.html" class="hidden md:block bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg ring-2 ring-offset-2 ring-orange-500">Get Your Quote</a>
             <div class="md:hidden">
                 <button @click="isOpen = !isOpen" type="button" class="text-gray-800 focus:outline-none">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path><path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
         </div>
-        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden">
-            <div class="flex flex-col items-center py-8 space-y-6 bg-white shadow-lg">
-                <a href="about.html" @click="isOpen = false" class="text-lg">Why Vero</a>
-                <a href="index.html#plan" @click="isOpen = false" class="text-lg">How It Works</a>
-                <a href="index.html#testimonials" @click="isOpen = false" class="text-lg">Reviews</a>
+        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
+            <div class="flex flex-col items-center py-8 space-y-6">
+                <a href="services.html" @click="isOpen = false" class="text-lg text-gray-700 hover:text-orange-600">Services</a>
+                <a href="insurance.html" @click="isOpen = false" class="text-lg text-gray-700 hover:text-orange-600">Insurance</a>
+                <a href="about.html" @click="isOpen = false" class="text-lg text-gray-700 hover:text-orange-600">About Us</a>
+                <a href="contact.html" @click="isOpen = false" class="text-lg text-orange-600 font-semibold">Contact Us</a>
                 <a href="contact.html" @click="isOpen = false" class="bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg">Get Your Quote</a>
             </div>
         </div>
@@ -118,14 +120,14 @@
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-6 text-center">
             <h3 class="text-xl font-bold">Vero Autoglass</h3>
-            <p class="my-4 text-gray-400">Your Windshield Fixed Right, Without the Runaround.</p>
+            <p class="my-4 text-gray-400">Quality auto glass without the games.</p>
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a href="services.html" class="text-gray-400 hover:text-white">Services</a>
-                <a href="about.html" class="text-gray-400 hover:text-white">About</a>
+                <a href="about.html" class="text-gray-400 hover:text-white">About Us</a>
                 <a href="insurance.html" class="text-gray-400 hover:text-white">Insurance</a>
-                <a href="contact.html" class="text-gray-400 hover:text-white">Contact</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a>
             </div>
-            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Vero Autoglass. All Rights Reserved.</p>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2024 Vero Autoglass. All Rights Reserved.</p>
         </div>
     </footer>
     
@@ -144,3 +146,4 @@
     </script>
 </body>
 </html>
+
