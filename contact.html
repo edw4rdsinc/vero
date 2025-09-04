@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Vero Autoglass | Get a Quote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #333; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- HEADER & NAVIGATION -->
+     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-800">Vero Autoglass</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="about.html" class="text-gray-600 hover:text-orange-600">Why Vero</a>
+                <a href="index.html#plan" class="text-gray-600 hover:text-orange-600">How It Works</a>
+                <a href="index.html#testimonials" class="text-gray-600 hover:text-orange-600">Reviews</a>
+            </nav>
+            <a href="contact.html" class="hidden md:block bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-orange-700">Get Your Quote</a>
+            <div class="md:hidden">
+                <button @click="isOpen = !isOpen" type="button" class="text-gray-800 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path><path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden">
+            <div class="flex flex-col items-center py-8 space-y-6 bg-white shadow-lg">
+                <a href="about.html" @click="isOpen = false" class="text-lg">Why Vero</a>
+                <a href="index.html#plan" @click="isOpen = false" class="text-lg">How It Works</a>
+                <a href="index.html#testimonials" @click="isOpen = false" class="text-lg">Reviews</a>
+                <a href="contact.html" @click="isOpen = false" class="bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg">Get Your Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-extrabold text-gray-800">Let's Fix Your Auto Glass</h1>
+                    <p class="text-xl text-gray-600 mt-2">Get a fast, honest quote from a team that cares.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Info & Location -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg fade-in">
+                        <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+                        
+                        <div class="space-y-4 text-lg">
+                            <p><strong>Call or Text:</strong> <a href="tel:503-555-1234" class="text-orange-600 hover:underline">503-XXX-XXXX</a></p>
+                            <p><strong>Email:</strong> <a href="mailto:info@veroautoglasspdx.com" class="text-orange-600 hover:underline">info@veroautoglasspdx.com</a></p>
+                            
+                            <hr class="my-6">
+
+                            <p><strong>Shop Location:</strong></p>
+                            <p class="text-gray-600">[Address in Tigard - TBD]<br>Tigard, OR 97223</p>
+
+                             <hr class="my-6">
+                            
+                            <p><strong>Hours:</strong></p>
+                            <p class="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 4:00 PM<br>Sunday: Closed</p>
+
+                            <hr class="my-6">
+
+                            <h3 class="text-xl font-bold">Service Area</h3>
+                            <p class="text-gray-600">We serve the entire Portland metro area, including Portland, Beaverton, Lake Oswego, Tigard, Tualatin, Sherwood, Milwaukie, Oregon City, Hillsboro, and surrounding areas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Quote Form -->
+                    <div id="quote-form" class="bg-white p-8 rounded-lg shadow-lg fade-in" style="transition-delay: 150ms;">
+                         <h2 class="text-2xl font-bold mb-6">Quick Quote Form</h2>
+                         <form action="#" method="POST" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                                <input type="tel" name="phone" id="phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            </div>
+                            <div>
+                                <label for="vehicle" class="block text-sm font-medium text-gray-700">Vehicle Year/Make/Model</label>
+                                <input type="text" name="vehicle" id="vehicle" required placeholder="e.g., 2021 Honda CR-V" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            </div>
+                            <div>
+                                <label for="damage" class="block text-sm font-medium text-gray-700">Type of Damage</label>
+                                <input type="text" name="damage" id="damage" required placeholder="e.g., Cracked windshield, broken driver's window" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            </div>
+                             <div>
+                                <label for="insurance" class="block text-sm font-medium text-gray-700">Insurance Company (Optional)</label>
+                                <input type="text" name="insurance" id="insurance" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full bg-orange-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-700 transition-colors duration-300">Submit for Quote</button>
+                            </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-xl font-bold">Vero Autoglass</h3>
+            <p class="my-4 text-gray-400">Your Windshield Fixed Right, Without the Runaround.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="services.html" class="text-gray-400 hover:text-white">Services</a>
+                <a href="about.html" class="text-gray-400 hover:text-white">About</a>
+                <a href="insurance.html" class="text-gray-400 hover:text-white">Insurance</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white">Contact</a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Vero Autoglass. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+</body>
+</html>
