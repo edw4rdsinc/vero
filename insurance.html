@@ -13,6 +13,7 @@
         body { font-family: 'Inter', sans-serif; color: #2b2b2b; }
         .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .mix-blend-multiply { mix-blend-mode: multiply; }
     </style>
 </head>
 <body class="bg-white">
@@ -21,7 +22,7 @@
     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html">
-                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12">
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-8">
             </a>
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="services.html" class="text-[#595959] hover:text-[#ff4d00]">Services</a>
@@ -118,14 +119,14 @@
                     <h3 class="text-2xl font-bold text-center mb-6">Insurance Companies We Work With</h3>
                     <p class="text-center text-[#595959] mb-6">We're approved vendors for most major insurance companies. Don't see yours? No problem. We can work with any insurance company.</p>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12">
-                        <img src="images/geico.png" alt="GEICO Logo" class="h-12">
-                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12">
-                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12">
-                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12">
-                        <img src="images/farmers.jpeg" alt="Farmers Logo" class="h-12">
-                        <img src="images/amfam.png" alt="American Family Logo" class="h-12">
-                        <img src="images/country.jpeg" alt="Country Financial Logo" class="h-12">
+                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 mix-blend-multiply">
+                        <img src="images/geico.png" alt="GEICO Logo" class="h-12 mix-blend-multiply">
+                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12 mix-blend-multiply">
+                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12 mix-blend-multiply">
+                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 mix-blend-multiply">
+                        <img src="images/famers.jpeg" alt="Farmers Logo" class="h-12 mix-blend-multiply">
+                        <img src="images/amfam.png" alt="American Family Logo" class="h-12 mix-blend-multiply">
+                        <img src="images/country.jpeg" alt="Country Financial Logo" class="h-12 mix-blend-multiply">
                     </div>
                 </div>
 
