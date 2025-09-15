@@ -112,10 +112,6 @@
         .scroller:hover {
             animation-play-state: paused;
         }
-
-        .header-logo {
-            transition: height 0.3s ease-in-out;
-        }
         
         /* Floating "Speak to an Agent" button */
         .floating-agent-btn {
@@ -138,6 +134,24 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 35px rgba(255, 77, 0, 0.4);
         }
+
+        /* Logo Animation Styles */
+        #nav-logo {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.scrolled #nav-logo {
+            opacity: 1;
+        }
+        #hero-logo {
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        body.scrolled #hero-logo {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
 
         @media (max-width: 768px) {
             .floating-agent-btn {
@@ -178,8 +192,8 @@
     <!-- HEADER & NAVIGATION -->
     <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-10 left-0 right-0 z-40 shadow-lg transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html">
-                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12 header-logo">
+            <a href="index.html" id="nav-logo">
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12">
             </a>
             
             <!-- Desktop Navigation -->
@@ -231,6 +245,7 @@
         <section class="relative h-screen flex items-center justify-center text-center parallax-bg">
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 px-4 text-white">
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" id="hero-logo" class="h-40 md:h-56 mx-auto mb-8">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in" style="transition-delay: 50ms;">Auto Glass Made Simple</h1>
                 <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in" style="transition-delay: 150ms;">Skip the confusing quotes, surprise charges, and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 250ms;">
@@ -647,7 +662,7 @@
     <footer class="bg-[#2b2b2b] text-white py-12">
         <div class="container mx-auto px-6 text-center">
             <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12 mx-auto mb-4">
-            <p class="my-4 text-gray-400">Quality auto glass without the games.</p>
+            <p class="my-4 text-gray-400">Autoglass made simple.</p>
             <div class="text-gray-400 mb-4">
                 <p>[Address in Tigard - TBD], Tigard, OR 97223</p>
                 <a href="tel:503-555-1234" class="hover:text-white">503-XXX-XXXX</a>
@@ -663,6 +678,15 @@
     </footer>
     
     <script>
+        // Logo Animation on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
         // Simple Fade-in on Scroll Animation
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
@@ -727,4 +751,5 @@
     </script>
 </body>
 </html>
+
 
