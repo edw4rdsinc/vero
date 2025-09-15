@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vero Autoglass | Windshield Repair & Replacement</title>
+    <meta name="description" content="Vero Autoglass offers professional windshield repair and replacement in Portland, OR. We handle insurance claims, use quality OEM-equivalent glass, and provide a lifetime warranty.">
+    <title>Vero Autoglass | Windshield Repair & Replacement | Portland, OR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +30,7 @@
         .flip-card {
             background-color: transparent;
             width: 100%;
-            height: 250px;
+            height: 280px; /* Increased height */
             perspective: 1000px; /* Gives the 3D effect */
         }
         .flip-card-inner {
@@ -112,26 +113,10 @@
             animation-play-state: paused;
         }
 
-        /* Logo shrinking animation */
         .header-logo {
             transition: height 0.3s ease-in-out;
         }
-
-        .header-scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-scrolled .header-logo {
-            height: 3rem; /* h-12 equivalent (48px) */
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
+        
         /* Floating "Speak to an Agent" button */
         .floating-agent-btn {
             position: fixed;
@@ -191,21 +176,21 @@
     </div>
 
     <!-- HEADER & NAVIGATION -->
-    <header id="main-header" x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-12 left-0 right-0 z-40 shadow-sm transition-all duration-300">
+    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-10 left-0 right-0 z-40 shadow-lg transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html">
-                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-32 header-logo">
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12 header-logo">
             </a>
             
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#benefits" class="text-[#595959] hover:text-[#ff4d00] transition-colors duration-300">Services</a>
-                <a href="#insurance-coverage" class="text-[#595959] hover:text-[#ff4d00] transition-colors duration-300">Insurance</a>
-                <a href="#warranty" class="text-[#595959] hover:text-[#ff4d00] transition-colors duration-300">Warranty</a>
-                <a href="contact.html" class="text-[#595959] hover:text-[#ff4d00] transition-colors duration-300">Contact Us</a>
+            <nav class="hidden md:flex space-x-10 items-center">
+                <a href="#benefits" class="text-gray-300 hover:text-white transition-colors duration-300">Services</a>
+                <a href="#insurance-coverage" class="text-gray-300 hover:text-white transition-colors duration-300">Insurance</a>
+                <a href="#warranty" class="text-gray-300 hover:text-white transition-colors duration-300">Warranty</a>
+                <a href="contact.html" class="text-gray-300 hover:text-white transition-colors duration-300">Contact Us</a>
             </nav>
             <div class="hidden md:flex space-x-3">
-                <a href="tel:503-555-1234" class="bg-white border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
+                <a href="tel:503-555-1234" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
                     Speak to an Agent
                 </a>
                 <a href="contact.html" class="bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
@@ -215,7 +200,7 @@
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button @click="isOpen = !isOpen" type="button" class="text-[#2b2b2b] hover:text-[#ff4d00] focus:outline-none">
+                <button @click="isOpen = !isOpen" type="button" class="text-white hover:text-[#ff4d00] focus:outline-none">
                     <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path>
                         <path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path>
@@ -225,16 +210,16 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
+        <div x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg">
             <div class="flex flex-col items-center py-8 space-y-6">
-                <a href="#benefits" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Services</a>
-                <a href="#insurance-coverage" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Insurance</a>
-                <a href="#warranty" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Warranty</a>
-                <a href="contact.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Contact Us</a>
-                <a href="tel:503-555-1234" @click="isOpen = false" class="bg-white border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
+                <a href="#benefits" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Services</a>
+                <a href="#insurance-coverage" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Insurance</a>
+                <a href="#warranty" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Warranty</a>
+                <a href="contact.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Contact Us</a>
+                <a href="tel:503-555-1234" @click="isOpen = false" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300 w-3/4 text-center">
                     Speak to an Agent
                 </a>
-                <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
+                <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300 w-3/4 text-center">
                     Get Your Quote
                 </a>
             </div>
@@ -244,9 +229,8 @@
     <main>
         <!-- SECTION 1: HERO -->
         <section class="relative h-screen flex items-center justify-center text-center parallax-bg">
-            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 px-4 text-white">
-                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-64 mx-auto mb-8 fade-in">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in" style="transition-delay: 50ms;">Auto Glass Made Simple</h1>
                 <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in" style="transition-delay: 150ms;">Skip the confusing quotes, surprise charges, and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 250ms;">
@@ -277,14 +261,14 @@
                         <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 opacity-100 transition-opacity duration-500">
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
                                 <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=SM" alt="Avatar" class="w-10 h-10 rounded-full">
+                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=SM" alt="Testimonial from Sarah M." class="w-10 h-10 rounded-full">
                                     <span class="font-semibold ml-3">Sarah M. - Lake Oswego</span>
                                 </div>
                                 <p class="text-sm text-[#595959]">"Finally! Someone who just gives you a straight answer. They handled my insurance, used quality glass, and the whole thing took less than an hour."</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
                                  <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=MK" alt="Avatar" class="w-10 h-10 rounded-full">
+                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=MK" alt="Testimonial from Mike K." class="w-10 h-10 rounded-full">
                                     <span class="font-semibold ml-3">Mike K. - Beaverton</span>
                                 </div>
                                 <p class="text-sm text-[#595959]">"Devin explained exactly what needed to happen with my lane-assist sensors. Other shops just wanted to skip the recalibration. These guys do it right."</p>
@@ -295,14 +279,14 @@
                         <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 absolute top-0 left-0 w-full opacity-0 transition-opacity duration-500">
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
                                  <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=JC" alt="Avatar" class="w-10 h-10 rounded-full">
+                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=JC" alt="Testimonial from Jennifer C." class="w-10 h-10 rounded-full">
                                     <span class="font-semibold ml-3">Jennifer C. - Tigard</span>
                                 </div>
                                 <p class="text-sm text-[#595959]">"They worked around MY schedule. Came to my office, fixed it in the parking lot while I was in meetings. Saved my whole day."</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
                                  <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=DL" alt="Avatar" class="w-10 h-10 rounded-full">
+                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=DL" alt="Testimonial from David L." class="w-10 h-10 rounded-full">
                                     <span class="font-semibold ml-3">David L. - Tualatin</span>
                                 </div>
                                 <p class="text-sm text-[#595959]">"The quote was the price. No surprise fees, no 'oh we found another problem.' Just honest, professional service. Refreshing!"</p>
@@ -313,14 +297,14 @@
                         <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 absolute top-0 left-0 w-full opacity-0 transition-opacity duration-500">
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
                                  <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=AM" alt="Avatar" class="w-10 h-10 rounded-full">
+                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=AM" alt="Testimonial from Amanda R." class="w-10 h-10 rounded-full">
                                     <span class="font-semibold ml-3">Amanda R. - Milwaukie</span>
                                 </div>
                                 <p class="text-sm text-[#595959]">"Transparent pricing, quality work, and they actually showed up on time. It's refreshing to work with a business that does what they say they'll do."</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
                                  <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=BT" alt="Avatar" class="w-10 h-10 rounded-full">
+                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=BT" alt="Testimonial from Brian T." class="w-10 h-10 rounded-full">
                                     <span class="font-semibold ml-3">Brian T. - Hillsboro</span>
                                 </div>
                                 <p class="text-sm text-[#595959]">"My Tesla needed special recalibration after the windshield replacement. They had the right equipment and knew exactly what they were doing."</p>
@@ -383,7 +367,7 @@
         </section>
 
         <!-- SECTION 4: THE PLAN -->
-        <section id="plan" class="py-20 bg-[#f1f1f1]">
+        <section id="plan" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 fade-in">
                     <h2 class="text-3xl font-bold text-[#2b2b2b]">Getting Your Glass Fixed Shouldn't Be Complicated</h2>
@@ -445,19 +429,19 @@
         </section>
 
         <!-- INSURANCE VERIFICATION SECTION -->
-        <section id="insurance-coverage" class="py-20 bg-[#f1f1f1]">
+        <section id="insurance-coverage" class="py-20 bg-[#2b2b2b] text-white">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto">
                     <div class="text-center mb-12 fade-in">
-                        <h2 class="text-3xl font-bold text-[#2b2b2b] mb-4">See If Your Service Is Covered</h2>
-                        <p class="text-lg text-[#595959]">Check your insurance coverage in seconds. Most comprehensive policies cover glass repair with little to no deductible.</p>
+                        <h2 class="text-3xl font-bold mb-4">See If Your Service Is Covered</h2>
+                        <p class="text-lg text-gray-300">Check your insurance coverage in seconds. Most comprehensive policies cover glass repair with little to no deductible.</p>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-lg p-8 fade-in" style="transition-delay: 150ms;">
+                    <div class="bg-[#595959] rounded-lg shadow-lg p-8 fade-in" style="transition-delay: 150ms;">
                         <form id="insurance-check-form" class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label for="insurance-company" class="block text-sm font-medium text-gray-700 mb-2">Insurance Company</label>
-                                <select name="insurance-company" id="insurance-company" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
+                                <label for="insurance-company" class="block text-sm font-medium text-gray-300 mb-2">Insurance Company</label>
+                                <select name="insurance-company" id="insurance-company" required class="w-full px-3 py-2 border bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
                                     <option value="">Select your insurance company...</option>
                                     <option value="state-farm">State Farm</option>
                                     <option value="geico">GEICO</option>
@@ -473,13 +457,13 @@
                             </div>
 
                             <div>
-                                <label for="policy-number" class="block text-sm font-medium text-gray-700 mb-2">Policy Number</label>
-                                <input type="text" name="policy-number" id="policy-number" required placeholder="Enter your policy number" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
+                                <label for="policy-number" class="block text-sm font-medium text-gray-300 mb-2">Policy Number</label>
+                                <input type="text" name="policy-number" id="policy-number" required placeholder="Enter your policy number" class="w-full px-3 py-2 border bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
                             </div>
 
                             <div>
-                                <label for="phone-number" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                                <input type="tel" name="phone-number" id="phone-number" required placeholder="(503) 555-1234" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
+                                <label for="phone-number" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                                <input type="tel" name="phone-number" id="phone-number" required placeholder="(503) 555-1234" class="w-full px-3 py-2 border bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
                             </div>
 
                             <div class="flex items-end">
@@ -489,52 +473,17 @@
                             </div>
                         </form>
 
-                        <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
                             <div class="flex items-start">
-                                <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-blue-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                                <div class="text-sm text-blue-800">
-                                    <p class="font-semibold mb-1">Quick Coverage Check</p>
+                                <div class="text-sm text-gray-300">
+                                    <p class="font-semibold text-white mb-1">Quick Coverage Check</p>
                                     <p>We'll verify your coverage and deductible within minutes. Most comprehensive policies include glass coverage with $0-$100 deductibles.</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 7: TESTIMONIALS -->
-        <section id="testimonials" class="py-20 bg-[#f1f1f1]">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-3xl font-bold text-[#2b2b2b]">Real Portland Drivers, Real Experiences</h2>
-                </div>
-                <div class="grid lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 fade-in text-center flex flex-col" style="transition-delay: 100ms;">
-                        <img src="https://placehold.co/100x100/e2e8f0/333?text=TR" class="w-24 h-24 rounded-full mx-auto -mt-20 border-4 border-white">
-                        <div class="flex justify-center text-yellow-400 my-4"> <!-- Stars -->
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-[#595959] italic mb-4 flex-grow">"I manage a fleet of delivery vans. Vero is the only shop I trust. They understand that downtime costs money, they work fast without cutting corners, and their prices are actually fair. They've done probably 20 windshields for us this year."</p>
-                        <p class="font-bold text-[#2b2b2b]">- Tom R.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 fade-in text-center flex flex-col" style="transition-delay: 200ms;">
-                        <img src="https://placehold.co/100x100/e2e8f0/333?text=MS" class="w-24 h-24 rounded-full mx-auto -mt-20 border-4 border-white">
-                        <div class="flex justify-center text-yellow-400 my-4"> <!-- Stars -->
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-[#595959] italic mb-4 flex-grow">"I was dreading this whole process. My Honda has all those safety sensors and I was worried about them working properly after. The tech spent extra time making sure everything was calibrated perfectly. My collision warning system works exactly like before."</p>
-                        <p class="font-bold text-[#2b2b2b]">- Maria S.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100 fade-in text-center flex flex-col" style="transition-delay: 300ms;">
-                        <img src="https://placehold.co/100x100/e2e8f0/333?text=JD" class="w-24 h-24 rounded-full mx-auto -mt-20 border-4 border-white">
-                        <div class="flex justify-center text-yellow-400 my-4"> <!-- Stars -->
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-[#595959] italic mb-4 flex-grow">"Called at 8 AM with a crack that was spreading fast. They squeezed me in same-day, dealt directly with State Farm, and I paid nothing. The whole experience was shockingly easy."</p>
-                        <p class="font-bold text-[#2b2b2b]">- James D.</p>
                     </div>
                 </div>
             </div>
@@ -697,8 +646,12 @@
     <!-- FOOTER -->
     <footer class="bg-[#2b2b2b] text-white py-12">
         <div class="container mx-auto px-6 text-center">
-            <h3 class="text-xl font-bold">Vero Autoglass</h3>
+            <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12 mx-auto mb-4">
             <p class="my-4 text-gray-400">Quality auto glass without the games.</p>
+            <div class="text-gray-400 mb-4">
+                <p>[Address in Tigard - TBD], Tigard, OR 97223</p>
+                <a href="tel:503-555-1234" class="hover:text-white">503-XXX-XXXX</a>
+            </div>
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a href="services.html" class="text-gray-400 hover:text-white">Services</a>
                 <a href="about.html" class="text-gray-400 hover:text-white">About Us</a>
@@ -723,22 +676,6 @@
         }, appearOptions);
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        // Logo shrinking animation on scroll
-        const header = document.getElementById('main-header');
-        let lastScrollTop = 0;
-
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > 100) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-
-            lastScrollTop = scrollTop;
-        });
-
         // Reviews carousel functionality
         let currentReviewIndex = 0;
         const reviewSets = document.querySelectorAll('.reviews-set');
@@ -746,17 +683,13 @@
         const totalReviews = reviewSets.length;
 
         function showReview(index) {
-            // Hide all review sets
             reviewSets.forEach((set, i) => {
                 set.style.opacity = i === index ? '1' : '0';
             });
-
-            // Update indicators
             reviewIndicators.forEach((indicator, i) => {
                 indicator.classList.toggle('bg-[#ff4d00]', i === index);
                 indicator.classList.toggle('bg-gray-300', i !== index);
             });
-
             currentReviewIndex = index;
         }
 
@@ -765,28 +698,19 @@
             showReview(nextIndex);
         }
 
-        // Auto-rotate reviews every 6 seconds
         let reviewInterval = setInterval(nextReview, 6000);
 
-        // Add click handlers for indicators
         reviewIndicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
                 showReview(index);
-                // Reset interval when user manually clicks
                 clearInterval(reviewInterval);
                 reviewInterval = setInterval(nextReview, 6000);
             });
         });
 
-        // Pause auto-rotation when hovering over reviews
         const reviewsCarousel = document.getElementById('reviews-carousel');
-        reviewsCarousel.addEventListener('mouseenter', () => {
-            clearInterval(reviewInterval);
-        });
-
-        reviewsCarousel.addEventListener('mouseleave', () => {
-            reviewInterval = setInterval(nextReview, 6000);
-        });
+        reviewsCarousel.addEventListener('mouseenter', () => clearInterval(reviewInterval));
+        reviewsCarousel.addEventListener('mouseleave', () => reviewInterval = setInterval(nextReview, 6000));
 
         // Floating "Speak to an Agent" button functionality
         const floatingBtn = document.getElementById('floating-agent-btn');
@@ -794,9 +718,7 @@
         let heroHeight = heroSection ? heroSection.offsetHeight : 800;
 
         window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > heroHeight * 0.8) {
+            if (window.pageYOffset > heroHeight * 0.8) {
                 floatingBtn.classList.add('visible');
             } else {
                 floatingBtn.classList.remove('visible');
