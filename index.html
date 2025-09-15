@@ -11,13 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
-        /* Base font and theme settings */
         body {
             font-family: 'Inter', sans-serif;
             color: #2b2b2b;
         }
-
-        /* The Parallax Effect */
         .parallax-bg {
             background-image: url('images/vero-hero.png');
             background-attachment: fixed;
@@ -25,13 +22,12 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-
-        /* The Flipping Card Effect */
         .flip-card {
             background-color: transparent;
             width: 100%;
-            height: 280px; /* Increased height */
-            perspective: 1000px; /* Gives the 3D effect */
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
         }
         .flip-card-inner {
             position: relative;
@@ -46,34 +42,11 @@
         .flip-card:hover .flip-card-inner {
             transform: rotateY(180deg);
         }
-
-        /* Enhanced service card hover effects */
-        .flip-card {
-            cursor: pointer;
-        }
-
-        .flip-card:hover {
-            transform: translateY(-8px);
-            transition: transform 0.3s ease;
-        }
-
-        .flip-card-front:hover {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        }
-
-        .flip-card-front svg {
-            transition: all 0.3s ease;
-        }
-
-        .flip-card:hover .flip-card-front svg {
-            transform: scale(1.1);
-            filter: drop-shadow(0 4px 8px rgba(255, 77, 0, 0.3));
-        }
         .flip-card-front, .flip-card-back {
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
+            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             border-radius: 0.75rem;
             display: flex;
@@ -87,7 +60,7 @@
             border: 1px solid #e2e8f0;
         }
         .flip-card-back {
-            background-color: #ff4d00; /* VERO Red Orange */
+            background-color: #ff4d00;
             color: white;
             transform: rotateY(180deg);
         }
@@ -100,8 +73,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Scrolling Logos Animation */
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -112,8 +83,6 @@
         .scroller:hover {
             animation-play-state: paused;
         }
-        
-        /* Floating "Speak to an Agent" button */
         .floating-agent-btn {
             position: fixed;
             bottom: 30px;
@@ -124,18 +93,14 @@
             transition: all 0.3s ease;
             box-shadow: 0 8px 25px rgba(255, 77, 0, 0.3);
         }
-
         .floating-agent-btn.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
         .floating-agent-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 35px rgba(255, 77, 0, 0.4);
         }
-
-        /* Logo Animation Styles */
         #nav-logo {
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
@@ -151,28 +116,23 @@
             opacity: 0;
             transform: translateY(-20px);
         }
-
-
         @media (max-width: 768px) {
             .floating-agent-btn {
                 bottom: 20px;
                 right: 20px;
                 left: 20px;
-                right: 20px;
             }
         }
     </style>
 </head>
 <body class="bg-white">
 
-    <!-- BUY NOW PAY LATER BANNER -->
+    <!-- Banners and Header -->
     <div class="bg-gradient-to-r from-[#ff4d00] to-[#ff6d20] py-2 fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex flex-col sm:flex-row items-center justify-between text-white text-sm">
                 <div class="flex items-center space-x-2 mb-1 sm:mb-0">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v2"></path>
-                    </svg>
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v2"></path></svg>
                     <span class="font-semibold">Buy Now, Pay Later Available</span>
                     <span class="hidden sm:inline text-orange-100">• No interest financing options</span>
                 </div>
@@ -181,85 +141,56 @@
                         <span class="text-xs bg-white text-[#ff4d00] px-2 py-1 rounded font-medium">Affirm</span>
                         <span class="text-xs bg-white text-[#ff4d00] px-2 py-1 rounded font-medium">Klarna</span>
                     </div>
-                    <a href="contact.html" class="text-xs bg-white text-[#ff4d00] font-semibold px-3 py-1 rounded hover:bg-gray-100 transition-colors duration-300">
-                        Learn More
-                    </a>
+                    <a href="contact.html" class="text-xs bg-white text-[#ff4d00] font-semibold px-3 py-1 rounded hover:bg-gray-100">Learn More</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- HEADER & NAVIGATION -->
-    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-10 left-0 right-0 z-40 shadow-lg transition-all duration-300">
+    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-10 left-0 right-0 z-40 shadow-lg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" id="nav-logo">
-                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12">
-            </a>
-            
-            <!-- Desktop Navigation -->
+            <a href="index.html" id="nav-logo"><img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12"></a>
             <nav class="hidden md:flex space-x-10 items-center">
-                <a href="#benefits" class="text-gray-300 hover:text-white transition-colors duration-300">Services</a>
-                <a href="#insurance-coverage" class="text-gray-300 hover:text-white transition-colors duration-300">Insurance</a>
-                <a href="#warranty" class="text-gray-300 hover:text-white transition-colors duration-300">Warranty</a>
-                <a href="contact.html" class="text-gray-300 hover:text-white transition-colors duration-300">Contact Us</a>
+                <a href="services.html" class="text-gray-300 hover:text-white">Services</a>
+                <a href="insurance.html" class="text-gray-300 hover:text-white">Insurance</a>
+                <a href="warranty.html" class="text-gray-300 hover:text-white">Warranty</a>
+                <a href="contact.html" class="text-gray-300 hover:text-white">Contact Us</a>
             </nav>
             <div class="hidden md:flex space-x-3">
-                <a href="tel:503-555-1234" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
-                    Speak to an Agent
-                </a>
-                <a href="contact.html" class="bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
-                    Get Your Quote
-                </a>
+                <a href="tel:503-555-1234" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white">Speak to an Agent</a>
+                <a href="contact.html" class="bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90">Get Your Quote</a>
             </div>
-
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button @click="isOpen = !isOpen" type="button" class="text-white hover:text-[#ff4d00] focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        <path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
+                <button @click="isOpen = !isOpen" type="button" class="text-white hover:text-[#ff4d00] focus:outline-none"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path><path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             </div>
         </div>
-
-        <!-- Mobile Menu -->
-        <div x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg">
+        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg">
             <div class="flex flex-col items-center py-8 space-y-6">
-                <a href="#benefits" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Services</a>
-                <a href="#insurance-coverage" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Insurance</a>
-                <a href="#warranty" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Warranty</a>
+                <a href="services.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Services</a>
+                <a href="insurance.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Insurance</a>
+                <a href="warranty.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Warranty</a>
                 <a href="contact.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Contact Us</a>
-                <a href="tel:503-555-1234" @click="isOpen = false" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300 w-3/4 text-center">
-                    Speak to an Agent
-                </a>
-                <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300 w-3/4 text-center">
-                    Get Your Quote
-                </a>
+                <a href="tel:503-555-1234" @click="isOpen = false" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white w-3/4 text-center">Speak to an Agent</a>
+                <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 w-3/4 text-center">Get Your Quote</a>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- SECTION 1: HERO -->
+        <!-- Section 1: Hero -->
         <section class="relative h-screen flex items-center justify-center text-center parallax-bg">
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 px-4 text-white">
                 <img src="images/vero-logo.png" alt="Vero Autoglass Logo" id="hero-logo" class="h-40 md:h-56 mx-auto mb-8">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in" style="transition-delay: 50ms;">Auto Glass Made Simple</h1>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in" style="transition-delay: 150ms;">Skip the confusing quotes, surprise charges, and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 250ms;">
-                    <a href="contact.html" class="bg-[#ff4d00] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90 transition-colors duration-300">
-                        Get Your Quote
-                    </a>
-                    <a href="#plan" class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-[#ff4d00] transition-colors duration-300">
-                        See How It Works
-                    </a>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in">Auto Glass Made Simple</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in">Skip the confusing quotes, surprise charges, and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                    <a href="contact.html" class="bg-[#ff4d00] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90">Get Your Quote</a>
+                    <a href="#plan" class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-[#ff4d00]">See How It Works</a>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 2: SOCIAL PROOF (4.9 Stars) -->
+        <!-- Section 2: Social Proof -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -271,85 +202,58 @@
                         </div>
                         <p class="text-lg text-[#595959]">Portland drivers trust us because we do what we say we'll do. No games, no surprises, just consistently great work.</p>
                     </div>
-                    <div id="reviews-carousel" class="relative fade-in" style="transition-delay: 150ms;">
-                        <!-- Review Set 1 -->
-                        <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 opacity-100 transition-opacity duration-500">
-                            <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
-                                <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=SM" alt="Testimonial from Sarah M." class="w-10 h-10 rounded-full">
-                                    <span class="font-semibold ml-3">Sarah M. - Lake Oswego</span>
-                                </div>
+                    <div id="reviews-carousel" class="relative fade-in">
+                        <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 opacity-100">
+                           <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
+                                <div class="flex items-center mb-2"><img src="https://placehold.co/40x40/e2e8f0/333?text=SM" alt="Testimonial from Sarah M." class="w-10 h-10 rounded-full"><span class="font-semibold ml-3">Sarah M. - Lake Oswego</span></div>
                                 <p class="text-sm text-[#595959]">"Finally! Someone who just gives you a straight answer. They handled my insurance, used quality glass, and the whole thing took less than an hour."</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
-                                 <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=MK" alt="Testimonial from Mike K." class="w-10 h-10 rounded-full">
-                                    <span class="font-semibold ml-3">Mike K. - Beaverton</span>
-                                </div>
+                                 <div class="flex items-center mb-2"><img src="https://placehold.co/40x40/e2e8f0/333?text=MK" alt="Testimonial from Mike K." class="w-10 h-10 rounded-full"><span class="font-semibold ml-3">Mike K. - Beaverton</span></div>
                                 <p class="text-sm text-[#595959]">"Devin explained exactly what needed to happen with my lane-assist sensors. Other shops just wanted to skip the recalibration. These guys do it right."</p>
                             </div>
                         </div>
-
-                        <!-- Review Set 2 -->
-                        <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 absolute top-0 left-0 w-full opacity-0 transition-opacity duration-500">
-                            <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
-                                 <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=JC" alt="Testimonial from Jennifer C." class="w-10 h-10 rounded-full">
-                                    <span class="font-semibold ml-3">Jennifer C. - Tigard</span>
-                                </div>
+                        <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 absolute top-0 left-0 w-full opacity-0">
+                           <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
+                                 <div class="flex items-center mb-2"><img src="https://placehold.co/40x40/e2e8f0/333?text=JC" alt="Testimonial from Jennifer C." class="w-10 h-10 rounded-full"><span class="font-semibold ml-3">Jennifer C. - Tigard</span></div>
                                 <p class="text-sm text-[#595959]">"They worked around MY schedule. Came to my office, fixed it in the parking lot while I was in meetings. Saved my whole day."</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
-                                 <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=DL" alt="Testimonial from David L." class="w-10 h-10 rounded-full">
-                                    <span class="font-semibold ml-3">David L. - Tualatin</span>
-                                </div>
+                                 <div class="flex items-center mb-2"><img src="https://placehold.co/40x40/e2e8f0/333?text=DL" alt="Testimonial from David L." class="w-10 h-10 rounded-full"><span class="font-semibold ml-3">David L. - Tualatin</span></div>
                                 <p class="text-sm text-[#595959]">"The quote was the price. No surprise fees, no 'oh we found another problem.' Just honest, professional service. Refreshing!"</p>
                             </div>
                         </div>
-
-                        <!-- Review Set 3 -->
-                        <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 absolute top-0 left-0 w-full opacity-0 transition-opacity duration-500">
-                            <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
-                                 <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=AM" alt="Testimonial from Amanda R." class="w-10 h-10 rounded-full">
-                                    <span class="font-semibold ml-3">Amanda R. - Milwaukie</span>
-                                </div>
+                        <div class="reviews-set grid grid-cols-1 sm:grid-cols-2 gap-4 absolute top-0 left-0 w-full opacity-0">
+                           <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
+                                 <div class="flex items-center mb-2"><img src="https://placehold.co/40x40/e2e8f0/333?text=AM" alt="Testimonial from Amanda R." class="w-10 h-10 rounded-full"><span class="font-semibold ml-3">Amanda R. - Milwaukie</span></div>
                                 <p class="text-sm text-[#595959]">"Transparent pricing, quality work, and they actually showed up on time. It's refreshing to work with a business that does what they say they'll do."</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-lg border border-gray-100">
-                                 <div class="flex items-center mb-2">
-                                    <img src="https://placehold.co/40x40/e2e8f0/333?text=BT" alt="Testimonial from Brian T." class="w-10 h-10 rounded-full">
-                                    <span class="font-semibold ml-3">Brian T. - Hillsboro</span>
-                                </div>
+                                 <div class="flex items-center mb-2"><img src="https://placehold.co/40x40/e2e8f0/333?text=BT" alt="Testimonial from Brian T." class="w-10 h-10 rounded-full"><span class="font-semibold ml-3">Brian T. - Hillsboro</span></div>
                                 <p class="text-sm text-[#595959]">"My Tesla needed special recalibration after the windshield replacement. They had the right equipment and knew exactly what they were doing."</p>
                             </div>
                         </div>
-
-                        <!-- Carousel Indicators -->
                         <div class="flex justify-center mt-6 space-x-2">
-                            <button class="review-indicator w-3 h-3 rounded-full bg-[#ff4d00] transition-colors duration-300" data-index="0"></button>
-                            <button class="review-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-index="1"></button>
-                            <button class="review-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-index="2"></button>
+                            <button class="review-indicator w-3 h-3 rounded-full bg-[#ff4d00]" data-index="0"></button>
+                            <button class="review-indicator w-3 h-3 rounded-full bg-gray-300" data-index="1"></button>
+                            <button class="review-indicator w-3 h-3 rounded-full bg-gray-300" data-index="2"></button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: THE STAKES -->
+        <!-- Section 3: The Stakes -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6 text-center">
                 <div class="fade-in">
                     <h2 class="text-3xl font-bold text-[#2b2b2b] mb-4">We Know This Isn't How You Planned Your Day</h2>
-                    <p class="text-lg text-[#595959] max-w-3xl mx-auto mb-6">
-                        Your windshield is cracked. You're busy. And now you're trying to figure out who to trust with your car, whether insurance will cover it, and how long you'll be without transportation. Meanwhile, every shop you call either can't explain their pricing or treats you like just another number.
-                    </p>
+                    <p class="text-lg text-[#595959] max-w-3xl mx-auto mb-6">Your windshield is cracked. You're busy. And now you're trying to figure out who to trust with your car, whether insurance will cover it, and how long you'll be without transportation. Meanwhile, every shop you call either can't explain their pricing or treats you like just another number.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: THE GUIDE -->
+        <!-- Section 4: The Guide -->
         <section id="guide" class="py-20 bg-[#f1f1f1]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 fade-in">
@@ -358,311 +262,143 @@
                 </div>
                 <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
                     <div class="flex items-center justify-center md:justify-start space-x-16 scroller">
-                        <!-- Original Logos -->
-                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none">
-                        <img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none">
-                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none">
-                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none">
-                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none">
-                        <img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none">
-                        <img src="images/country.png" alt="Country Financial" class="h-12 max-w-none">
-                        <img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
-                        <!-- Duplicated Logos for seamless scroll -->
-                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none">
-                        <img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none">
-                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none">
-                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none">
-                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none">
-                        <img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none">
-                         <img src="images/country.png" alt="Country Financial" class="h-12 max-w-none">
-                         <img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
+                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none"><img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none"><img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none"><img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none"><img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none"><img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none"><img src="images/country.png" alt="Country Financial" class="h-12 max-w-none"><img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
+                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none"><img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none"><img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none"><img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none"><img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none"><img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none"><img src="images/country.png" alt="Country Financial" class="h-12 max-w-none"><img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: THE PLAN -->
+        <!-- Section 5: The Plan -->
         <section id="plan" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 fade-in">
                     <h2 class="text-3xl font-bold text-[#2b2b2b]">Getting Your Glass Fixed Shouldn't Be Complicated</h2>
                 </div>
                 <div class="flex flex-col md:flex-row justify-center items-start text-center gap-8 md:gap-16">
-                    <div class="flex flex-col items-center fade-in" style="transition-delay: 100ms;">
-                        <div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">1</div>
-                        <h3 class="text-xl font-semibold mb-2">Tell Us About Your Car</h3>
-                        <p class="text-[#595959] max-w-xs">Quick form or phone call. We'll give you a real quote in minutes, not a "starting at" price.</p>
-                    </div>
+                    <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">1</div><h3 class="text-xl font-semibold mb-2">Tell Us About Your Car</h3><p class="text-[#595959] max-w-xs">Quick form or phone call. We'll give you a real quote in minutes, not a "starting at" price.</p></div>
                     <div class="w-24 border-t-2 border-dashed border-gray-300 my-8 md:my-0 md:mt-10 md:w-32"></div>
-                    <div class="flex flex-col items-center fade-in" style="transition-delay: 200ms;">
-                         <div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">2</div>
-                        <h3 class="text-xl font-semibold mb-2">Pick Your Schedule</h3>
-                        <p class="text-[#595959] max-w-xs">Come to our shop in Tigard or we'll come to you (depending on the job). Same-day often available.</p>
-                    </div>
+                    <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">2</div><h3 class="text-xl font-semibold mb-2">Pick Your Schedule</h3><p class="text-[#595959] max-w-xs">Come to our shop in Tigard or we'll come to you (depending on the job). Same-day often available.</p></div>
                     <div class="w-24 border-t-2 border-dashed border-gray-300 my-8 md:my-0 md:mt-10 md:w-32"></div>
-                    <div class="flex flex-col items-center fade-in" style="transition-delay: 300ms;">
-                         <div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">3</div>
-                        <h3 class="text-xl font-semibold mb-2">Drive with Confidence</h3>
-                        <p class="text-[#595959] max-w-xs">Quality glass, proper installation, warranty included. If your car has safety sensors, we'll recalibrate them correctly.</p>
-                    </div>
+                    <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">3</div><h3 class="text-xl font-semibold mb-2">Drive with Confidence</h3><p class="text-[#595959] max-w-xs">Quality glass, proper installation, warranty included. If your car has safety sensors, we'll recalibrate them correctly.</p></div>
                 </div>
-                <div class="text-center mt-12 fade-in">
-                    <a href="contact.html" class="bg-[#ff4d00] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90 transition-colors duration-300">
-                        Start with Your Quote
-                    </a>
-                </div>
+                <div class="text-center mt-12 fade-in"><a href="contact.html" class="bg-[#ff4d00] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90">Start with Your Quote</a></div>
             </div>
         </section>
         
-        <!-- SECTION 6: VALUE PROPS (Flip Cards) -->
-        <section id="benefits" class="py-20 bg-white">
+        <!-- Section 6: Value Props (Flip Cards) -->
+        <section id="benefits" class="py-20 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 fade-in">
                     <h2 class="text-3xl font-bold text-[#2b2b2b]">Everything You Get With Vero</h2>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="flip-card fade-in" style="transition-delay: 100ms;">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front"><svg class="w-16 h-16 text-[#ff4d00] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="text-2xl font-bold">Fast & Flexible</h3></div>
-                            <div class="flip-card-back"><h3 class="text-2xl font-bold mb-2">Fast & Flexible</h3><p>Most repairs in under an hour. Shop location in Tigard or mobile service for qualifying repairs. Your schedule, your choice.</p></div>
-                        </div>
-                    </div>
-                    <div class="flip-card fade-in" style="transition-delay: 200ms;">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front"><svg class="w-16 h-16 text-[#ff4d00] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="text-2xl font-bold">Insurance Made Easy</h3></div>
-                            <div class="flip-card-back"><h3 class="text-2xl font-bold mb-2">Insurance Made Easy</h3><p>We handle the paperwork. Often $0 out of pocket with comprehensive coverage. We'll tell you exactly what you'll pay before we start.</p></div>
-                        </div>
-                    </div>
-                    <div class="flip-card fade-in" style="transition-delay: 300ms;">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front"><svg class="w-16 h-16 text-[#ff4d00] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01"></path></svg><h3 class="text-2xl font-bold">Done Right, Period</h3></div>
-                            <div class="flip-card-back"><h3 class="text-2xl font-bold mb-2">Done Right, Period</h3><p>OEM-quality glass, proper adhesives, and correct sensor recalibration. We don't cut corners to save 10 minutes.</p></div>
-                        </div>
-                    </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1: Lifetime Warranty -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/warrantee.jpg" alt="Lifetime Warranty" class="h-20 mb-4"><h3 class="text-xl font-bold">Lifetime Warranty</h3></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Lifetime Warranty</h3><p class="text-sm">Every installation comes with a comprehensive lifetime warranty for your peace of mind and protection. <a href="warranty.html" class="font-bold underline hover:text-white">Learn More</a></p></div>
+                    </div></div>
+                    <!-- Card 2: Premium Parts -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/oem-glass.png" alt="Premium Parts" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Premium Parts</h3><p class="text-[#595959] font-semibold">OEM Quality Glass</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Premium Parts</h3><p class="text-sm">We only use Original Equipment Manufacturer quality glass that meets or exceeds industry safety standards.</p></div>
+                    </div></div>
+                    <!-- Card 3: Direct Insurance Billing -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/insurance-claim.png" alt="Insurance Form" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Direct Insurance Billing</h3><p class="text-[#595959] font-semibold">No Upfront Costs</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Direct Insurance Billing</h3><p class="text-sm">We handle all insurance billing and paperwork directly. No upfront costs or complicated claims processes.</p></div>
+                    </div></div>
+                    <!-- Card 4: Full Safety System Recalibration -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/recalibration.png" alt="ADAS Recalibration" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Full Safety System Recalibration</h3><p class="text-[#595959] font-semibold">ADAS Included</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Full Safety System Recalibration</h3><p class="text-sm">Advanced Driver Assistance Systems (ADAS) recalibration included to ensure all safety features will work properly after installation.</p></div>
+                    </div></div>
+                    <!-- Card 5: Free Mobile Service -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/mobile-service.png" alt="Mobile Service Van" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Free Mobile Service</h3><p class="text-[#595959] font-semibold">We Come To You</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Free Mobile Service</h3><p class="text-sm">We offer mobile auto glass installation at your home, your office, or any location that is convenient.</p></div>
+                    </div></div>
+                    <!-- Card 6: Deductible Assistance -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/deductiblehelp.jpg" alt="Customer Support" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Deductible Assistance</h3><p class="text-[#595959] font-semibold">Deductible Help</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Deductible Assistance</h3><p class="text-sm">Most insurance companies will waive your deductible for windshield repairs. We will assist in verifying your deductible amount.</p></div>
+                    </div></div>
+                    <!-- Card 7: Certified Expert Technicians -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/experttechs.jpg" alt="Expert Technician" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Certified Expert Technicians</h3><p class="text-[#595959] font-semibold">Professional Installation</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Certified Expert Technicians</h3><p class="text-sm">All our technicians are certified professionals with years of experience in auto glass repair and replacement.</p></div>
+                    </div></div>
+                    <!-- Card 8: Buy Now, Pay Later -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/financing.png" alt="Financing" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Buy Now, Pay Later</h3><p class="text-[#595959] font-semibold">Flexible Financing</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Buy Now, Pay Later</h3><p class="text-sm">Flexible payment options available. Get your windshield replaced today and pay over time with our financing solutions.</p></div>
+                    </div></div>
+                    <!-- Card 9: Competitive Cash Prices -->
+                    <div class="flip-card fade-in"><div class="flip-card-inner">
+                        <div class="flip-card-front"><img src="images/fair prices.png" alt="Fair Pricing" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Competitive Cash Prices</h3><p class="text-[#595959] font-semibold">Fair Pricing</p></div>
+                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Competitive Cash Prices</h3><p class="text-sm">We've done all the shopping for you for fair, transparent pricing with no hidden fees. We offer competitive rates for customers paying cash or without insurance.</p></div>
+                    </div></div>
                 </div>
             </div>
         </section>
 
-        <!-- INSURANCE VERIFICATION SECTION -->
-        <section id="insurance-coverage" class="py-20 bg-[#2b2b2b] text-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto">
-                    <div class="text-center mb-12 fade-in">
-                        <h2 class="text-3xl font-bold mb-4">See If Your Service Is Covered</h2>
-                        <p class="text-lg text-gray-300">Check your insurance coverage in seconds. Most comprehensive policies cover glass repair with little to no deductible.</p>
-                    </div>
-
-                    <div class="bg-[#595959] rounded-lg shadow-lg p-8 fade-in" style="transition-delay: 150ms;">
-                        <form id="insurance-check-form" class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="insurance-company" class="block text-sm font-medium text-gray-300 mb-2">Insurance Company</label>
-                                <select name="insurance-company" id="insurance-company" required class="w-full px-3 py-2 border bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
-                                    <option value="">Select your insurance company...</option>
-                                    <option value="state-farm">State Farm</option>
-                                    <option value="geico">GEICO</option>
-                                    <option value="progressive">Progressive</option>
-                                    <option value="allstate">Allstate</option>
-                                    <option value="liberty-mutual">Liberty Mutual</option>
-                                    <option value="american-family">American Family</option>
-                                    <option value="farmers">Farmers</option>
-                                    <option value="country-financial">Country Financial</option>
-                                    <option value="usaa">USAA</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="policy-number" class="block text-sm font-medium text-gray-300 mb-2">Policy Number</label>
-                                <input type="text" name="policy-number" id="policy-number" required placeholder="Enter your policy number" class="w-full px-3 py-2 border bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
-                            </div>
-
-                            <div>
-                                <label for="phone-number" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-                                <input type="tel" name="phone-number" id="phone-number" required placeholder="(503) 555-1234" class="w-full px-3 py-2 border bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
-                            </div>
-
-                            <div class="flex items-end">
-                                <button type="submit" class="w-full bg-[#ff4d00] text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
-                                    Check My Coverage
-                                </button>
-                            </div>
-                        </form>
-
-                        <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                            <div class="flex items-start">
-                                <svg class="w-5 h-5 text-blue-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <div class="text-sm text-gray-300">
-                                    <p class="font-semibold text-white mb-1">Quick Coverage Check</p>
-                                    <p>We'll verify your coverage and deductible within minutes. Most comprehensive policies include glass coverage with $0-$100 deductibles.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WARRANTY & GUARANTEE SECTION -->
-        <section id="warranty" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-3xl font-bold text-[#2b2b2b] mb-4">Industry-Leading Protection & Coverage</h2>
-                    <p class="text-lg text-[#595959] max-w-3xl mx-auto">We stand behind every installation with comprehensive warranties that go beyond industry standards.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <!-- Lifetime Warranty -->
-                    <div class="bg-gradient-to-br from-[#ff4d00] to-[#ff6d20] p-8 rounded-lg text-white fade-in" style="transition-delay: 100ms;">
-                        <div class="flex items-center mb-6">
-                            <svg class="w-12 h-12 text-white mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                            <h3 class="text-2xl font-bold">Lifetime Warranty</h3>
-                        </div>
-                        <ul class="space-y-3 text-orange-100">
-                            <li class="flex items-start">
-                                <span class="text-white mr-2">•</span>
-                                <span>Lifetime guarantee against installation defects</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-white mr-2">•</span>
-                                <span>Free re-installation if seal fails</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-white mr-2">•</span>
-                                <span>Nationwide coverage through our partner network</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-white mr-2">•</span>
-                                <span>Transferable to new vehicle owner</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Quality Guarantee -->
-                    <div class="bg-white border-2 border-[#ff4d00] p-8 rounded-lg fade-in" style="transition-delay: 200ms;">
-                        <div class="flex items-center mb-6">
-                            <svg class="w-12 h-12 text-[#ff4d00] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                            </svg>
-                            <h3 class="text-2xl font-bold text-[#2b2b2b]">Quality Guarantee</h3>
-                        </div>
-                        <ul class="space-y-3 text-[#595959]">
-                            <li class="flex items-start">
-                                <span class="text-[#ff4d00] mr-2 font-bold">•</span>
-                                <span>DOT-approved glass meeting or exceeding OEM specifications</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-[#ff4d00] mr-2 font-bold">•</span>
-                                <span>Advanced safety sensor recalibration included</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-[#ff4d00] mr-2 font-bold">•</span>
-                                <span>100% satisfaction guarantee or we'll make it right</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-[#ff4d00] mr-2 font-bold">•</span>
-                                <span>Rain test completed before we leave</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="text-center mt-12 fade-in" style="transition-delay: 300ms;">
-                    <div class="bg-gray-50 p-6 rounded-lg max-w-3xl mx-auto">
-                        <h4 class="text-lg font-semibold text-[#2b2b2b] mb-2">Industry-Leading Standards</h4>
-                        <p class="text-[#595959]">Our warranties exceed industry standards by 300%. While most shops offer 1-year coverage, we provide lifetime protection because we're confident in our work and materials.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 8: COST OF INACTION -->
+        <!-- Section 7: Cost of Inaction -->
         <section class="py-20 bg-[#2b2b2b] text-white">
             <div class="container mx-auto px-6 text-center">
                 <div class="fade-in">
                     <h2 class="text-3xl font-bold mb-4">That Crack Won't Fix Itself (And It's Not Getting Cheaper)</h2>
-                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                        Small chips become big cracks. Big cracks become safety hazards. And what insurance covers today might not be covered after your next policy renewal. Plus, you know it's there every time you drive. Why keep putting up with it?
-                    </p>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">Small chips become big cracks. Big cracks become safety hazards. And what insurance covers today might not be covered after your next policy renewal. Plus, you know it's there every time you drive. Why keep putting up with it?</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 9: FINAL CTA -->
+        <!-- Section 8: Final CTA -->
         <section id="cta" class="py-20 bg-[#ff4d00] text-white">
             <div class="container mx-auto px-6 text-center">
                 <div class="fade-in">
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Ready to Get This Handled?</h2>
                     <p class="text-lg text-orange-100 max-w-2xl mx-auto mb-8">No pressure, no games. Just quality auto glass work from people who respect your time and your money.</p>
-                    <a href="contact.html" class="bg-white text-[#ff4d00] font-bold px-10 py-4 rounded-lg text-xl hover:bg-gray-100 transition-colors duration-300 shadow-lg">
-                        Get Your Quote Now
-                    </a>
+                    <a href="contact.html" class="bg-white text-[#ff4d00] font-bold px-10 py-4 rounded-lg text-xl hover:bg-gray-100 shadow-lg">Get Your Quote Now</a>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 10: FAQ -->
+        <!-- Section 9: FAQ -->
         <section id="faq" class="py-20 bg-white">
             <div class="container mx-auto px-6 max-w-3xl">
                 <div class="text-center mb-12 fade-in">
                     <h2 class="text-3xl font-bold text-[#2b2b2b]">Frequently Asked Questions</h2>
                 </div>
                 <div class="space-y-4" x-data="{ open: 1 }">
-                    <div class="border border-gray-200 rounded-lg fade-in" style="transition-delay: 100ms;">
-                        <button @click="open = open === 1 ? null : 1" class="w-full text-left p-4 flex justify-between items-center">
-                            <span class="font-semibold text-lg">How do I know if insurance will cover it?</span>
-                            <span x-show="open !== 1" class="text-[#ff4d00] text-2xl">+</span>
-                            <span x-show="open === 1" class="text-[#ff4d00] text-2xl">-</span>
-                        </button>
-                        <div x-show="open === 1" x-collapse class="p-4 pt-0 text-[#595959]">
-                            If you have comprehensive coverage, it usually covers glass with low or no deductible. Give us your insurance info and we'll check for you - takes about 2 minutes.
-                        </div>
+                    <div class="border border-gray-200 rounded-lg fade-in">
+                        <button @click="open = open === 1 ? null : 1" class="w-full text-left p-4 flex justify-between items-center"><span class="font-semibold text-lg">How do I know if insurance will cover it?</span><span x-show="open !== 1" class="text-[#ff4d00] text-2xl">+</span><span x-show="open === 1" class="text-[#ff4d00] text-2xl">-</span></button>
+                        <div x-show="open === 1" x-collapse class="p-4 pt-0 text-[#595959]">If you have comprehensive coverage, it usually covers glass with low or no deductible. Give us your insurance info and we'll check for you - takes about 2 minutes.</div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg fade-in" style="transition-delay: 200ms;">
-                        <button @click="open = open === 2 ? null : 2" class="w-full text-left p-4 flex justify-between items-center">
-                            <span class="font-semibold text-lg">Do you use original manufacturer glass?</span>
-                            <span x-show="open !== 2" class="text-[#ff4d00] text-2xl">+</span>
-                            <span x-show="open === 2" class="text-[#ff4d00] text-2xl">-</span>
-                        </button>
-                        <div x-show="open === 2" x-collapse class="p-4 pt-0 text-[#595959]">
-                            We use OEM-equivalent or better. Same specs, same quality, fits perfectly. If you want actual OEM glass, we can get it - we'll just let you know the cost difference upfront.
-                        </div>
+                    <div class="border border-gray-200 rounded-lg fade-in">
+                        <button @click="open = open === 2 ? null : 2" class="w-full text-left p-4 flex justify-between items-center"><span class="font-semibold text-lg">Do you use original manufacturer glass?</span><span x-show="open !== 2" class="text-[#ff4d00] text-2xl">+</span><span x-show="open === 2" class="text-[#ff4d00] text-2xl">-</span></button>
+                        <div x-show="open === 2" x-collapse class="p-4 pt-0 text-[#595959]">We use OEM-equivalent or better. Same specs, same quality, fits perfectly. If you want actual OEM glass, we can get it - we'll just let you know the cost difference upfront.</div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg fade-in" style="transition-delay: 300ms;">
-                        <button @click="open = open === 3 ? null : 3" class="w-full text-left p-4 flex justify-between items-center">
-                            <span class="font-semibold text-lg">What about my car's safety sensors and cameras?</span>
-                            <span x-show="open !== 3" class="text-[#ff4d00] text-2xl">+</span>
-                            <span x-show="open === 3" class="text-[#ff4d00] text-2xl">-</span>
-                        </button>
-                        <div x-show="open === 3" x-collapse class="p-4 pt-0 text-[#595959]">
-                            This is huge. Your lane departure, automatic braking, and rain sensors need recalibration after windshield replacement. We have the equipment and training to do it right. Many shops skip this step.
-                        </div>
+                    <div class="border border-gray-200 rounded-lg fade-in">
+                        <button @click="open = open === 3 ? null : 3" class="w-full text-left p-4 flex justify-between items-center"><span class="font-semibold text-lg">What about my car's safety sensors and cameras?</span><span x-show="open !== 3" class="text-[#ff4d00] text-2xl">+</span><span x-show="open === 3" class="text-[#ff4d00] text-2xl">-</span></button>
+                        <div x-show="open === 3" x-collapse class="p-4 pt-0 text-[#595959]">This is huge. Your lane departure, automatic braking, and rain sensors need recalibration after windshield replacement. We have the equipment and training to do it right. Many shops skip this step.</div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- FLOATING SPEAK TO AGENT BUTTON -->
-    <a href="tel:503-555-1234" id="floating-agent-btn" class="floating-agent-btn bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-full hover:bg-opacity-90 transition-colors duration-300">
+    <!-- Floating Button & Footer -->
+    <a href="tel:503-555-1234" id="floating-agent-btn" class="floating-agent-btn bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-full hover:bg-opacity-90">
         <div class="flex items-center space-x-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-            </svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
             <span class="hidden sm:inline">Speak to an Agent</span>
             <span class="sm:hidden">Call Now</span>
         </div>
     </a>
-
-    <!-- FOOTER -->
     <footer class="bg-[#2b2b2b] text-white py-12">
         <div class="container mx-auto px-6 text-center">
             <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12 mx-auto mb-4">
-            <p class="my-4 text-gray-400">Autoglass made simple.</p>
+            <p class="my-4 text-gray-400">Quality auto glass without the games.</p>
             <div class="text-gray-400 mb-4">
                 <p>[Address in Tigard - TBD], Tigard, OR 97223</p>
                 <a href="tel:503-555-1234" class="hover:text-white">503-XXX-XXXX</a>
@@ -678,38 +414,28 @@
     </footer>
     
     <script>
-        // Logo Animation on scroll
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.body.classList.add('scrolled');
-            } else {
-                document.body.classList.remove('scrolled');
-            }
+            document.body.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Simple Fade-in on Scroll Animation
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
+                    observer.unobserve(entry.target);
                 }
             });
-        }, appearOptions);
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        faders.forEach(fader => appearOnScroll.observe(fader));
 
-        // Reviews carousel functionality
         let currentReviewIndex = 0;
         const reviewSets = document.querySelectorAll('.reviews-set');
         const reviewIndicators = document.querySelectorAll('.review-indicator');
         const totalReviews = reviewSets.length;
-
+        
         function showReview(index) {
-            reviewSets.forEach((set, i) => {
-                set.style.opacity = i === index ? '1' : '0';
-            });
+            reviewSets.forEach((set, i) => set.style.opacity = i === index ? '1' : '0');
             reviewIndicators.forEach((indicator, i) => {
                 indicator.classList.toggle('bg-[#ff4d00]', i === index);
                 indicator.classList.toggle('bg-gray-300', i !== index);
@@ -717,39 +443,26 @@
             currentReviewIndex = index;
         }
 
-        function nextReview() {
-            const nextIndex = (currentReviewIndex + 1) % totalReviews;
-            showReview(nextIndex);
-        }
-
-        let reviewInterval = setInterval(nextReview, 6000);
-
+        let reviewInterval = setInterval(() => showReview((currentReviewIndex + 1) % totalReviews), 6000);
+        
         reviewIndicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
                 showReview(index);
                 clearInterval(reviewInterval);
-                reviewInterval = setInterval(nextReview, 6000);
+                reviewInterval = setInterval(() => showReview((currentReviewIndex + 1) % totalReviews), 6000);
             });
         });
 
         const reviewsCarousel = document.getElementById('reviews-carousel');
         reviewsCarousel.addEventListener('mouseenter', () => clearInterval(reviewInterval));
-        reviewsCarousel.addEventListener('mouseleave', () => reviewInterval = setInterval(nextReview, 6000));
+        reviewsCarousel.addEventListener('mouseleave', () => reviewInterval = setInterval(() => showReview((currentReviewIndex + 1) % totalReviews), 6000));
 
-        // Floating "Speak to an Agent" button functionality
         const floatingBtn = document.getElementById('floating-agent-btn');
         const heroSection = document.querySelector('.parallax-bg');
-        let heroHeight = heroSection ? heroSection.offsetHeight : 800;
-
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > heroHeight * 0.8) {
-                floatingBtn.classList.add('visible');
-            } else {
-                floatingBtn.classList.remove('visible');
-            }
+        window.addEventListener('scroll', () => {
+            floatingBtn.classList.toggle('visible', window.pageYOffset > (heroSection ? heroSection.offsetHeight : 800) * 0.8);
         });
     </script>
 </body>
 </html>
-
 
