@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warranty Information | Vero Autoglass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #2b2b2b; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- HEADER & NAVIGATION -->
+    <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html">
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12">
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="services.html" class="text-[#595959] hover:text-[#ff4d00]">Services</a>
+                <a href="insurance.html" class="text-[#595959] hover:text-[#ff4d00]">Insurance</a>
+                <a href="warranty.html" class="text-[#ff4d00] font-semibold">Warranty</a>
+                <a href="contact.html" class="text-[#595959] hover:text-[#ff4d00]">Contact Us</a>
+            </nav>
+            <a href="contact.html" class="hidden md:block bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90">Get Your Quote</a>
+            <div class="md:hidden">
+                <button @click="isOpen = !isOpen" type="button" class="text-[#2b2b2b] focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path><path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
+            <div class="flex flex-col items-center py-8 space-y-6">
+                <a href="services.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Services</a>
+                <a href="insurance.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Insurance</a>
+                <a href="warranty.html" @click="isOpen = false" class="text-lg text-[#ff4d00] font-semibold">Warranty</a>
+                <a href="contact.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Contact Us</a>
+                <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg">Get Your Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section class="bg-[#f1f1f1] py-16">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl font-extrabold text-[#2b2b2b]">Our Commitment to Quality</h1>
+                <p class="text-xl text-[#595959] mt-2">Learn about our industry-leading warranties.</p>
+            </div>
+        </section>
+        
+        <section id="warranty" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-3xl font-bold text-[#2b2b2b] mb-4">Industry-Leading Protection & Coverage</h2>
+                    <p class="text-lg text-[#595959] max-w-3xl mx-auto">We stand behind every installation with comprehensive warranties that go beyond industry standards.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Lifetime Warranty -->
+                    <div class="bg-gradient-to-br from-[#ff4d00] to-[#ff6d20] p-8 rounded-lg text-white fade-in">
+                        <div class="flex items-center mb-6">
+                            <svg class="w-12 h-12 text-white mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <h3 class="text-2xl font-bold">Lifetime Warranty</h3>
+                        </div>
+                        <ul class="space-y-3 text-orange-100">
+                            <li class="flex items-start"><span class="text-white mr-2">•</span><span>Lifetime guarantee against installation defects</span></li>
+                            <li class="flex items-start"><span class="text-white mr-2">•</span><span>Free re-installation if seal fails</span></li>
+                            <li class="flex items-start"><span class="text-white mr-2">•</span><span>Nationwide coverage through our partner network</span></li>
+                            <li class="flex items-start"><span class="text-white mr-2">•</span><span>Transferable to new vehicle owner</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Quality Guarantee -->
+                    <div class="bg-white border-2 border-[#ff4d00] p-8 rounded-lg fade-in">
+                        <div class="flex items-center mb-6">
+                            <svg class="w-12 h-12 text-[#ff4d00] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                            <h3 class="text-2xl font-bold text-[#2b2b2b]">Quality Guarantee</h3>
+                        </div>
+                        <ul class="space-y-3 text-[#595959]">
+                            <li class="flex items-start"><span class="text-[#ff4d00] mr-2 font-bold">•</span><span>DOT-approved glass meeting or exceeding OEM specifications</span></li>
+                            <li class="flex items-start"><span class="text-[#ff4d00] mr-2 font-bold">•</span><span>Advanced safety sensor recalibration included</span></li>
+                            <li class="flex items-start"><span class="text-[#ff4d00] mr-2 font-bold">•</span><span>100% satisfaction guarantee or we'll make it right</span></li>
+                            <li class="flex items-start"><span class="text-[#ff4d00] mr-2 font-bold">•</span><span>Rain test completed before we leave</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12 fade-in">
+                    <div class="bg-gray-50 p-6 rounded-lg max-w-3xl mx-auto">
+                        <h4 class="text-lg font-semibold text-[#2b2b2b] mb-2">Industry-Leading Standards</h4>
+                        <p class="text-[#595959]">Our warranties exceed industry standards by 300%. While most shops offer 1-year coverage, we provide lifetime protection because we're confident in our work and materials.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#2b2b2b] text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-xl font-bold">Vero Autoglass</h3>
+            <p class="my-4 text-gray-400">Quality auto glass without the games.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="services.html" class="text-gray-400 hover:text-white">Services</a>
+                <a href="about.html" class="text-gray-400 hover:text-white">About Us</a>
+                <a href="insurance.html" class="text-gray-400 hover:text-white">Insurance</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Vero Autoglass. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        faders.forEach(fader => appearOnScroll.observe(fader));
+    </script>
+</body>
+</html>
