@@ -96,7 +96,7 @@
     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html">
-                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-16">
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-32">
             </a>
             
             <!-- Desktop Navigation -->
@@ -106,9 +106,14 @@
                 <a href="about.html" class="text-[#595959] hover:text-[#ff4d00]">About Us</a>
                 <a href="contact.html" class="text-[#595959] hover:text-[#ff4d00]">Contact Us</a>
             </nav>
-            <a href="contact.html" class="hidden md:block bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
-                Get Your Quote
-            </a>
+            <div class="hidden md:flex space-x-3">
+                <a href="tel:503-555-1234" class="bg-white border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
+                    Speak to an Agent
+                </a>
+                <a href="contact.html" class="bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
+                    Get Your Quote
+                </a>
+            </div>
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
@@ -128,6 +133,9 @@
                 <a href="insurance.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Insurance</a>
                 <a href="about.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">About Us</a>
                 <a href="contact.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Contact Us</a>
+                <a href="tel:503-555-1234" @click="isOpen = false" class="bg-white border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
+                    Speak to an Agent
+                </a>
                 <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
                     Get Your Quote
                 </a>
@@ -140,9 +148,9 @@
         <section class="relative h-screen flex items-center justify-center text-center parallax-bg">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="relative z-10 px-4 text-white">
-                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-32 mx-auto mb-8 fade-in">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in" style="transition-delay: 50ms;">Your Windshield Fixed Right, Without the Runaround</h1>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in" style="transition-delay: 150ms;">Skip the confusing quotes and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-64 mx-auto mb-8 fade-in">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in" style="transition-delay: 50ms;">Auto Glass Made Simple</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in" style="transition-delay: 150ms;">Skip the confusing quotes, surprise charges, and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 250ms;">
                     <a href="contact.html" class="bg-[#ff4d00] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90 transition-colors duration-300">
                         Get Your Quote
@@ -154,51 +162,7 @@
             </div>
         </section>
 
-        <!-- SECTION 2: THE STAKES -->
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <div class="fade-in">
-                    <h2 class="text-3xl font-bold text-[#2b2b2b] mb-4">We Know This Isn't How You Planned Your Day</h2>
-                    <p class="text-lg text-[#595959] max-w-3xl mx-auto mb-6">
-                        Your windshield is cracked. You're busy. And now you're trying to figure out who to trust with your car, whether insurance will cover it, and how long you'll be without transportation. Meanwhile, every shop you call either can't explain their pricing or treats you like just another number.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: THE GUIDE -->
-        <section id="guide" class="py-20 bg-[#f1f1f1]">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-3xl font-bold text-[#2b2b2b]">There's a Better Way to Handle Auto Glass</h2>
-                    <p class="text-lg text-[#595959] mt-2 max-w-3xl mx-auto">We built Vero because we saw how frustrating this process was for people. No hidden fees. No pushy upsells. Just honest pricing, quality materials, and technicians who actually care about getting it done right. We handle the insurance paperwork, explain everything in plain English, and treat your car like it's our own.</p>
-                </div>
-                <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-                    <div class="flex items-center justify-center md:justify-start space-x-16 scroller">
-                        <!-- Original Logos -->
-                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none">
-                        <img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none">
-                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none">
-                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none">
-                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none">
-                        <img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none">
-                        <img src="images/country.png" alt="Country Financial" class="h-12 max-w-none">
-                        <img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
-                        <!-- Duplicated Logos for seamless scroll -->
-                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none">
-                        <img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none">
-                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none">
-                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none">
-                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none">
-                        <img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none">
-                         <img src="images/country.png" alt="Country Financial" class="h-12 max-w-none">
-                         <img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: SOCIAL PROOF (4.9 Stars) -->
+        <!-- SECTION 2: SOCIAL PROOF (4.9 Stars) -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -243,8 +207,52 @@
                 </div>
             </div>
         </section>
-        
-        <!-- SECTION 5: THE PLAN -->
+
+        <!-- SECTION 3: THE STAKES -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-[#2b2b2b] mb-4">We Know This Isn't How You Planned Your Day</h2>
+                    <p class="text-lg text-[#595959] max-w-3xl mx-auto mb-6">
+                        Your windshield is cracked. You're busy. And now you're trying to figure out who to trust with your car, whether insurance will cover it, and how long you'll be without transportation. Meanwhile, every shop you call either can't explain their pricing or treats you like just another number.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE GUIDE -->
+        <section id="guide" class="py-20 bg-[#f1f1f1]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-3xl font-bold text-[#2b2b2b]">There's a Better Way to Handle Auto Glass</h2>
+                    <p class="text-lg text-[#595959] mt-2 max-w-3xl mx-auto">We built Vero because we saw how frustrating this process was for people. No hidden fees. No surprise charges. Just honest pricing, quality materials, and technicians who actually care about getting it done right. We handle the insurance paperwork, explain everything in plain English, and treat your car like it's our own.</p>
+                </div>
+                <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                    <div class="flex items-center justify-center md:justify-start space-x-16 scroller">
+                        <!-- Original Logos -->
+                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none">
+                        <img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none">
+                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none">
+                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none">
+                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none">
+                        <img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none">
+                        <img src="images/country.png" alt="Country Financial" class="h-12 max-w-none">
+                        <img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
+                        <!-- Duplicated Logos for seamless scroll -->
+                        <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none">
+                        <img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none">
+                        <img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none">
+                        <img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none">
+                        <img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none">
+                        <img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none">
+                         <img src="images/country.png" alt="Country Financial" class="h-12 max-w-none">
+                         <img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: THE PLAN -->
         <section id="plan" class="py-20 bg-[#f1f1f1]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 fade-in">

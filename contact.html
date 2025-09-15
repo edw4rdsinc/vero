@@ -29,7 +29,12 @@
                 <a href="about.html" class="text-[#595959] hover:text-[#ff4d00]">About Us</a>
                 <a href="contact.html" class="text-[#ff4d00] font-semibold">Contact Us</a>
             </nav>
-            <a href="contact.html" class="hidden md:block bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg ring-2 ring-offset-2 ring-[#ff4d00]">Get Your Quote</a>
+            <div class="hidden md:flex space-x-3">
+                <a href="tel:503-555-1234" class="bg-white border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
+                    Speak to an Agent
+                </a>
+                <a href="contact.html" class="bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg ring-2 ring-offset-2 ring-[#ff4d00]">Get Your Quote</a>
+            </div>
             <div class="md:hidden">
                 <button @click="isOpen = !isOpen" type="button" class="text-[#2b2b2b] focus:outline-none">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path><path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -42,6 +47,9 @@
                 <a href="insurance.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Insurance</a>
                 <a href="about.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">About Us</a>
                 <a href="contact.html" @click="isOpen = false" class="text-lg text-[#ff4d00] font-semibold">Contact Us</a>
+                <a href="tel:503-555-1234" @click="isOpen = false" class="bg-white border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white transition-colors duration-300">
+                    Speak to an Agent
+                </a>
                 <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg">Get Your Quote</a>
             </div>
         </div>
@@ -98,16 +106,26 @@
                                 <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
                             </div>
                             <div>
-                                <label for="vehicle" class="block text-sm font-medium text-gray-700">Vehicle Year/Make/Model</label>
-                                <input type="text" name="vehicle" id="vehicle" required placeholder="e.g., 2021 Honda CR-V" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
+                                <label for="vehicle" class="block text-sm font-medium text-gray-700">License Plate OR Vehicle Year/Make/Model</label>
+                                <input type="text" name="vehicle" id="vehicle" required placeholder="e.g., ABC123 or 2021 Honda CR-V" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
                             </div>
                             <div>
                                 <label for="damage" class="block text-sm font-medium text-gray-700">Type of Damage</label>
-                                <input type="text" name="damage" id="damage" required placeholder="e.g., Cracked windshield, broken driver's window" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
+                                <select name="damage" id="damage" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
+                                    <option value="">Select damage type...</option>
+                                    <option value="Front Windshield">Front Windshield</option>
+                                    <option value="Door Glass">Door Glass</option>
+                                    <option value="Quarter/Vent Glass">Quarter/Vent Glass</option>
+                                    <option value="Rear Glass">Rear Glass</option>
+                                </select>
                             </div>
                              <div>
                                 <label for="insurance" class="block text-sm font-medium text-gray-700">Insurance Company (Optional)</label>
                                 <input type="text" name="insurance" id="insurance" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
+                            </div>
+                            <div>
+                                <label for="zipcode" class="block text-sm font-medium text-gray-700">Zip Code (Optional)</label>
+                                <input type="text" name="zipcode" id="zipcode" placeholder="e.g., 97223" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#ff4d00] focus:border-[#ff4d00]">
                             </div>
                             <div>
                                 <button type="submit" class="w-full bg-[#ff4d00] text-white font-bold py-3 px-4 rounded-lg hover:bg-opacity-90 transition-colors duration-300">Submit for Quote</button>
