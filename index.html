@@ -436,15 +436,15 @@
             localStorage.setItem('veroLocation', city);
             const data = locationConfig[city];
             
-            // Update all phone links and text
+            // Update all phone links
             document.querySelectorAll('[data-phone]').forEach(el => {
                 const phone = data.phone;
                 if (el.tagName === 'A') {
                     el.href = 'tel:' + phone;
-                    // Only update text content if it's a link designed for it, to avoid changing "Talk to a human"
-                    if (el.textContent.match(/\d/)) {
-                       el.textContent = phone;
-                    }
+                }
+                // Only update text content if it's a link designed for it, to avoid changing "Talk to a human"
+                if (el.textContent.match(/[\d-]/)) {
+                   el.textContent = phone;
                 }
             });
 
