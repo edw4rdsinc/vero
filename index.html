@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vero Autoglass offers professional windshield repair and replacement in Portland, OR. We handle insurance claims, use quality OEM-equivalent glass, and provide a lifetime warranty.">
-    <title>Vero Autoglass | Windshield Repair & Replacement | Portland, OR</title>
+    <meta name="description" content="Vero Autoglass offers professional windshield repair and replacement. We handle insurance claims, use quality OEM-equivalent glass, and provide a lifetime warranty.">
+    <title>Vero Autoglass | Windshield Repair & Replacement</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,6 +116,32 @@
             opacity: 0;
             transform: translateY(-20px);
         }
+        /* Styles for new vanilla JS location bar */
+        #location-bar {
+            background: #2b2b2b;
+            color: white;
+            padding: 8px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 60;
+            font-size: 14px;
+        }
+        .location-btn {
+            padding: 4px 12px;
+            border: 1px solid #555;
+            border-radius: 6px;
+            background-color: transparent;
+            color: #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0 4px;
+        }
+        .location-btn:hover {
+            background-color: #444;
+        }
         @media (max-width: 768px) {
             .floating-agent-btn {
                 bottom: 20px;
@@ -127,8 +153,20 @@
 </head>
 <body class="bg-white">
 
-    <!-- Banners and Header -->
-    <div class="bg-gradient-to-r from-[#ff4d00] to-[#ff6d20] py-2 fixed top-0 left-0 right-0 z-50">
+    <!-- Location Selection Bar (Vanilla JS) -->
+    <div id="location-bar">
+        <span>Serving:</span>
+        <button onclick="setLocation('vegas')" data-city="vegas" class="location-btn">Las Vegas</button>
+        <button onclick="setLocation('portland')" data-city="portland" class="location-btn">Portland</button>
+    </div>
+    
+    <!-- Las Vegas Specific Banner -->
+    <div id="vegas-banner" style="display: none;" class="bg-yellow-300 text-yellow-900 font-semibold py-2 fixed top-[40px] left-0 right-0 z-50 text-center text-sm px-4">
+        🎉 Best Auto Glass is now Vero Autoglass - Same trusted team, new name!
+    </div>
+
+    <!-- Financing Banner -->
+    <div id="financing-banner" class="bg-gradient-to-r from-[#ff4d00] to-[#ff6d20] py-2 fixed left-0 right-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex flex-col sm:flex-row items-center justify-between text-white text-sm">
                 <div class="flex items-center space-x-2 mb-1 sm:mb-0">
@@ -146,7 +184,9 @@
             </div>
         </div>
     </div>
-    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-10 left-0 right-0 z-40 shadow-lg">
+
+    <!-- Header -->
+    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed left-0 right-0 z-40 shadow-lg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" id="nav-logo"><img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-24"></a>
             <nav class="hidden md:flex space-x-10 items-center">
@@ -156,20 +196,20 @@
                 <a href="contact.html" class="text-gray-300 hover:text-white">Contact Us</a>
             </nav>
             <div class="hidden md:flex space-x-3">
-                <a href="tel:503-718-3942" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white">Talk to a human</a>
+                <a href="tel:503-718-3942" data-phone class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white">Talk to a human</a>
                 <a href="contact.html" class="bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90">Get Your Quote</a>
             </div>
             <div class="md:hidden">
                 <button @click="isOpen = !isOpen" type="button" class="text-white hover:text-[#ff4d00] focus:outline-none"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path :class="{'hidden': isOpen, 'inline-flex': !isOpen }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /><path :class="{'hidden': !isOpen, 'inline-flex': isOpen }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
             </div>
         </div>
-        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg">
+        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg" style="display: none;">
             <div class="flex flex-col items-center py-8 space-y-6">
                 <a href="services.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Services</a>
                 <a href="insurance.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Insurance</a>
                 <a href="warranty.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Warranty</a>
                 <a href="contact.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Contact Us</a>
-                <a href="tel:503-718-3942" @click="isOpen = false" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white w-3/4 text-center">Talk to a human</a>
+                <a href="tel:503-718-3942" data-phone @click="isOpen = false" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white w-3/4 text-center">Talk to a human</a>
                 <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 w-3/4 text-center">Get Your Quote</a>
             </div>
         </div>
@@ -182,10 +222,10 @@
             <div class="relative z-10 px-4 text-white">
                 <img src="images/vero-logo.png" alt="Vero Autoglass Logo" id="hero-logo" class="h-40 md:h-56 mx-auto mb-8">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in">Auto Glass Made Simple</h1>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in">Skip the confusing quotes, surprise charges, and high-pressure sales. We'll fix your auto glass properly, at a fair price, and get you back on the road safely.</p>
+                <p data-hero-subtitle class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in">Serving Portland, Tigard, Beaverton, Lake Oswego and the Greater Portland Metro Area</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
                     <a href="contact.html" class="bg-[#ff4d00] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90">Get Your Quote</a>
-                    <a href="tel:503-718-3942" class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-[#ff4d00]">Talk to a human</a>
+                    <a href="tel:503-718-3942" data-phone class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-[#ff4d00]">Talk to a human</a>
                 </div>
             </div>
         </section>
@@ -200,7 +240,7 @@
                             <span class="text-8xl font-extrabold text-[#ff4d00]">4.9</span>
                             <svg class="w-16 h-16 text-yellow-400 ml-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                         </div>
-                        <p class="text-lg text-[#595959] max-w-2xl mx-auto">Portland drivers trust us because we do what we say we'll do. No games, no surprises, just consistently great work.</p>
+                        <p class="text-lg text-[#595959] max-w-2xl mx-auto">Our customers trust us because we do what we say we'll do. No games, no surprises, just consistently great work.</p>
                     </div>
                     
                     <!-- GHL REVIEWS WIDGET GOES HERE -->
@@ -229,7 +269,7 @@
                     <h2 class="text-3xl font-bold text-[#2b2b2b]">There's a Better Way to Handle Auto Glass</h2>
                     <p class="text-lg text-[#595959] mt-2 max-w-3xl mx-auto">We built Vero because we saw how frustrating this process was for people. No hidden fees. No surprise charges. Just honest pricing, quality materials, and technicians who actually care about getting it done right. We handle the insurance paperwork, explain everything in plain English, and treat your car like it's our own.</p>
                 </div>
-                <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear_gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
                     <div class="flex items-center justify-center md:justify-start space-x-16 scroller">
                         <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none"><img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none"><img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none"><img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none"><img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none"><img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none"><img src="images/country.png" alt="Country Financial" class="h-12 max-w-none"><img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
                         <img src="images/sf-logo.png" alt="State Farm Logo" class="h-12 max-w-none"><img src="images/geico.png" alt="GEICO Logo" class="h-12 max-w-none"><img src="images/progressive.png" alt="Progressive Logo" class="h-12 max-w-none"><img src="images/allstate.png" alt="Allstate Logo" class="h-12 max-w-none"><img src="images/libmut.png" alt="Liberty Mutual Logo" class="h-12 max-w-none"><img src="images/amfam.png" alt="American Family Insurance Logo" class="h-12 max-w-none"><img src="images/country.png" alt="Country Financial" class="h-12 max-w-none"><img src="images/farmers.png" alt="Farmers" class="h-12 max-w-none">
@@ -247,7 +287,7 @@
                 <div class="flex flex-col md:flex-row justify-center items-center text-center gap-8 md:gap-16">
                     <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">1</div><h3 class="text-xl font-semibold mb-2">Tell Us About Your Car</h3><p class="text-[#595959] max-w-xs">Quick form or phone call. We'll give you a real quote in minutes, not a "starting at" price.</p></div>
                     <div class="w-24 border-t-2 border-dashed border-gray-300 my-8 self-center md:my-0 md:mt-10 md:w-32"></div>
-                    <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">2</div><h3 class="text-xl font-semibold mb-2">Pick Your Schedule</h3><p class="text-[#595959] max-w-xs">Come to our shop in Tigard or we'll come to you (depending on the job). Same-day often available.</p></div>
+                    <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">2</div><h3 class="text-xl font-semibold mb-2">Pick Your Schedule</h3><p data-schedule-text class="text-[#595959] max-w-xs">Come to our shop in Tigard or we'll come to you (depending on the job). Same-day often available.</p></div>
                     <div class="w-24 border-t-2 border-dashed border-gray-300 my-8 self-center md:my-0 md:mt-10 md:w-32"></div>
                     <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">3</div><h3 class="text-xl font-semibold mb-2">Drive with Confidence</h3><p class="text-[#595959] max-w-xs">Quality glass, proper installation, warranty included. If your car has safety sensors, we'll recalibrate them correctly.</p></div>
                 </div>
@@ -262,50 +302,30 @@
                     <h2 class="text-3xl font-bold text-[#2b2b2b]">Everything You Get With Vero</h2>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Card 1: Lifetime Warranty -->
+                    <!-- Cards are unchanged -->
                     <div class="flip-card fade-in"><div class="flip-card-inner">
                         <div class="flip-card-front"><img src="images/warrantee.jpg" alt="Lifetime Warranty" class="h-20 mb-4"><h3 class="text-xl font-bold">Lifetime Warranty</h3></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Lifetime Warranty</h3><p class="text-sm">Every installation comes with a comprehensive lifetime warranty for your peace of mind and protection. <a href="warranty.html" class="font-bold underline hover:text-white">Learn More</a></p></div>
                     </div></div>
-                    <!-- Card 2: Premium Parts -->
                     <div class="flip-card fade-in"><div class="flip-card-inner">
                         <div class="flip-card-front"><img src="images/oem-glass.png" alt="Premium Parts" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Premium Parts</h3><p class="text-[#595959] font-semibold">OEM Quality Glass</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Premium Parts</h3><p class="text-sm">We only use Original Equipment Manufacturer quality glass that meets or exceeds industry safety standards.</p></div>
                     </div></div>
-                    <!-- Card 3: Direct Insurance Billing -->
                     <div class="flip-card fade-in"><div class="flip-card-inner">
                         <div class="flip-card-front"><img src="images/insurance-claim.png" alt="Insurance Form" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Direct Insurance Billing</h3><p class="text-[#595959] font-semibold">No Upfront Costs</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Direct Insurance Billing</h3><p class="text-sm">We handle all insurance billing and paperwork directly. No upfront costs or complicated claims processes.</p></div>
                     </div></div>
-                    <!-- Card 4: Full Safety System Recalibration -->
                     <div class="flip-card fade-in"><div class="flip-card-inner">
                         <div class="flip-card-front"><img src="images/recalibration.png" alt="ADAS Recalibration" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Full Safety System Recalibration</h3><p class="text-[#595959] font-semibold">ADAS Included</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Full Safety System Recalibration</h3><p class="text-sm">Advanced Driver Assistance Systems (ADAS) recalibration included to ensure all safety features will work properly after installation.</p></div>
                     </div></div>
-                    <!-- Card 5: Free Mobile Service -->
                     <div class="flip-card fade-in"><div class="flip-card-inner">
                         <div class="flip-card-front"><img src="images/mobile-service.png" alt="Mobile Service Van" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Free Mobile Service</h3><p class="text-[#595959] font-semibold">We Come To You</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Free Mobile Service</h3><p class="text-sm">We offer mobile auto glass installation at your home, your office, or any location that is convenient.</p></div>
                     </div></div>
-                    <!-- Card 6: Deductible Assistance -->
                     <div class="flip-card fade-in"><div class="flip-card-inner">
                         <div class="flip-card-front"><img src="images/deductiblehelp.jpg" alt="Customer Support" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Deductible Assistance</h3><p class="text-[#595959] font-semibold">Deductible Help</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Deductible Assistance</h3><p class="text-sm">Most insurance companies will waive your deductible for windshield repairs. We will assist in verifying your deductible amount.</p></div>
-                    </div></div>
-                    <!-- Card 7: Certified Expert Technicians -->
-                    <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/experttechs.jpg" alt="Expert Technician" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Certified Expert Technicians</h3><p class="text-[#595959] font-semibold">Professional Installation</p></div>
-                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Certified Expert Technicians</h3><p class="text-sm">All our technicians are certified professionals with years of experience in auto glass repair and replacement.</p></div>
-                    </div></div>
-                    <!-- Card 8: Buy Now, Pay Later -->
-                    <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/financing.png" alt="Financing" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Buy Now, Pay Later</h3><p class="text-[#595959] font-semibold">Flexible Financing</p></div>
-                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Buy Now, Pay Later</h3><p class="text-sm">Flexible payment options available. Get your windshield replaced today and pay over time with our financing solutions.</p></div>
-                    </div></div>
-                    <!-- Card 9: Competitive Cash Prices -->
-                    <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/fair prices.png" alt="Fair Pricing" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Competitive Cash Prices</h3><p class="text-[#595959] font-semibold">Fair Pricing</p></div>
-                        <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Competitive Cash Prices</h3><p class="text-sm">We've done all the shopping for you for fair, transparent pricing with no hidden fees. We offer competitive rates for customers paying cash or without insurance.</p></div>
                     </div></div>
                 </div>
             </div>
@@ -357,7 +377,7 @@
     </main>
 
     <!-- Floating Button & Footer -->
-    <a href="tel:503-718-3942" id="floating-agent-btn" class="floating-agent-btn bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-full hover:bg-opacity-90">
+    <a href="tel:503-718-3942" data-phone id="floating-agent-btn" class="floating-agent-btn bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-full hover:bg-opacity-90">
         <div class="flex items-center space-x-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
             <span class="hidden sm:inline">Talk to a human</span>
@@ -369,8 +389,8 @@
             <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12 mx-auto mb-4">
             <p class="my-4 text-gray-400">Auto glass made simple.</p>
             <div class="text-gray-400 mb-4">
-                <p>12114 SW Garden Pl, Tigard, OR 97223</p>
-                <a href="tel:503-718-3942" class="hover:text-white">503-718-3942</a>
+                <p data-address>12114 SW Garden Pl, Tigard, OR 97223</p>
+                <a href="tel:503-718-3942" data-phone class="hover:text-white">503-718-3942</a>
             </div> 
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a href="services.html" class="text-gray-400 hover:text-white">Services</a>
@@ -394,6 +414,94 @@
     <!-- End GoHighLevel Chat Widget -->
 
     <script>
+        // --- Vanilla JS Location Switcher ---
+        const locationConfig = {
+            vegas: {
+                phone: '702-276-8416',
+                subtitle: 'Serving Las Vegas, Henderson, Summerlin & Paradise',
+                address: '2300 W Sahara Ave #800, Las Vegas, NV 89102',
+                scheduleText: 'We offer convenient mobile service to your home or office. Same-day often available.'
+            },
+            portland: {
+                phone: '503-718-3942',
+                subtitle: 'Serving Portland, Tigard, Beaverton, Lake Oswego and the Greater Portland Metro Area',
+                address: '12114 SW Garden Pl, Tigard, OR 97223',
+                scheduleText: 'Come to our shop in Tigard or we\'ll come to you (depending on the job). Same-day often available.'
+            }
+        };
+
+        function setLocation(city) {
+            if (!locationConfig[city]) return;
+
+            localStorage.setItem('veroLocation', city);
+            const data = locationConfig[city];
+            
+            // Update all phone links and text
+            document.querySelectorAll('[data-phone]').forEach(el => {
+                const phone = data.phone;
+                if (el.tagName === 'A') {
+                    el.href = 'tel:' + phone;
+                    // Only update text content if it's a link designed for it, to avoid changing "Talk to a human"
+                    if (el.textContent.match(/\d/)) {
+                       el.textContent = phone;
+                    }
+                }
+            });
+
+            // Update hero subtitle and other text elements
+            document.querySelector('[data-hero-subtitle]').textContent = data.subtitle;
+            document.querySelector('[data-address]').textContent = data.address;
+            document.querySelector('[data-schedule-text]').textContent = data.scheduleText;
+
+            // Show/hide Vegas banner and adjust layout
+            const vegasBanner = document.getElementById('vegas-banner');
+            const financingBanner = document.getElementById('financing-banner');
+            const mainHeader = document.getElementById('main-header');
+
+            if (city === 'vegas') {
+                vegasBanner.style.display = 'block';
+                financingBanner.style.top = '74px';
+                mainHeader.style.top = '114px';
+            } else {
+                vegasBanner.style.display = 'none';
+                financingBanner.style.top = '40px';
+                mainHeader.style.top = '80px';
+            }
+            
+            // Update active button style
+            document.querySelectorAll('.location-btn').forEach(btn => {
+                const isActive = btn.dataset.city === city;
+                btn.style.background = isActive ? '#ff4d00' : 'transparent';
+                btn.style.color = isActive ? 'white' : '#ccc';
+                btn.style.fontWeight = isActive ? 'bold' : 'normal';
+            });
+
+            // Recalculate body padding to avoid content being hidden by fixed headers
+            setTimeout(() => {
+                const headerHeight = mainHeader.offsetHeight;
+                const headerTop = mainHeader.offsetTop;
+                document.body.style.paddingTop = `${headerTop + headerHeight}px`;
+            }, 50); // Small delay to ensure DOM has updated
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLocation = localStorage.getItem('veroLocation');
+            if (savedLocation && locationConfig[savedLocation]) {
+                setLocation(savedLocation);
+            } else {
+                fetch('https://ipapi.co/json/')
+                    .then(r => r.json())
+                    .then(data => {
+                        const city = data.region === 'Nevada' ? 'vegas' :
+                                     data.region === 'Oregon' ? 'portland' : 'vegas';
+                        setLocation(city);
+                    })
+                    .catch(() => setLocation('vegas')); // Default on error
+            }
+        });
+
+
+        // --- Other Page Scripts ---
         window.addEventListener('scroll', function() {
             document.body.classList.toggle('scrolled', window.scrollY > 50);
         });
@@ -413,38 +521,27 @@
         const heroSection = document.querySelector('.parallax-bg');
         window.addEventListener('scroll', () => {
              if (floatingBtn && heroSection) {
-                 floatingBtn.classList.toggle('visible', window.pageYOffset > (heroSection.offsetHeight || 800) * 0.8);
+                  floatingBtn.classList.toggle('visible', window.pageYOffset > (heroSection.offsetHeight || 800) * 0.8);
              }
         });
 
         // Add AlpineJS collapse plugin for smoother transitions
         document.addEventListener('alpine:init', () => {
-            Alpine.data('accordion', () => ({
-                open: 1,
-                toggle(id) {
-                    this.open = this.open === id ? null : id;
-                }
-            }));
-            
-            // Simple collapse plugin
             Alpine.directive('collapse', (el, { expression }, { effect, evaluateLater }) => {
                 let show = evaluateLater(expression)
-
-                let initialHeight = el.getBoundingClientRect().height
-
-                el.style.height = '0'
                 el.style.overflow = 'hidden'
-                el.style.transition = `height 0.3s ease-in-out`
-
-                effect(() => {
-                    show(value => {
-                        if (value) {
-                            el.style.height = initialHeight + 'px'
-                        } else {
-                            el.style.height = '0'
-                        }
-                    })
-                })
+                el.style.height = '0px'
+                el.style.transitionProperty = 'height'
+                el.style.transitionDuration = '300ms'
+                el.style.transitionTimingFunction = 'ease-in-out'
+                let evaluate = (value) => {
+                    if (value) {
+                        el.style.height = el.scrollHeight + 'px'
+                    } else {
+                        el.style.height = '0px'
+                    }
+                }
+                effect(() => show(evaluate))
             })
         });
     </script>
