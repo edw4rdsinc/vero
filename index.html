@@ -486,18 +486,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLocation = localStorage.getItem('veroLocation');
-            if (savedLocation && locationConfig[savedLocation]) {
-                setLocation(savedLocation);
+            // Auto-detect location on first visit
+            if (!localStorage.getItem('veroLocation')) {
+                setLocation('portland'); // Always default to Portland
             } else {
-                fetch('https://ipapi.co/json/')
-                    .then(r => r.json())
-                    .then(data => {
-                        const city = data.region === 'Nevada' ? 'vegas' :
-                                     data.region === 'Oregon' ? 'portland' : 'vegas';
-                        setLocation(city);
-                    })
-                    .catch(() => setLocation('vegas')); // Default on error
+                setLocation(localStorage.getItem('veroLocation'));
             }
         });
 

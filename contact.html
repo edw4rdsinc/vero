@@ -177,14 +177,7 @@
 
         // Auto-detect location on first visit
         if (!localStorage.getItem('veroLocation')) {
-            fetch('https://ipapi.co/json/')
-                .then(r => r.json())
-                .then(data => {
-                    const city = data.region === 'Nevada' ? 'vegas' : 
-                                 data.region === 'Oregon' ? 'portland' : 'vegas'; // Default to Vegas
-                    setLocation(city);
-                })
-                .catch(() => setLocation('vegas')); // Default on error
+            setLocation('portland'); // Always default to Portland
         } else {
             setLocation(localStorage.getItem('veroLocation'));
         }
