@@ -60,15 +60,8 @@
 </head>
 <body class="bg-[#f1f1f1]">
     
-    <!-- Location Selection Bar (Vanilla JS) -->
-    <div id="location-bar" style="background: #f5f5f5; padding: 8px; text-align: center; border-bottom: 1px solid #ddd; position: fixed; top: 0; left: 0; right: 0; z-index: 60;">
-        <span style="color: #666;">Serving:</span>
-        <button onclick="setLocation('vegas')" data-city="vegas" class="location-btn" style="margin: 0 5px; padding: 4px 12px; border: 1px solid #ccc; border-radius: 4px; background: transparent; color: #666; cursor: pointer;">Las Vegas</button>
-        <button onclick="setLocation('portland')" data-city="portland" class="location-btn" style="margin: 0 5px; padding: 4px 12px; border: 1px solid #ccc; border-radius: 4px; background: transparent; color: #666; cursor: pointer;">Portland</button>
-    </div>
-
     <!-- HEADER & NAVIGATION -->
-     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-[40px] left-0 right-0 z-50 shadow-sm">
+     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html">
                 <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12">
@@ -105,7 +98,7 @@
         </div>
     </header>
 
-    <main class="pt-32 md:pt-36">
+    <main class="pt-24">
         <section class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-8 sm:mb-12">
@@ -125,7 +118,7 @@
                             <hr class="my-6">
 
                             <p><strong>Shop Location:</strong></p>
-                            <p class="text-[#595959]" data-address>12114 SW Garden Pl<br>Tigard, OR 97223</p>
+                            <p class="text-[#595959]">12114 SW Garden Pl<br>Tigard, OR 97223</p>
 
                              <hr class="my-6">
                             
@@ -135,7 +128,7 @@
                             <hr class="my-6">
 
                             <h3 class="text-xl font-bold">Service Area</h3>
-                            <p class="text-[#595959]" data-service-area>We serve the entire Portland metro area, including, Beaverton, Lake Oswego, Tigard, Tualatin, Sherwood, Milwaukie, Oregon City, Hillsboro, and surrounding areas.</p>
+                            <p class="text-[#595959]">We serve the entire Portland metro area, including, Beaverton, Lake Oswego, Tigard, Tualatin, Sherwood, Milwaukie, Oregon City, Hillsboro, and surrounding areas.</p>
                         </div>
                     </div>
 
@@ -204,69 +197,6 @@
         }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        // --- Location Switcher Script ---
-        const locationData = {
-            vegas: {
-                phone: '702-276-8416',
-                address: '2300 W Sahara Ave #800<br>Las Vegas, NV 89102',
-                serviceArea: 'We serve the entire Las Vegas valley, including Henderson, Summerlin, Paradise, North Las Vegas, Boulder City, and surrounding areas.'
-            },
-            portland: {
-                phone: '971-317-8376',
-                address: '12114 SW Garden Pl<br>Tigard, OR 97223',
-                serviceArea: 'We serve the entire Portland metro area, including, Beaverton, Lake Oswego, Tigard, Tualatin, Sherwood, Milwaukie, Oregon City, Hillsboro, and surrounding areas.'
-            }
-        };
-
-        // Auto-detect location on first visit
-        if (!localStorage.getItem('veroLocation')) {
-            setLocation('portland'); // Always default to Portland
-        } else {
-            setLocation(localStorage.getItem('veroLocation'));
-        }
-
-        // Location switcher function
-        function setLocation(city) {
-            localStorage.setItem('veroLocation', city);
-            
-            // Update phone numbers
-            document.querySelectorAll('[data-phone]').forEach(el => {
-                const phone = locationData[city].phone;
-                if (el.tagName === 'A') {
-                    el.href = 'tel:' + phone;
-                }
-                if (el.textContent.match(/[\d-]/)) {
-                    el.textContent = phone;
-                }
-            });
-            
-            // Update address
-            const addressEl = document.querySelector('[data-address]');
-            if (addressEl) {
-                addressEl.innerHTML = locationData[city].address;
-            }
-            
-            // Update service area
-            const serviceAreaEl = document.querySelector('[data-service-area]');
-            if (serviceAreaEl) {
-                serviceAreaEl.textContent = locationData[city].serviceArea;
-            }
-            
-            // NOTE: The form's hidden location field is no longer needed with the iFrame.
-            
-            // Update active button styling
-            document.querySelectorAll('.location-btn').forEach(btn => {
-                if (btn.dataset.city === city) {
-                    btn.style.background = '#ff4d00';
-                    btn.style.color = 'white';
-                    btn.style.borderColor = '#ff4d00';
-                } else {
-                    btn.style.background = 'transparent';
-                    btn.style.color = '#666';
-                    btn.style.borderColor = '#ccc';
-                }
-            });
-        }
     </script>
 </body>
 </html>

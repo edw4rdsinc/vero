@@ -147,32 +147,6 @@
             opacity: 0;
             transform: translateY(-20px);
         }
-        /* Styles for new vanilla JS location bar */
-        #location-bar {
-            background: #2b2b2b;
-            color: white;
-            padding: 8px;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 60;
-            font-size: 14px;
-        }
-        .location-btn {
-            padding: 4px 12px;
-            border: 1px solid #555;
-            border-radius: 6px;
-            background-color: transparent;
-            color: #ccc;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0 4px;
-        }
-        .location-btn:hover {
-            background-color: #444;
-        }
         @media (max-width: 768px) {
             .floating-agent-btn {
                 bottom: 20px;
@@ -236,20 +210,8 @@
 </head>
 <body class="bg-white">
 
-    <!-- Location Selection Bar (Vanilla JS) -->
-    <div id="location-bar">
-        <span>Serving:</span>
-        <button onclick="setLocation('vegas')" data-city="vegas" class="location-btn">Las Vegas</button>
-        <button onclick="setLocation('portland')" data-city="portland" class="location-btn">Portland</button>
-    </div>
-    
-    <!-- Las Vegas Specific Banner -->
-    <div id="vegas-banner" style="display: none;" class="bg-yellow-300 text-yellow-900 font-semibold py-2 fixed top-[40px] left-0 right-0 z-50 text-center text-sm px-4">
-        🎉 Best Auto Glass is now Vero Autoglass - Same trusted team, new name!
-    </div>
-
     <!-- Financing Banner -->
-    <div id="financing-banner" class="bg-gradient-to-r from-[#ff4d00] to-[#ff6d20] py-2 fixed top-[40px] left-0 right-0 z-50">
+    <div id="financing-banner" class="bg-gradient-to-r from-[#ff4d00] to-[#ff6d20] py-2 fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex flex-col sm:flex-row items-center justify-between text-white text-sm">
                 <div class="flex items-center space-x-2 mb-1 sm:mb-0">
@@ -269,7 +231,7 @@
     </div>
 
     <!-- Header -->
-    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-[80px] left-0 right-0 z-40 shadow-lg">
+    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-[40px] left-0 right-0 z-40 shadow-lg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" id="nav-logo"><img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-10 md:h-12"></a>
             <nav class="hidden md:flex space-x-10 items-center">
@@ -299,14 +261,14 @@
         </div>
     </header>
 
-    <main class="pt-[160px] md:pt-[140px]">
+    <main class="pt-[100px] md:pt-[100px]">
         <!-- Section 1: Hero -->
-        <section class="relative h-screen flex items-center justify-center text-center parallax-bg -mt-[160px] md:-mt-[140px]">
+        <section class="relative h-screen flex items-center justify-center text-center parallax-bg -mt-[100px] md:-mt-[100px]">
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 px-4 text-white">
                 <img src="images/vero-logo.png" alt="Vero Autoglass Logo" id="hero-logo" class="h-40 md:h-56 mx-auto mb-8">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight fade-in">Auto Glass Made Simple</h1>
-                <p data-hero-subtitle class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in">Serving Portland, Tigard, Beaverton, Lake Oswego and the Greater Portland Metro Area</p>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 fade-in">Serving Portland, Tigard, Beaverton, Lake Oswego and the Greater Portland Metro Area</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
                     <a href="contact.html" class="bg-[#ff4d00] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90">Get Your Quote</a>
                     <a href="tel:971-317-8376" data-phone class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-[#ff4d00]">Talk to a human</a>
@@ -365,7 +327,7 @@
                 <div class="flex flex-col md:flex-row justify-center items-center text-center gap-8 md:gap-16">
                     <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">1</div><h3 class="text-xl font-semibold mb-2">Tell Us About Your Car</h3><p class="text-[#595959] max-w-xs">Quick form or phone call. We'll give you a real quote in minutes, not a "starting at" price.</p></div>
                     <div class="w-24 border-t-2 border-dashed border-gray-300 my-8 self-center md:my-0 md:mt-10 md:w-32"></div>
-                    <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">2</div><h3 class="text-xl font-semibold mb-2">Pick Your Schedule</h3><p data-schedule-text class="text-[#595959] max-w-xs">Come to our shop in Tigard or we'll come to you (depending on the job). Same-day often available.</p></div>
+                    <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">2</div><h3 class="text-xl font-semibold mb-2">Pick Your Schedule</h3><p class="text-[#595959] max-w-xs">Come to our shop in Tigard or we'll come to you (depending on the job). Same-day often available.</p></div>
                     <div class="w-24 border-t-2 border-dashed border-gray-300 my-8 self-center md:my-0 md:mt-10 md:w-32"></div>
                     <div class="flex flex-col items-center fade-in"><div class="w-20 h-20 bg-[#ff4d00] text-white flex items-center justify-center rounded-full text-3xl font-bold mb-4">3</div><h3 class="text-xl font-semibold mb-2">Drive with Confidence</h3><p class="text-[#595959] max-w-xs">Quality glass, proper installation, warranty included. If your car has safety sensors, we'll recalibrate them correctly.</p></div>
                 </div>
@@ -467,7 +429,7 @@
             <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12 mx-auto mb-4">
             <p class="my-4 text-gray-400">Auto glass made simple.</p>
             <div class="text-gray-400 mb-4">
-                <p data-address>12114 SW Garden Pl, Tigard, OR 97223</p>
+                <p>12114 SW Garden Pl, Tigard, OR 97223</p>
                 <a href="tel:971-317-8376" data-phone class="hover:text-white">971-317-8376</a>
             </div> 
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -492,87 +454,7 @@
     <!-- End GoHighLevel Chat Widget -->
 
     <script>
-        // --- Vanilla JS Location Switcher ---
-        const locationConfig = {
-            vegas: {
-                phone: '702-276-8416',
-                subtitle: 'Serving Las Vegas, Henderson, Summerlin & Paradise',
-                address: '2300 W Sahara Ave #800, Las Vegas, NV 89102',
-                scheduleText: 'We offer convenient mobile service to your home or office. Same-day often available.'
-            },
-            portland: {
-                phone: '971-317-8376',
-                subtitle: 'Serving Portland, Tigard, Beaverton, Lake Oswego and the Greater Portland Metro Area',
-                address: '12114 SW Garden Pl, Tigard, OR 97223',
-                scheduleText: 'Come to our shop in Tigard or we\'ll come to you (depending on the job). Same-day often available.'
-            }
-        };
-
-        function setLocation(city) {
-            if (!locationConfig[city]) return;
-
-            localStorage.setItem('veroLocation', city);
-            const data = locationConfig[city];
-            
-            // Update all phone links
-            document.querySelectorAll('[data-phone]').forEach(el => {
-                const phone = data.phone;
-                if (el.tagName === 'A') {
-                    el.href = 'tel:' + phone;
-                }
-                // Only update text content if it's a link designed for it, to avoid changing "Talk to a human"
-                if (el.textContent.match(/[\d-]/)) {
-                   el.textContent = phone;
-                }
-            });
-
-            // Update hero subtitle and other text elements
-            document.querySelector('[data-hero-subtitle]').textContent = data.subtitle;
-            document.querySelector('[data-address]').textContent = data.address;
-            document.querySelector('[data-schedule-text]').textContent = data.scheduleText;
-
-            // Show/hide Vegas banner and adjust layout
-            const vegasBanner = document.getElementById('vegas-banner');
-            const financingBanner = document.getElementById('financing-banner');
-            const mainHeader = document.getElementById('main-header');
-
-            if (city === 'vegas') {
-                vegasBanner.style.display = 'block';
-                financingBanner.style.top = '74px';
-                mainHeader.style.top = '114px';
-            } else {
-                vegasBanner.style.display = 'none';
-                financingBanner.style.top = '40px';
-                mainHeader.style.top = '80px';
-            }
-            
-            // Update active button style
-            document.querySelectorAll('.location-btn').forEach(btn => {
-                const isActive = btn.dataset.city === city;
-                btn.style.background = isActive ? '#ff4d00' : 'transparent';
-                btn.style.color = isActive ? 'white' : '#ccc';
-                btn.style.fontWeight = isActive ? 'bold' : 'normal';
-            });
-
-            // Recalculate body padding to avoid content being hidden by fixed headers
-            setTimeout(() => {
-                const headerHeight = mainHeader.offsetHeight;
-                const headerTop = mainHeader.offsetTop;
-                document.body.style.paddingTop = `${headerTop + headerHeight}px`;
-            }, 50); // Small delay to ensure DOM has updated
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Auto-detect location on first visit
-            if (!localStorage.getItem('veroLocation')) {
-                setLocation('portland'); // Always default to Portland
-            } else {
-                setLocation(localStorage.getItem('veroLocation'));
-            }
-        });
-
-
-        // --- Other Page Scripts ---
+        // --- Page Scripts ---
         window.addEventListener('scroll', function() {
             document.body.classList.toggle('scrolled', window.scrollY > 50);
         });
