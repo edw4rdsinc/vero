@@ -2,7 +2,10 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
     <script defer data-domain="veroautoglass.com" src="http://5.78.156.118:8001/js/script.js"></script>
     <meta name="description" content="Vero Autoglass offers professional windshield repair and replacement. We handle insurance claims, use quality OEM-equivalent glass, and provide a lifetime warranty.">
     <title>Vero Autoglass | Windshield Repair & Replacement</title>
@@ -15,13 +18,25 @@
         body {
             font-family: 'Inter', sans-serif;
             color: #2b2b2b;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
         .parallax-bg {
             background-image: url('images/vero-hero.png');
-            background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+        }
+        /* iOS-friendly parallax effect */
+        @supports (-webkit-touch-callout: none) {
+            .parallax-bg {
+                background-attachment: scroll;
+            }
+        }
+        @media (min-width: 768px) and (hover: hover) {
+            .parallax-bg {
+                background-attachment: fixed;
+            }
         }
         .flip-card {
             background-color: transparent;
@@ -37,11 +52,24 @@
             text-align: center;
             transition: transform 0.6s;
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
             border-radius: 0.75rem;
         }
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
+        /* Touch-enabled flip for mobile devices */
+        @media (hover: none) and (pointer: coarse) {
+            .flip-card.flipped .flip-card-inner,
+            .flip-card:active .flip-card-inner {
+                transform: rotateY(180deg);
+                -webkit-transform: rotateY(180deg);
+            }
+        }
+        /* Hover flip for desktop */
+        @media (hover: hover) {
+            .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+                -webkit-transform: rotateY(180deg);
+            }
         }
         .flip-card-front, .flip-card-back {
             position: absolute;
@@ -64,6 +92,7 @@
             background-color: #ff4d00;
             color: white;
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
         }
         .fade-in {
             opacity: 0;
@@ -532,6 +561,18 @@
                 }
                 effect(() => show(evaluate))
             })
+        });
+
+        // iOS touch handling for flip cards
+        const flipCards = document.querySelectorAll('.flip-card');
+        flipCards.forEach(card => {
+            card.addEventListener('touchstart', function(e) {
+                // Only for iOS/touch devices
+                if ('ontouchstart' in window) {
+                    this.classList.toggle('flipped');
+                    e.preventDefault();
+                }
+            });
         });
     </script>
 </body>
