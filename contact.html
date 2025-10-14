@@ -12,9 +12,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; color: #2b2b2b; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2b2b2b;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
         .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
         .form-checkbox:focus {
@@ -23,6 +28,32 @@
              box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
              --tw-ring-opacity: 1;
              --tw-ring-color: rgb(255 77 0 / var(--tw-ring-opacity));
+        }
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            /* Ensure proper rendering on iOS */
+            * {
+                -webkit-transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+            }
+            /* Fix for iframe scrolling on iOS */
+            iframe {
+                -webkit-overflow-scrolling: touch;
+                overflow-y: scroll;
+            }
+            /* Backdrop blur fallback */
+            header {
+                background-color: rgba(255, 255, 255, 0.95) !important;
+            }
+        }
+        /* AlpineJS fallback */
+        [x-cloak] { display: none !important; }
+        /* Mobile iframe responsive fix */
+        @media (max-width: 640px) {
+            iframe {
+                min-height: 600px;
+                max-height: 80vh;
+            }
         }
     </style>
 </head>
@@ -36,7 +67,7 @@
     </div>
 
     <!-- HEADER & NAVIGATION -->
-     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-10 left-0 right-0 z-50 shadow-sm">
+     <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-[40px] left-0 right-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html">
                 <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12">
@@ -60,7 +91,7 @@
                 </button>
             </div>
         </div>
-        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg" x-transition>
+        <div x-show="isOpen" x-cloak @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg" x-transition>
             <div class="flex flex-col items-center py-8 space-y-6">
                 <a href="services.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Services</a>
                 <a href="insurance.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Insurance</a>
@@ -73,7 +104,7 @@
         </div>
     </header>
 
-    <main class="pt-40">
+    <main class="pt-32 md:pt-36">
         <section class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-8 sm:mb-12">
@@ -110,8 +141,15 @@
                     <!-- REPLACEMENT: iFrame Quoter -->
                     <div class="bg-white p-4 sm:p-8 rounded-lg shadow-lg fade-in">
                          <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Get an Instant Quote</h2>
-                         <div class="aspect-w-9 aspect-h-16 h-[600px] sm:h-[700px] lg:h-[800px] -mt-2 sm:-mt-4">
-                            <iframe src="https://app.omegaedi.com/quoter/?folder=veroautoglass" frameborder="0" class="w-full h-full rounded"></iframe>
+                         <div class="relative w-full overflow-hidden rounded-lg">
+                            <iframe
+                                src="https://app.omegaedi.com/quoter/?folder=veroautoglass"
+                                frameborder="0"
+                                class="w-full rounded"
+                                style="height: 600px; min-height: 600px;"
+                                scrolling="yes"
+                                allowfullscreen>
+                            </iframe>
                          </div>
                          <div class="mt-4 sm:mt-6 text-xs sm:text-sm text-gray-600 border-t pt-4">
                             <p class="mb-3">By providing your phone number, you consent to receive customer care and account notification messages from Vero Auto Glass Oregon LLC. Message frequency may vary. On average, 1-2 messages per month. Message and data rates may apply. For more information, please review our Privacy Policy: <a href="https://www.veroautoglass.com/privacy.html" class="text-[#ff4d00] hover:underline">https://www.veroautoglass.com/privacy.html</a> and Terms & Conditions: <a href="https://www.veroautoglass.com/terms.html" class="text-[#ff4d00] hover:underline">https://www.veroautoglass.com/terms.html</a></p>

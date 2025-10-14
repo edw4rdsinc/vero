@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -179,6 +179,16 @@
                 left: 20px;
             }
         }
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            /* Ensure proper rendering on iOS */
+            * {
+                -webkit-transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+            }
+        }
+        /* AlpineJS fallback - show mobile menu by default if JS fails */
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="bg-white">
@@ -196,7 +206,7 @@
     </div>
 
     <!-- Financing Banner -->
-    <div id="financing-banner" class="bg-gradient-to-r from-[#ff4d00] to-[#ff6d20] py-2 fixed left-0 right-0 z-50">
+    <div id="financing-banner" class="bg-gradient-to-r from-[#ff4d00] to-[#ff6d20] py-2 fixed top-[40px] left-0 right-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex flex-col sm:flex-row items-center justify-between text-white text-sm">
                 <div class="flex items-center space-x-2 mb-1 sm:mb-0">
@@ -216,9 +226,9 @@
     </div>
 
     <!-- Header -->
-    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed left-0 right-0 z-40 shadow-lg">
+    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-[80px] left-0 right-0 z-40 shadow-lg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" id="nav-logo"><img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-24"></a>
+            <a href="index.html" id="nav-logo"><img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-10 md:h-12"></a>
             <nav class="hidden md:flex space-x-10 items-center">
                 <a href="services.html" class="text-gray-300 hover:text-white">Services</a>
                 <a href="insurance.html" class="text-gray-300 hover:text-white">Insurance</a>
@@ -234,7 +244,7 @@
                 <button @click="isOpen = !isOpen" type="button" class="text-white hover:text-[#ff4d00] focus:outline-none"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path :class="{'hidden': isOpen, 'inline-flex': !isOpen }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /><path :class="{'hidden': !isOpen, 'inline-flex': isOpen }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
             </div>
         </div>
-        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg" style="display: none;">
+        <div x-show="isOpen" x-cloak @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg">
             <div class="flex flex-col items-center py-8 space-y-6">
                 <a href="services.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Services</a>
                 <a href="insurance.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Insurance</a>
@@ -246,9 +256,9 @@
         </div>
     </header>
 
-    <main>
+    <main class="pt-[160px] md:pt-[140px]">
         <!-- Section 1: Hero -->
-        <section class="relative h-screen flex items-center justify-center text-center parallax-bg">
+        <section class="relative h-screen flex items-center justify-center text-center parallax-bg -mt-[160px] md:-mt-[140px]">
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 px-4 text-white">
                 <img src="images/vero-logo.png" alt="Vero Autoglass Logo" id="hero-logo" class="h-40 md:h-56 mx-auto mb-8">
