@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/vero-hero.png" fetchpriority="high">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         body {
@@ -190,6 +191,48 @@
         /* AlpineJS fallback - show mobile menu by default if JS fails */
         [x-cloak] { display: none !important; }
     </style>
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "name": "Vero Autoglass",
+        "description": "Professional windshield repair and replacement in Portland, OR. Lifetime warranty, insurance billing, ADAS recalibration.",
+        "url": "https://www.veroautoglass.com",
+        "telephone": "971-317-8376",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "12114 SW Garden Pl",
+            "addressLocality": "Tigard",
+            "addressRegion": "OR",
+            "postalCode": "97223",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 45.4342,
+            "longitude": -122.7644
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "08:00",
+                "closes": "18:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "16:00"
+            }
+        ],
+        "areaServed": ["Portland", "Tigard", "Beaverton", "Lake Oswego", "Tualatin", "Milwaukie", "Oregon City", "Hillsboro"],
+        "priceRange": "$$",
+        "image": "https://www.veroautoglass.com/images/vero-logo.png",
+        "sameAs": []
+    }
+    </script>
 </head>
 <body class="bg-white">
 
@@ -339,27 +382,27 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Cards are unchanged -->
                     <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/warrantee.jpg" alt="Lifetime Warranty" class="h-20 mb-4"><h3 class="text-xl font-bold">Lifetime Warranty</h3></div>
+                        <div class="flip-card-front"><img src="images/warrantee.jpg" alt="Lifetime Warranty" class="h-20 mb-4" loading="lazy"><h3 class="text-xl font-bold">Lifetime Warranty</h3></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Lifetime Warranty</h3><p class="text-sm">Every installation comes with a comprehensive lifetime warranty for your peace of mind and protection. <a href="warranty.html" class="font-bold underline hover:text-white">Learn More</a></p></div>
                     </div></div>
                     <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/oem-glass.png" alt="Premium Parts" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Premium Parts</h3><p class="text-[#595959] font-semibold">OEM Quality Glass</p></div>
+                        <div class="flip-card-front"><img src="images/oem-glass.png" alt="Premium Parts" class="h-20 mb-4 rounded-md" loading="lazy"><h3 class="text-xl font-bold">Premium Parts</h3><p class="text-[#595959] font-semibold">OEM Quality Glass</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Premium Parts</h3><p class="text-sm">We only use Original Equipment Manufacturer quality glass that meets or exceeds industry safety standards.</p></div>
                     </div></div>
                     <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/insurance-claim.png" alt="Insurance Form" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Direct Insurance Billing</h3><p class="text-[#595959] font-semibold">No Upfront Costs</p></div>
+                        <div class="flip-card-front"><img src="images/insurance-claim.png" alt="Insurance Form" class="h-20 mb-4 rounded-md" loading="lazy"><h3 class="text-xl font-bold">Direct Insurance Billing</h3><p class="text-[#595959] font-semibold">No Upfront Costs</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Direct Insurance Billing</h3><p class="text-sm">We handle all insurance billing and paperwork directly. No upfront costs or complicated claims processes.</p></div>
                     </div></div>
                     <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/recalibration.png" alt="ADAS Recalibration" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Full Safety System Recalibration</h3><p class="text-[#595959] font-semibold">ADAS Included</p></div>
+                        <div class="flip-card-front"><img src="images/recalibration.png" alt="ADAS Recalibration" class="h-20 mb-4 rounded-md" loading="lazy"><h3 class="text-xl font-bold">Full Safety System Recalibration</h3><p class="text-[#595959] font-semibold">ADAS Included</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Full Safety System Recalibration</h3><p class="text-sm">Advanced Driver Assistance Systems (ADAS) recalibration included to ensure all safety features will work properly after installation.</p></div>
                     </div></div>
                     <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/mobile-service.png" alt="Mobile Service Van" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Free Mobile Service</h3><p class="text-[#595959] font-semibold">We Come To You</p></div>
+                        <div class="flip-card-front"><img src="images/mobile-service.png" alt="Mobile Service Van" class="h-20 mb-4 rounded-md" loading="lazy"><h3 class="text-xl font-bold">Free Mobile Service</h3><p class="text-[#595959] font-semibold">We Come To You</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Free Mobile Service</h3><p class="text-sm">We offer mobile auto glass installation at your home, your office, or any location that is convenient.</p></div>
                     </div></div>
                     <div class="flip-card fade-in"><div class="flip-card-inner">
-                        <div class="flip-card-front"><img src="images/deductiblehelp.jpg" alt="Customer Support" class="h-20 mb-4 rounded-md"><h3 class="text-xl font-bold">Deductible Assistance</h3><p class="text-[#595959] font-semibold">Deductible Help</p></div>
+                        <div class="flip-card-front"><img src="images/deductiblehelp.jpg" alt="Customer Support" class="h-20 mb-4 rounded-md" loading="lazy"><h3 class="text-xl font-bold">Deductible Assistance</h3><p class="text-[#595959] font-semibold">Deductible Help</p></div>
                         <div class="flip-card-back"><h3 class="text-xl font-bold mb-2">Deductible Assistance</h3><p class="text-sm">Most insurance companies will waive your deductible for windshield repairs. We will assist in verifying your deductible amount.</p></div>
                     </div></div>
                 </div>
