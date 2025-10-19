@@ -1,0 +1,11 @@
+# robots.txt for Vero Autoglass
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private directories (if any exist in the future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://veroautoglass.com/sitemap.xml
