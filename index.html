@@ -48,6 +48,12 @@
             -webkit-text-size-adjust: 100%;
             -webkit-tap-highlight-color: transparent;
         }
+        /* Fix image stretching - allow CSS classes to control sizing while preserving aspect ratio */
+        img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+        }
         .parallax-bg {
             background-image: url('images/vero-hero.png');
             background-position: center;
