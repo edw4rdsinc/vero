@@ -927,6 +927,45 @@
                 }
             });
         });
+
+        // Track phone number clicks in Plausible
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"], a[data-phone]');
+
+            phoneLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Extract phone number from href
+                    const phoneNumber = this.getAttribute('href')?.replace('tel:', '') || '971-317-8376';
+
+                    // Get location on page (hero, nav, footer, floating button, etc.)
+                    let location = 'unknown';
+                    if (this.id === 'floating-agent-btn') {
+                        location = 'floating-button';
+                    } else if (this.closest('header')) {
+                        location = 'header';
+                    } else if (this.closest('footer')) {
+                        location = 'footer';
+                    } else if (this.closest('.parallax-bg')) {
+                        location = 'hero';
+                    } else {
+                        location = 'content';
+                    }
+
+                    // Track event in Plausible
+                    if (window.plausible) {
+                        window.plausible('Phone Click', {
+                            props: {
+                                location: location,
+                                number: phoneNumber
+                            }
+                        });
+                    }
+
+                    // Log for debugging (remove in production if desired)
+                    console.log('Phone click tracked:', location, phoneNumber);
+                });
+            });
+        });
     </script>
 </body>
 </html>
