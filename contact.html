@@ -269,9 +269,15 @@
             if (data && (
                 data.type === 'formSubmitted' ||
                 data.type === 'quoterSubmitted' ||
+                data.type === 'scheduled' ||
+                data.type === 'appointmentScheduled' ||
                 data.status === 'success' ||
+                data.status === 'scheduled' ||
                 data.event === 'submit' ||
-                (typeof data === 'string' && data.toLowerCase().includes('success'))
+                data.event === 'schedule' ||
+                data.action === 'schedule' ||
+                (typeof data === 'string' && data.toLowerCase().includes('success')) ||
+                (typeof data === 'string' && data.toLowerCase().includes('schedule'))
             )) {
                 console.log('Form submission detected, redirecting to thank you page...');
 
@@ -309,7 +315,10 @@
                         if (currentUrl.includes('success') ||
                             currentUrl.includes('thank') ||
                             currentUrl.includes('submitted') ||
-                            currentUrl.includes('complete')) {
+                            currentUrl.includes('complete') ||
+                            currentUrl.includes('schedule') ||
+                            currentUrl.includes('appointment') ||
+                            currentUrl.includes('confirmed')) {
 
                             console.log('Success URL detected, redirecting...');
 
