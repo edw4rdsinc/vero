@@ -88,12 +88,29 @@
         }
         /* AlpineJS fallback */
         [x-cloak] { display: none !important; }
-        /* Mobile iframe responsive fix */
+        /* Iframe height optimization - ensure CTA is visible */
+        iframe {
+            min-height: 900px;
+        }
+
+        /* Desktop: even taller for better visibility */
+        @media (min-width: 1024px) {
+            iframe {
+                min-height: 1000px;
+            }
+        }
+
+        /* Mobile: adjust for smaller screens */
         @media (max-width: 640px) {
             iframe {
-                min-height: 600px;
-                max-height: 80vh;
+                min-height: 750px;
+                max-height: 85vh;
             }
+        }
+
+        /* Smooth scroll behavior for better UX */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -178,10 +195,11 @@
                          <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Get an Instant Quote</h2>
                          <div class="relative w-full overflow-hidden rounded-lg">
                             <iframe
+                                id="quoter-iframe"
                                 src="https://app.omegaedi.com/quoter/?folder=veroautoglass&redirect_url=https://veroautoglass.com/thank-you.html"
                                 frameborder="0"
                                 class="w-full rounded"
-                                style="height: 600px; min-height: 600px;"
+                                style="height: 1000px;"
                                 scrolling="yes"
                                 allowfullscreen>
                             </iframe>
@@ -313,6 +331,49 @@
                     // Will fall back to postMessage method only
                 }
             }, 500);
+
+            // --- Auto-scroll iframe into view when user interacts ---
+            // This ensures the form stays visible as users fill it out
+            let hasScrolledToIframe = false;
+
+            iframe.addEventListener('click', function() {
+                if (!hasScrolledToIframe) {
+                    // Scroll the iframe into view with some padding
+                    const iframeTop = iframe.getBoundingClientRect().top + window.pageYOffset;
+                    const headerHeight = 100; // Account for fixed header
+
+                    window.scrollTo({
+                        top: iframeTop - headerHeight,
+                        behavior: 'smooth'
+                    });
+
+                    hasScrolledToIframe = true;
+                }
+            });
+
+            // Track when user focuses on iframe (clicks inside it)
+            window.addEventListener('blur', function() {
+                if (document.activeElement === iframe) {
+                    console.log('User is interacting with form');
+
+                    // After a delay, ensure the iframe is still in view
+                    setTimeout(function() {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        const iframeBottom = iframeRect.bottom;
+                        const viewportHeight = window.innerHeight;
+
+                        // If bottom of iframe is out of view, scroll to show it
+                        if (iframeBottom > viewportHeight - 100) {
+                            const scrollTarget = window.pageYOffset + (iframeBottom - viewportHeight) + 150;
+
+                            window.scrollTo({
+                                top: scrollTarget,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 300);
+                }
+            });
         }
     </script>
 </body>
