@@ -102,6 +102,31 @@
             color: white;
             padding: 1.5rem;
             border-bottom: 3px solid #ff4d00;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .quiz-header:hover {
+            background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+        }
+
+        .quiz-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .quiz-content.expanded {
+            max-height: 5000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .chevron-icon.rotated {
+            transform: rotate(180deg);
         }
     </style>
 
@@ -273,25 +298,6 @@
                             </div>
                         </div>
                     </article>
-
-                    <!-- Placeholder for more guides -->
-                    <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md fade-in flex items-center justify-center" style="min-height: 360px;">
-                        <div class="text-center p-6">
-                            <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                            </svg>
-                            <p class="text-gray-500 font-medium">More guides coming soon</p>
-                        </div>
-                    </article>
-
-                    <article class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md fade-in flex items-center justify-center" style="min-height: 360px;">
-                        <div class="text-center p-6">
-                            <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                            </svg>
-                            <p class="text-gray-500 font-medium">More guides coming soon</p>
-                        </div>
-                    </article>
                 </div>
             </div>
         </section>
@@ -307,171 +313,216 @@
                 </div>
 
                 <!-- Quiz 1: ADAS Calibration -->
-                <div class="vero-quiz-container fade-in">
-                    <div class="quiz-header">
-                        <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                <div class="vero-quiz-container fade-in" x-data="{ expanded: false }">
+                    <div class="quiz-header" @click="expanded = !expanded">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <div>
+                                    <h3 class="text-2xl font-bold">Does Your Car Need ADAS Calibration?</h3>
+                                    <p class="text-gray-300 text-sm mt-1">
+                                        Find out if your vehicle's safety systems need recalibration after windshield work • 4 minutes
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-6 h-6 text-white chevron-icon" :class="{ 'rotated': expanded }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
-                            <h3 class="text-2xl font-bold">Does Your Car Need ADAS Calibration?</h3>
                         </div>
-                        <p class="text-gray-300 text-sm">
-                            Find out if your vehicle's safety systems need recalibration after windshield work • 4 minutes
-                        </p>
                     </div>
-                    <div
-                        class="windshield-advisor-quiz"
-                        data-quiz="adas-calibration"
-                        data-partner-id="vero-autoglass"
-                        data-partner-name="Vero Autoglass"
-                        data-seo-mode="true"
-                        data-primary-color="ff4d00"
-                        data-accent-color="cc3d00"
-                        data-text-color="2b2b2b"
-                        data-bg-color="ffffff"
-                        data-font-family="Inter"
-                        data-border-radius="0"
-                        data-show-branding="false"
-                    ></div>
-                    <div class="quiz-attribution">
-                        Assessment tool developed by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>,
-                        experts in windshield safety research.
-                        <a href="https://windshieldadvisor.info/quizzes/adas-calibration" target="_blank" rel="noopener">Learn more about this assessment</a> |
-                        <a href="https://windshieldadvisor.info/white-papers" target="_blank" rel="noopener">View research</a>
+                    <div class="quiz-content" :class="{ 'expanded': expanded }">
+                        <div
+                            class="windshield-advisor-quiz"
+                            data-quiz="adas-calibration"
+                            data-partner-id="vero-autoglass"
+                            data-partner-name="Vero Autoglass"
+                            data-seo-mode="true"
+                            data-primary-color="ff4d00"
+                            data-accent-color="cc3d00"
+                            data-text-color="2b2b2b"
+                            data-bg-color="ffffff"
+                            data-font-family="Inter"
+                            data-border-radius="0"
+                            data-show-branding="false"
+                        ></div>
+                        <div class="quiz-attribution">
+                            Assessment tool developed by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>,
+                            experts in windshield safety research.
+                            <a href="https://windshieldadvisor.info/quizzes/adas-calibration" target="_blank" rel="noopener">Learn more about this assessment</a> |
+                            <a href="https://windshieldadvisor.info/white-papers" target="_blank" rel="noopener">View research</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Quiz 2: Insurance Coverage -->
-                <div class="vero-quiz-container fade-in">
-                    <div class="quiz-header">
-                        <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <div class="vero-quiz-container fade-in" x-data="{ expanded: false }">
+                    <div class="quiz-header" @click="expanded = !expanded">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div>
+                                    <h3 class="text-2xl font-bold">What Will Your Insurance Cover?</h3>
+                                    <p class="text-gray-300 text-sm mt-1">
+                                        Calculate your estimated out-of-pocket costs based on your coverage • 5 minutes
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-6 h-6 text-white chevron-icon" :class="{ 'rotated': expanded }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
-                            <h3 class="text-2xl font-bold">What Will Your Insurance Cover?</h3>
                         </div>
-                        <p class="text-gray-300 text-sm">
-                            Calculate your estimated out-of-pocket costs based on your coverage • 5 minutes
-                        </p>
                     </div>
-                    <div
-                        class="windshield-advisor-quiz"
-                        data-quiz="insurance-coverage"
-                        data-partner-id="vero-autoglass"
-                        data-partner-name="Vero Autoglass"
-                        data-seo-mode="true"
-                        data-primary-color="ff4d00"
-                        data-accent-color="cc3d00"
-                        data-text-color="2b2b2b"
-                        data-bg-color="ffffff"
-                        data-font-family="Inter"
-                        data-border-radius="0"
-                        data-show-branding="false"
-                    ></div>
-                    <div class="quiz-attribution">
-                        Insurance assessment tool by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
-                        <a href="https://windshieldadvisor.info/quizzes/insurance-coverage" target="_blank" rel="noopener">More details</a>
+                    <div class="quiz-content" :class="{ 'expanded': expanded }">
+                        <div
+                            class="windshield-advisor-quiz"
+                            data-quiz="insurance-coverage"
+                            data-partner-id="vero-autoglass"
+                            data-partner-name="Vero Autoglass"
+                            data-seo-mode="true"
+                            data-primary-color="ff4d00"
+                            data-accent-color="cc3d00"
+                            data-text-color="2b2b2b"
+                            data-bg-color="ffffff"
+                            data-font-family="Inter"
+                            data-border-radius="0"
+                            data-show-branding="false"
+                        ></div>
+                        <div class="quiz-attribution">
+                            Insurance assessment tool by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                            <a href="https://windshieldadvisor.info/quizzes/insurance-coverage" target="_blank" rel="noopener">More details</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Quiz 3: Repair vs Replace -->
-                <div class="vero-quiz-container fade-in">
-                    <div class="quiz-header">
-                        <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                <div class="vero-quiz-container fade-in" x-data="{ expanded: false }">
+                    <div class="quiz-header" @click="expanded = !expanded">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                                <div>
+                                    <h3 class="text-2xl font-bold">Should You Repair or Replace?</h3>
+                                    <p class="text-gray-300 text-sm mt-1">
+                                        Get expert recommendations based on ROLAGS professional standards • 3 minutes
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-6 h-6 text-white chevron-icon" :class="{ 'rotated': expanded }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
-                            <h3 class="text-2xl font-bold">Should You Repair or Replace?</h3>
                         </div>
-                        <p class="text-gray-300 text-sm">
-                            Get expert recommendations based on ROLAGS professional standards • 3 minutes
-                        </p>
                     </div>
-                    <div
-                        class="windshield-advisor-quiz"
-                        data-quiz="repair-replace"
-                        data-partner-id="vero-autoglass"
-                        data-partner-name="Vero Autoglass"
-                        data-seo-mode="true"
-                        data-primary-color="ff4d00"
-                        data-accent-color="cc3d00"
-                        data-text-color="2b2b2b"
-                        data-bg-color="ffffff"
-                        data-font-family="Inter"
-                        data-border-radius="0"
-                        data-show-branding="false"
-                    ></div>
-                    <div class="quiz-attribution">
-                        Damage assessment based on research from <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
-                        <a href="https://windshieldadvisor.info/white-papers/repair-vs-replacement" target="_blank" rel="noopener">Read the research</a>
+                    <div class="quiz-content" :class="{ 'expanded': expanded }">
+                        <div
+                            class="windshield-advisor-quiz"
+                            data-quiz="repair-replace"
+                            data-partner-id="vero-autoglass"
+                            data-partner-name="Vero Autoglass"
+                            data-seo-mode="true"
+                            data-primary-color="ff4d00"
+                            data-accent-color="cc3d00"
+                            data-text-color="2b2b2b"
+                            data-bg-color="ffffff"
+                            data-font-family="Inter"
+                            data-border-radius="0"
+                            data-show-branding="false"
+                        ></div>
+                        <div class="quiz-attribution">
+                            Damage assessment based on research from <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                            <a href="https://windshieldadvisor.info/white-papers/repair-vs-replacement" target="_blank" rel="noopener">Read the research</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Quiz 4: Installer Qualifications -->
-                <div class="vero-quiz-container fade-in">
-                    <div class="quiz-header">
-                        <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                <div class="vero-quiz-container fade-in" x-data="{ expanded: false }">
+                    <div class="quiz-header" @click="expanded = !expanded">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                </svg>
+                                <div>
+                                    <h3 class="text-2xl font-bold">Is Your Installer Qualified?</h3>
+                                    <p class="text-gray-300 text-sm mt-1">
+                                        Verify installer certifications and industry standards compliance • 3 minutes
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-6 h-6 text-white chevron-icon" :class="{ 'rotated': expanded }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
-                            <h3 class="text-2xl font-bold">Is Your Installer Qualified?</h3>
                         </div>
-                        <p class="text-gray-300 text-sm">
-                            Verify installer certifications and industry standards compliance • 3 minutes
-                        </p>
                     </div>
-                    <div
-                        class="windshield-advisor-quiz"
-                        data-quiz="installer-qualified"
-                        data-partner-id="vero-autoglass"
-                        data-partner-name="Vero Autoglass"
-                        data-seo-mode="true"
-                        data-primary-color="ff4d00"
-                        data-accent-color="cc3d00"
-                        data-text-color="2b2b2b"
-                        data-bg-color="ffffff"
-                        data-font-family="Inter"
-                        data-border-radius="0"
-                        data-show-branding="false"
-                    ></div>
-                    <div class="quiz-attribution">
-                        Installer certification guide from <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
-                        <a href="https://windshieldadvisor.info/quizzes/installer-qualified" target="_blank" rel="noopener">Learn about certifications</a>
+                    <div class="quiz-content" :class="{ 'expanded': expanded }">
+                        <div
+                            class="windshield-advisor-quiz"
+                            data-quiz="installer-qualified"
+                            data-partner-id="vero-autoglass"
+                            data-partner-name="Vero Autoglass"
+                            data-seo-mode="true"
+                            data-primary-color="ff4d00"
+                            data-accent-color="cc3d00"
+                            data-text-color="2b2b2b"
+                            data-bg-color="ffffff"
+                            data-font-family="Inter"
+                            data-border-radius="0"
+                            data-show-branding="false"
+                        ></div>
+                        <div class="quiz-attribution">
+                            Installer certification guide from <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                            <a href="https://windshieldadvisor.info/quizzes/installer-qualified" target="_blank" rel="noopener">Learn about certifications</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Quiz 5: Windshield Safety -->
-                <div class="vero-quiz-container fade-in">
-                    <div class="quiz-header">
-                        <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                <div class="vero-quiz-container fade-in" x-data="{ expanded: false }">
+                    <div class="quiz-header" @click="expanded = !expanded">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                                <div>
+                                    <h3 class="text-2xl font-bold">Is Your Windshield Safe?</h3>
+                                    <p class="text-gray-300 text-sm mt-1">
+                                        Comprehensive safety evaluation of your windshield's condition • 5 minutes
+                                    </p>
+                                </div>
+                            </div>
+                            <svg class="w-6 h-6 text-white chevron-icon" :class="{ 'rotated': expanded }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
-                            <h3 class="text-2xl font-bold">Is Your Windshield Safe?</h3>
                         </div>
-                        <p class="text-gray-300 text-sm">
-                            Comprehensive safety evaluation of your windshield's condition • 5 minutes
-                        </p>
                     </div>
-                    <div
-                        class="windshield-advisor-quiz"
-                        data-quiz="windshield-safety"
-                        data-partner-id="vero-autoglass"
-                        data-partner-name="Vero Autoglass"
-                        data-seo-mode="true"
-                        data-primary-color="ff4d00"
-                        data-accent-color="cc3d00"
-                        data-text-color="2b2b2b"
-                        data-bg-color="ffffff"
-                        data-font-family="Inter"
-                        data-border-radius="0"
-                        data-show-branding="false"
-                    ></div>
-                    <div class="quiz-attribution">
-                        Windshield safety assessment developed by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
-                        <a href="https://windshieldadvisor.info/quizzes/windshield-safety" target="_blank" rel="noopener">View assessment details</a> |
-                        <a href="https://windshieldadvisor.info/white-papers" target="_blank" rel="noopener">Safety research</a>
+                    <div class="quiz-content" :class="{ 'expanded': expanded }">
+                        <div
+                            class="windshield-advisor-quiz"
+                            data-quiz="windshield-safety"
+                            data-partner-id="vero-autoglass"
+                            data-partner-name="Vero Autoglass"
+                            data-seo-mode="true"
+                            data-primary-color="ff4d00"
+                            data-accent-color="cc3d00"
+                            data-text-color="2b2b2b"
+                            data-bg-color="ffffff"
+                            data-font-family="Inter"
+                            data-border-radius="0"
+                            data-show-branding="false"
+                        ></div>
+                        <div class="quiz-attribution">
+                            Windshield safety assessment developed by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                            <a href="https://windshieldadvisor.info/quizzes/windshield-safety" target="_blank" rel="noopener">View assessment details</a> |
+                            <a href="https://windshieldadvisor.info/white-papers" target="_blank" rel="noopener">Safety research</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -493,17 +544,6 @@
                         <div class="flex items-center justify-between">
                             <span class="text-xs text-gray-500">12 min read</span>
                             <a href="adas-calibration-explained/" class="text-[#ff4d00] text-sm font-semibold hover:underline">Read →</a>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 fade-in">
-                        <div class="flex items-center justify-center h-full">
-                            <p class="text-gray-500 text-center">
-                                <svg class="w-12 h-12 mx-auto mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                </svg>
-                                More guides coming soon
-                            </p>
                         </div>
                     </div>
                 </div>
