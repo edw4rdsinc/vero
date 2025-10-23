@@ -178,7 +178,7 @@
                          <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Get an Instant Quote</h2>
                          <div class="relative w-full overflow-hidden rounded-lg">
                             <iframe
-                                src="https://app.omegaedi.com/quoter/?folder=veroautoglass"
+                                src="https://app.omegaedi.com/quoter/?folder=veroautoglass&redirect_url=https://veroautoglass.com/thank-you.html"
                                 frameborder="0"
                                 class="w-full rounded"
                                 style="height: 600px; min-height: 600px;"
@@ -238,6 +238,82 @@
         }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
+        // --- Form Submission Detection & Auto-Redirect ---
+        // This listens for postMessage events from the Omega EDI iframe
+        window.addEventListener('message', function(event) {
+            // Only accept messages from Omega EDI domain
+            if (event.origin !== 'https://app.omegaedi.com') return;
+
+            // Check for various success indicators
+            const data = event.data;
+
+            // Try to detect form submission success
+            if (data && (
+                data.type === 'formSubmitted' ||
+                data.type === 'quoterSubmitted' ||
+                data.status === 'success' ||
+                data.event === 'submit' ||
+                (typeof data === 'string' && data.toLowerCase().includes('success'))
+            )) {
+                console.log('Form submission detected, redirecting to thank you page...');
+
+                // Track in Plausible before redirect
+                if (window.plausible) {
+                    plausible('Form Submitted', {
+                        props: { form: 'Contact Quote' },
+                        callback: function() {
+                            window.location.href = 'thank-you.html';
+                        }
+                    });
+                } else {
+                    // Redirect immediately if Plausible not available
+                    window.location.href = 'thank-you.html';
+                }
+            }
+        }, false);
+
+        // --- Alternative: Monitor iframe for URL changes ---
+        // This is a fallback method if postMessage doesn't work
+        const iframe = document.querySelector('iframe');
+        if (iframe) {
+            let lastUrl = '';
+
+            // Check iframe URL every 500ms for changes
+            setInterval(function() {
+                try {
+                    // Note: This may fail due to cross-origin restrictions
+                    const currentUrl = iframe.contentWindow.location.href;
+
+                    // If URL changed and contains success indicators
+                    if (currentUrl !== lastUrl) {
+                        lastUrl = currentUrl;
+
+                        if (currentUrl.includes('success') ||
+                            currentUrl.includes('thank') ||
+                            currentUrl.includes('submitted') ||
+                            currentUrl.includes('complete')) {
+
+                            console.log('Success URL detected, redirecting...');
+
+                            // Track and redirect
+                            if (window.plausible) {
+                                plausible('Form Submitted', {
+                                    props: { form: 'Contact Quote' },
+                                    callback: function() {
+                                        window.location.href = 'thank-you.html';
+                                    }
+                                });
+                            } else {
+                                window.location.href = 'thank-you.html';
+                            }
+                        }
+                    }
+                } catch(e) {
+                    // Cross-origin restriction - this is expected
+                    // Will fall back to postMessage method only
+                }
+            }, 500);
+        }
     </script>
 </body>
 </html>
