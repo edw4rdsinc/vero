@@ -415,9 +415,9 @@
             if (clickedInForm) {
                 clicksInForm++;
 
-                // After 5 clicks in form area, assume they've submitted
-                // (name, phone, email, vehicle info, submit = ~5 clicks)
-                if (clicksInForm >= 5 && !conversionFired) {
+                // After 7 clicks in form area, assume they've submitted
+                // (name, phone, email, vehicle info, year/make/model, submit = ~7 clicks)
+                if (clicksInForm >= 7 && !conversionFired) {
                     conversionFired = true;
 
                     // Fire Google Ads conversion
