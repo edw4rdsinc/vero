@@ -384,6 +384,113 @@
                 }
             });
         }
+
+        // --- Force Redirect After Quote Display ---
+        // Monitor for quote display and redirect after user sees it
+        let checkCount = 0;
+        let hasRedirected = false;
+
+        const checkForQuote = setInterval(() => {
+            checkCount++;
+
+            // Look for signs that quote is displayed in iframe
+            const iframe = document.getElementById('quoter-iframe');
+
+            if (iframe) {
+                try {
+                    // Try to check iframe content (may be blocked by cross-origin)
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    const iframeContent = iframeDoc.body.innerText.toLowerCase();
+
+                    if (iframeContent.includes('instant quote') ||
+                        iframeContent.includes('your quote')) {
+
+                        if (!hasRedirected) {
+                            console.log('Quote detected in iframe! Redirecting in 1.5 seconds...');
+                            hasRedirected = true;
+                            clearInterval(checkForQuote);
+
+                            // Show user message before redirect
+                            const message = document.createElement('div');
+                            message.innerHTML = `
+                                <div style="position: fixed; top: 20px; right: 20px; background: #10b981; color: white;
+                                         padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                                         z-index: 9999; font-family: Inter, sans-serif;">
+                                    ✓ Quote received! Redirecting to confirmation...
+                                </div>
+                            `;
+                            document.body.appendChild(message);
+
+                            // Wait 1.5 seconds so user sees quote, then redirect
+                            setTimeout(() => {
+                                window.location.href = '/thank-you.html';
+                            }, 1500);
+                        }
+                    }
+                } catch(e) {
+                    // Cross-origin blocked - fall back to monitoring page changes
+                    // Check if the page content around iframe has changed
+                    const pageContent = document.body.innerText.toLowerCase();
+
+                    // Look for the consent text that appears with the quote
+                    if ((pageContent.includes('instant quote') ||
+                         pageContent.includes('text stop to opt out') ||
+                         pageContent.includes('message frequency may vary')) &&
+                        !hasRedirected) {
+
+                        console.log('Quote consent text detected! Redirecting in 1.5 seconds...');
+                        hasRedirected = true;
+                        clearInterval(checkForQuote);
+
+                        // Show user message before redirect
+                        const message = document.createElement('div');
+                        message.innerHTML = `
+                            <div style="position: fixed; top: 20px; right: 20px; background: #10b981; color: white;
+                                     padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                                     z-index: 9999; font-family: Inter, sans-serif; animation: slideIn 0.3s ease-out;">
+                                <div style="font-weight: 600; margin-bottom: 4px;">✓ Quote Received!</div>
+                                <div style="font-size: 14px;">Redirecting to confirmation...</div>
+                            </div>
+                        `;
+                        document.body.appendChild(message);
+
+                        // Track in Plausible
+                        if (typeof plausible !== 'undefined') {
+                            plausible('Quote Received', {
+                                props: { method: 'force-redirect' }
+                            });
+                        }
+
+                        // Wait 1.5 seconds so user sees quote, then redirect
+                        setTimeout(() => {
+                            window.location.href = '/thank-you.html';
+                        }, 1500);
+                    }
+                }
+            }
+
+            // Stop checking after 60 seconds (120 checks at 500ms intervals)
+            if (checkCount > 120) {
+                clearInterval(checkForQuote);
+                console.log('Stopped checking for quote after 60 seconds');
+            }
+        }, 500);
+
+        // Add slide-in animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
