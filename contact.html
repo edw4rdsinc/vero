@@ -48,6 +48,15 @@
         ]
     }
     </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-XXXXXXXXX');
+    </script>
+
     <!-- Tailwind CSS CDN - Note: For production, consider using PostCSS or Tailwind CLI -->
     <!-- The CDN warning is expected and doesn't affect functionality -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -388,8 +397,48 @@
             });
         }
 
-        // Simple redirect logging
-        console.log('Omega iframe configured with redirect to thank-you page');
+        // Simple conversion tracking - fire after meaningful engagement
+        // Since Omega doesn't redirect, track when someone likely got a quote
+        let conversionFired = false;
+        let clicksInForm = 0;
+
+        document.addEventListener('click', (e) => {
+            const iframe = document.getElementById('quoter-iframe');
+            if (!iframe) return;
+
+            const rect = iframe.getBoundingClientRect();
+            const clickedInForm = e.clientX >= rect.left &&
+                                 e.clientX <= rect.right &&
+                                 e.clientY >= rect.top &&
+                                 e.clientY <= rect.bottom;
+
+            if (clickedInForm) {
+                clicksInForm++;
+
+                // After 5 clicks in form area, assume they've submitted
+                // (name, phone, email, vehicle info, submit = ~5 clicks)
+                if (clicksInForm >= 5 && !conversionFired) {
+                    conversionFired = true;
+
+                    // Fire Google Ads conversion
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'conversion', {
+                            'send_to': 'AW-XXXXXXXXX/CONVERSION_LABEL',
+                            'value': 1.0,
+                            'currency': 'USD'
+                        });
+                        console.log('Conversion tracked after form interaction');
+                    }
+
+                    // Track in Plausible too
+                    if (typeof plausible !== 'undefined') {
+                        plausible('Quote Form Completed', {
+                            props: { method: 'click-tracking' }
+                        });
+                    }
+                }
+            }
+        });
 
         // Add CSS animations
         const style = document.createElement('style');
