@@ -388,110 +388,104 @@
             });
         }
 
-        // --- Simple Timer-Based Redirect ---
-        // Since we can't detect events inside the cross-origin Omega iframe,
-        // we'll use a simpler approach based on user interaction patterns
+        // --- Manual VIP Redirect Button ---
+        // Show a compelling button after user interacts with the form
 
-        let hasRedirected = false;
-        let submitDetected = false;
-        let lastClickTime = 0;
-        let clickCount = 0;
-
+        let buttonShown = false;
+        let interactionCount = 0;
         const iframeElement = document.getElementById('quoter-iframe');
 
-        // Function to trigger redirect
-        const triggerRedirect = () => {
-            if (hasRedirected) return;
-            hasRedirected = true;
+        // Create the VIP button element (hidden initially)
+        const vipButton = document.createElement('div');
+        vipButton.innerHTML = `
+            <div id="vip-redirect" style="display: none; margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); text-align: center; animation: fadeInUp 0.5s ease-out;">
+                <h3 style="color: white; font-size: 20px; font-weight: 600; margin-bottom: 15px; font-family: 'Inter', sans-serif;">
+                    ✨ Thanks for contacting us!
+                </h3>
+                <a href="/thank-you.html"
+                   style="display: inline-block; background: white; color: #667eea; padding: 15px 35px; border-radius: 50px; font-weight: 600; font-size: 18px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-family: 'Inter', sans-serif;"
+                   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 7px 20px rgba(0,0,0,0.3)';"
+                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)';">
+                    Click Here for Vero's VIP Experience →
+                </a>
+                <p style="color: rgba(255,255,255,0.9); margin-top: 12px; font-size: 14px; font-family: 'Inter', sans-serif;">
+                    Get exclusive benefits and priority service
+                </p>
+            </div>
+        `;
 
-            console.log('Assuming quote received! Redirecting in 8 seconds...');
+        // Insert the button after the iframe
+        if (iframeElement && iframeElement.parentNode) {
+            iframeElement.parentNode.insertBefore(vipButton, iframeElement.nextSibling);
+        }
 
-            // Show user message before redirect
-            const message = document.createElement('div');
-            message.innerHTML = `
-                <div style="position: fixed; top: 20px; right: 20px; background: #10b981; color: white;
-                         padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                         z-index: 9999; font-family: Inter, sans-serif; animation: slideIn 0.3s ease-out;">
-                    <div style="font-weight: 600; margin-bottom: 4px;">✓ Processing Complete!</div>
-                    <div style="font-size: 14px;">Redirecting to confirmation in a moment...</div>
-                </div>
-            `;
-            document.body.appendChild(message);
+        // Function to show the VIP button
+        const showVipButton = () => {
+            if (!buttonShown) {
+                buttonShown = true;
+                const button = document.getElementById('vip-redirect');
+                if (button) {
+                    button.style.display = 'block';
+                    // Scroll button into view smoothly
+                    setTimeout(() => {
+                        button.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                    console.log('VIP button displayed');
 
-            // Track in Plausible
-            if (typeof plausible !== 'undefined') {
-                plausible('Quote Received', {
-                    props: { method: 'timer-redirect' }
-                });
+                    // Track event
+                    if (typeof plausible !== 'undefined') {
+                        plausible('VIP Button Shown', {
+                            props: { trigger: 'form-interaction' }
+                        });
+                    }
+                }
             }
-
-            // Wait 8 seconds so user definitely sees their quote, then redirect
-            setTimeout(() => {
-                window.location.href = '/thank-you.html';
-            }, 8000);
         };
 
-        // Detect submit button click pattern
-        // Most users will click multiple times in the iframe area when filling the form
-        // The last click is likely the submit button
+        // Monitor for form interactions
         if (iframeElement) {
+            // Track clicks on/near the iframe
             document.addEventListener('click', (e) => {
                 const rect = iframeElement.getBoundingClientRect();
-                const clickInIframe = e.clientX >= rect.left &&
-                                     e.clientX <= rect.right &&
-                                     e.clientY >= rect.top &&
-                                     e.clientY <= rect.bottom;
+                const clickNearIframe = e.clientX >= rect.left - 50 &&
+                                       e.clientX <= rect.right + 50 &&
+                                       e.clientY >= rect.top - 50 &&
+                                       e.clientY <= rect.bottom + 50;
 
-                if (clickInIframe) {
-                    const now = Date.now();
-                    const timeSinceLastClick = now - lastClickTime;
-                    lastClickTime = now;
-                    clickCount++;
+                if (clickNearIframe) {
+                    interactionCount++;
+                    console.log(`Form interaction #${interactionCount}`);
 
-                    console.log(`Click #${clickCount} in iframe area`);
-
-                    // If user has clicked at least 3 times (filling form fields)
-                    // and this click is in a "submit button" area (bottom portion of iframe)
-                    // assume they're submitting
-                    const clickInBottomHalf = e.clientY > (rect.top + rect.height * 0.6);
-
-                    if (clickCount >= 3 && clickInBottomHalf && !submitDetected) {
-                        submitDetected = true;
-                        console.log('Submit button click pattern detected! Starting redirect timer...');
-
-                        // Wait for form to process and quote to display
-                        // Omega typically takes 2-4 seconds to show quote
-                        setTimeout(() => {
-                            triggerRedirect();
-                        }, 4000);
+                    // Show button after 2 interactions (likely filled out form)
+                    if (interactionCount >= 2) {
+                        // Wait 5 seconds (time for quote to appear)
+                        setTimeout(showVipButton, 5000);
                     }
                 }
             });
 
-            // Alternative: Detect based on time spent on page
-            // If user has been on page for 45+ seconds and clicked in iframe area
-            // they've likely submitted the form
+            // Also show button after 20 seconds if user has interacted at least once
             setTimeout(() => {
-                if (clickCount >= 2 && !hasRedirected) {
-                    console.log('User has been active on form for 45+ seconds, assuming submission...');
-                    triggerRedirect();
+                if (interactionCount >= 1 && !buttonShown) {
+                    console.log('Showing VIP button after timeout');
+                    showVipButton();
                 }
-            }, 45000);
+            }, 20000);
         }
 
-        // Add debug mode toggle
-        window.debugRedirect = () => {
-            console.log({
-                hasRedirected,
-                submitDetected,
-                clickCount,
-                lastClickTime: new Date(lastClickTime).toLocaleTimeString()
-            });
-        };
-
-        // Add slide-in animation
+        // Add CSS animations
         const style = document.createElement('style');
         style.innerHTML = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
             @keyframes slideIn {
                 from {
                     transform: translateX(100%);
