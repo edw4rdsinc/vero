@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Omega Redirect</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a1a; color: #0f0; }
+        .log { margin: 5px 0; padding: 5px; background: #000; }
+        button { background: #ff4d00; color: white; border: none; padding: 10px; margin: 10px 0; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Omega Redirect Debugger</h1>
+    <button onclick="startListening()">Start Listening for Omega Messages</button>
+    <button onclick="clearLogs()">Clear Logs</button>
+    <div id="logs"></div>
+
+    <script>
+        function log(message, data = null) {
+            const logs = document.getElementById('logs');
+            const entry = document.createElement('div');
+            entry.className = 'log';
+            const timestamp = new Date().toLocaleTimeString();
+            entry.innerHTML = `[${timestamp}] ${message}`;
+            if (data) {
+                entry.innerHTML += '<br>Data: ' + JSON.stringify(data, null, 2);
+            }
+            logs.prepend(entry);
+        }
+
+        function startListening() {
+            log('🎧 Listening for messages from Omega iframe...');
+
+            // Listen for ALL messages
+            window.addEventListener('message', function(event) {
+                log(`📨 Message received from: ${event.origin}`, event.data);
+
+                // Check if it's from Omega
+                if (event.origin === 'https://app.omegaedi.com') {
+                    log('✅ Message is from Omega!', event.data);
+                }
+            });
+
+            // Also open the contact page in an iframe to monitor
+            const iframe = document.createElement('iframe');
+            iframe.src = '/contact.html';
+            iframe.style.width = '100%';
+            iframe.style.height = '600px';
+            iframe.style.border = '2px solid #ff4d00';
+            document.body.appendChild(iframe);
+            log('📱 Contact page loaded in iframe below. Try submitting the form!');
+        }
+
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '';
+            log('🧹 Logs cleared');
+        }
+
+        // Auto-start
+        window.onload = () => {
+            log('🚀 Debugger ready. Click "Start Listening" and then submit the Omega form.');
+        };
+    </script>
+</body>
+</html>

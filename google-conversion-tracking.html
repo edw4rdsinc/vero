@@ -1,0 +1,38 @@
+<!-- Google Ads Conversion Tracking Code for Thank You Page -->
+<!--
+INSTRUCTIONS:
+1. Replace 'AW-XXXXXXXXX' with your Google Ads Conversion ID
+2. Replace 'XXXXXXXXX' with your Conversion Label
+3. Add this code to the <head> section of thank-you.html
+-->
+
+<!-- Google tag (gtag.js) - Global Site Tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-XXXXXXXXX');
+</script>
+
+<!-- Event snippet for Lead Form Submission conversion -->
+<script>
+  // Fire conversion when page loads (since this is thank-you page)
+  gtag('event', 'conversion', {
+    'send_to': 'AW-XXXXXXXXX/XXXXXXXXX',
+    'value': 1.0,
+    'currency': 'USD',
+    'transaction_id': Date.now().toString() // Unique ID for each conversion
+  });
+</script>
+
+<!-- Alternative: If you want to track with Google Analytics 4 as well -->
+<script>
+  // GA4 Event for form submission
+  gtag('event', 'generate_lead', {
+    'currency': 'USD',
+    'value': 1.0,
+    'lead_source': 'omega_quote_form'
+  });
+</script>

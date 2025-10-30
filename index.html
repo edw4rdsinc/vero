@@ -854,18 +854,39 @@
             Alpine.directive('collapse', (el, { expression }, { effect, evaluateLater }) => {
                 let show = evaluateLater(expression)
                 el.style.overflow = 'hidden'
-                el.style.height = '0px'
                 el.style.transitionProperty = 'height'
                 el.style.transitionDuration = '300ms'
                 el.style.transitionTimingFunction = 'ease-in-out'
+
                 let evaluate = (value) => {
                     if (value) {
+                        // Show the element first
+                        el.style.display = 'block'
+                        // Force a reflow to get accurate scrollHeight
+                        el.offsetHeight
+                        // Set the target height
                         el.style.height = el.scrollHeight + 'px'
+                        // After transition completes, set to auto so content can grow
+                        setTimeout(() => {
+                            if (el.style.height !== '0px') {
+                                el.style.height = 'auto'
+                            }
+                        }, 300)
                     } else {
+                        // Set explicit height first for transition
+                        el.style.height = el.scrollHeight + 'px'
+                        // Force reflow
+                        el.offsetHeight
+                        // Collapse to 0
                         el.style.height = '0px'
                     }
                 }
-                effect(() => show(evaluate))
+
+                // Initialize to closed if not initially shown
+                effect(() => show((value) => {
+                    if (!value) el.style.height = '0px'
+                    evaluate(value)
+                }))
             });
 
             // Review carousel data
