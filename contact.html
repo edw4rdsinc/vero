@@ -385,47 +385,23 @@
             });
         }
 
-        // --- Force Redirect After Quote Display ---
-        // Monitor for quote display and redirect after user sees it
+        // --- Simple Timer-Based Redirect ---
+        // Since we can't detect events inside the cross-origin Omega iframe,
+        // we'll use a simpler approach based on user interaction patterns
+
         let hasRedirected = false;
-        let formSubmitted = false;
-        let initialIframeHeight = 0;
-        let monitoringStarted = false;
+        let submitDetected = false;
+        let lastClickTime = 0;
+        let clickCount = 0;
 
-        // Get initial iframe height
         const iframeElement = document.getElementById('quoter-iframe');
-        if (iframeElement) {
-            // Wait for iframe to load initially
-            setTimeout(() => {
-                initialIframeHeight = iframeElement.offsetHeight;
-                console.log('Initial iframe height:', initialIframeHeight);
-            }, 2000);
-        }
-
-        // Function to check if quote is likely displayed
-        const checkForQuoteDisplay = () => {
-            if (hasRedirected || !iframeElement) return false;
-
-            const currentHeight = iframeElement.offsetHeight;
-            const heightIncreased = currentHeight > initialIframeHeight + 50;
-
-            // Also check the page for any new text that appears after submission
-            const pageText = document.body.innerText.toLowerCase();
-            const hasQuoteText = pageText.includes('text stop to opt out') ||
-                                pageText.includes('msg & data rates may apply');
-
-            console.log(`Checking - Height: ${currentHeight}px (initial: ${initialIframeHeight}px), Height increased: ${heightIncreased}, Has quote text: ${hasQuoteText}`);
-
-            // If iframe grew significantly OR we see the "text stop" message that comes with quotes
-            return heightIncreased || hasQuoteText;
-        };
 
         // Function to trigger redirect
         const triggerRedirect = () => {
             if (hasRedirected) return;
             hasRedirected = true;
 
-            console.log('Quote detected! Redirecting in 1.5 seconds...');
+            console.log('Assuming quote received! Redirecting in 8 seconds...');
 
             // Show user message before redirect
             const message = document.createElement('div');
@@ -433,8 +409,8 @@
                 <div style="position: fixed; top: 20px; right: 20px; background: #10b981; color: white;
                          padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
                          z-index: 9999; font-family: Inter, sans-serif; animation: slideIn 0.3s ease-out;">
-                    <div style="font-weight: 600; margin-bottom: 4px;">✓ Quote Received!</div>
-                    <div style="font-size: 14px;">Redirecting to confirmation...</div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">✓ Processing Complete!</div>
+                    <div style="font-size: 14px;">Redirecting to confirmation in a moment...</div>
                 </div>
             `;
             document.body.appendChild(message);
@@ -442,73 +418,73 @@
             // Track in Plausible
             if (typeof plausible !== 'undefined') {
                 plausible('Quote Received', {
-                    props: { method: 'auto-redirect' }
+                    props: { method: 'timer-redirect' }
                 });
             }
 
-            // Wait 1.5 seconds so user sees quote, then redirect
+            // Wait 8 seconds so user definitely sees their quote, then redirect
             setTimeout(() => {
                 window.location.href = '/thank-you.html';
-            }, 1500);
+            }, 8000);
         };
 
-        // Monitor for form submission indicators
-        // Start checking more aggressively after any iframe interaction
+        // Detect submit button click pattern
+        // Most users will click multiple times in the iframe area when filling the form
+        // The last click is likely the submit button
         if (iframeElement) {
-            // Watch for any clicks near or on the iframe
             document.addEventListener('click', (e) => {
-                // Check if click was on or near the iframe
                 const rect = iframeElement.getBoundingClientRect();
-                const clickNearIframe = e.clientX >= rect.left - 50 &&
-                                       e.clientX <= rect.right + 50 &&
-                                       e.clientY >= rect.top - 50 &&
-                                       e.clientY <= rect.bottom + 50;
+                const clickInIframe = e.clientX >= rect.left &&
+                                     e.clientX <= rect.right &&
+                                     e.clientY >= rect.top &&
+                                     e.clientY <= rect.bottom;
 
-                if (clickNearIframe && !monitoringStarted) {
-                    console.log('Click detected near iframe, starting aggressive monitoring...');
-                    monitoringStarted = true;
+                if (clickInIframe) {
+                    const now = Date.now();
+                    const timeSinceLastClick = now - lastClickTime;
+                    lastClickTime = now;
+                    clickCount++;
 
-                    // Start checking every 500ms for changes
-                    let checkCount = 0;
-                    const checkInterval = setInterval(() => {
-                        checkCount++;
+                    console.log(`Click #${clickCount} in iframe area`);
 
-                        if (checkForQuoteDisplay()) {
-                            clearInterval(checkInterval);
+                    // If user has clicked at least 3 times (filling form fields)
+                    // and this click is in a "submit button" area (bottom portion of iframe)
+                    // assume they're submitting
+                    const clickInBottomHalf = e.clientY > (rect.top + rect.height * 0.6);
+
+                    if (clickCount >= 3 && clickInBottomHalf && !submitDetected) {
+                        submitDetected = true;
+                        console.log('Submit button click pattern detected! Starting redirect timer...');
+
+                        // Wait for form to process and quote to display
+                        // Omega typically takes 2-4 seconds to show quote
+                        setTimeout(() => {
                             triggerRedirect();
-                        }
-
-                        // Stop checking after 60 seconds
-                        if (checkCount > 120) {
-                            clearInterval(checkInterval);
-                            console.log('Stopped monitoring after 60 seconds');
-                        }
-                    }, 500);
+                        }, 4000);
+                    }
                 }
             });
 
-            // Also listen for focus/blur which might indicate form interaction
-            window.addEventListener('blur', () => {
-                if (document.activeElement === iframeElement && !monitoringStarted) {
-                    console.log('Iframe focused, starting monitoring...');
-                    monitoringStarted = true;
-
-                    let checkCount = 0;
-                    const checkInterval = setInterval(() => {
-                        checkCount++;
-
-                        if (checkForQuoteDisplay()) {
-                            clearInterval(checkInterval);
-                            triggerRedirect();
-                        }
-
-                        if (checkCount > 120) {
-                            clearInterval(checkInterval);
-                        }
-                    }, 500);
+            // Alternative: Detect based on time spent on page
+            // If user has been on page for 45+ seconds and clicked in iframe area
+            // they've likely submitted the form
+            setTimeout(() => {
+                if (clickCount >= 2 && !hasRedirected) {
+                    console.log('User has been active on form for 45+ seconds, assuming submission...');
+                    triggerRedirect();
                 }
-            });
+            }, 45000);
         }
+
+        // Add debug mode toggle
+        window.debugRedirect = () => {
+            console.log({
+                hasRedirected,
+                submitDetected,
+                clickCount,
+                lastClickTime: new Date(lastClickTime).toLocaleTimeString()
+            });
+        };
 
         // Add slide-in animation
         const style = document.createElement('style');
