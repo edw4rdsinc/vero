@@ -391,8 +391,7 @@
         let formInteracted = false;
         let initialPageHeight = document.body.scrollHeight;
 
-        // Track when user interacts with form
-        const iframe = document.getElementById('quoter-iframe');
+        // Track when user interacts with form (reuse existing iframe variable from line 301)
         if (iframe) {
             // Detect when user clicks/focuses on iframe (form interaction)
             iframe.addEventListener('mouseenter', () => { formInteracted = true; });
