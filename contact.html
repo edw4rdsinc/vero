@@ -389,89 +389,113 @@
         }
 
         // --- Manual VIP Redirect Button ---
-        // Show a compelling button after user interacts with the form
+        // Wait for page to fully load before setting up VIP button
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Setting up VIP button...');
 
-        let buttonShown = false;
-        let interactionCount = 0;
-        const iframeElement = document.getElementById('quoter-iframe');
+            let buttonShown = false;
+            let interactionCount = 0;
 
-        // Create the VIP button element (hidden initially)
-        const vipButton = document.createElement('div');
-        vipButton.innerHTML = `
-            <div id="vip-redirect" style="display: none; margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); text-align: center; animation: fadeInUp 0.5s ease-out;">
-                <h3 style="color: white; font-size: 20px; font-weight: 600; margin-bottom: 15px; font-family: 'Inter', sans-serif;">
-                    ✨ Thanks for contacting us!
-                </h3>
-                <a href="/thank-you.html"
-                   style="display: inline-block; background: white; color: #667eea; padding: 15px 35px; border-radius: 50px; font-weight: 600; font-size: 18px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-family: 'Inter', sans-serif;"
-                   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 7px 20px rgba(0,0,0,0.3)';"
-                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)';">
-                    Click Here for Vero's VIP Experience →
-                </a>
-                <p style="color: rgba(255,255,255,0.9); margin-top: 12px; font-size: 14px; font-family: 'Inter', sans-serif;">
-                    Get exclusive benefits and priority service
-                </p>
-            </div>
-        `;
-
-        // Insert the button after the iframe
-        if (iframeElement && iframeElement.parentNode) {
-            iframeElement.parentNode.insertBefore(vipButton, iframeElement.nextSibling);
-        }
-
-        // Function to show the VIP button
-        const showVipButton = () => {
-            if (!buttonShown) {
-                buttonShown = true;
-                const button = document.getElementById('vip-redirect');
-                if (button) {
-                    button.style.display = 'block';
-                    // Scroll button into view smoothly
-                    setTimeout(() => {
-                        button.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 100);
-                    console.log('VIP button displayed');
-
-                    // Track event
-                    if (typeof plausible !== 'undefined') {
-                        plausible('VIP Button Shown', {
-                            props: { trigger: 'form-interaction' }
-                        });
-                    }
-                }
-            }
-        };
-
-        // Monitor for form interactions
-        if (iframeElement) {
-            // Track clicks on/near the iframe
-            document.addEventListener('click', (e) => {
-                const rect = iframeElement.getBoundingClientRect();
-                const clickNearIframe = e.clientX >= rect.left - 50 &&
-                                       e.clientX <= rect.right + 50 &&
-                                       e.clientY >= rect.top - 50 &&
-                                       e.clientY <= rect.bottom + 50;
-
-                if (clickNearIframe) {
-                    interactionCount++;
-                    console.log(`Form interaction #${interactionCount}`);
-
-                    // Show button after 2 interactions (likely filled out form)
-                    if (interactionCount >= 2) {
-                        // Wait 5 seconds (time for quote to appear)
-                        setTimeout(showVipButton, 5000);
-                    }
-                }
-            });
-
-            // Also show button after 20 seconds if user has interacted at least once
+            // Wait a bit for iframe to load
             setTimeout(() => {
-                if (interactionCount >= 1 && !buttonShown) {
-                    console.log('Showing VIP button after timeout');
-                    showVipButton();
+                const iframeElement = document.getElementById('quoter-iframe');
+                console.log('Looking for iframe:', iframeElement ? 'Found' : 'Not found');
+
+                if (!iframeElement) {
+                    console.error('Iframe not found! Cannot set up VIP button.');
+                    return;
                 }
-            }, 20000);
-        }
+
+                // Create the VIP button element (hidden initially)
+                const vipButton = document.createElement('div');
+                vipButton.innerHTML = `
+                    <div id="vip-redirect" style="display: none; margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); text-align: center;">
+                        <h3 style="color: white; font-size: 20px; font-weight: 600; margin-bottom: 15px; font-family: 'Inter', sans-serif;">
+                            ✨ Thanks for contacting us!
+                        </h3>
+                        <a href="/thank-you.html"
+                           style="display: inline-block; background: white; color: #667eea; padding: 15px 35px; border-radius: 50px; font-weight: 600; font-size: 18px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-family: 'Inter', sans-serif;"
+                           onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 7px 20px rgba(0,0,0,0.3)';"
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)';"
+                           onclick="console.log('VIP button clicked!')">
+                            Click Here for Vero's VIP Experience →
+                        </a>
+                        <p style="color: rgba(255,255,255,0.9); margin-top: 12px; font-size: 14px; font-family: 'Inter', sans-serif;">
+                            Get exclusive benefits and priority service
+                        </p>
+                    </div>
+                `;
+
+                // Insert the button after the iframe
+                iframeElement.parentNode.insertBefore(vipButton, iframeElement.nextSibling);
+                console.log('VIP button HTML inserted into page');
+
+                // Function to show the VIP button
+                const showVipButton = () => {
+                    if (!buttonShown) {
+                        buttonShown = true;
+                        const button = document.getElementById('vip-redirect');
+                        if (button) {
+                            button.style.display = 'block';
+                            console.log('VIP button now visible!');
+
+                            // Scroll button into view smoothly
+                            setTimeout(() => {
+                                button.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 500);
+
+                            // Track event
+                            if (typeof plausible !== 'undefined') {
+                                plausible('VIP Button Shown', {
+                                    props: { trigger: 'form-interaction' }
+                                });
+                            }
+                        } else {
+                            console.error('VIP button element not found!');
+                        }
+                    }
+                };
+
+                // Track clicks anywhere on the page
+                document.addEventListener('click', (e) => {
+                    console.log('Click detected at:', e.clientX, e.clientY);
+
+                    const rect = iframeElement.getBoundingClientRect();
+                    const clickNearIframe = e.clientX >= rect.left - 50 &&
+                                           e.clientX <= rect.right + 50 &&
+                                           e.clientY >= rect.top - 50 &&
+                                           e.clientY <= rect.bottom + 50;
+
+                    if (clickNearIframe) {
+                        interactionCount++;
+                        console.log(`Form interaction #${interactionCount}`);
+
+                        // Show button after 2 interactions
+                        if (interactionCount >= 2) {
+                            console.log('2 interactions detected, showing VIP button in 5 seconds...');
+                            setTimeout(showVipButton, 5000);
+                        }
+                    }
+                });
+
+                // Fallback: Show button after 15 seconds if user clicked at least once
+                setTimeout(() => {
+                    if (interactionCount >= 1 && !buttonShown) {
+                        console.log('Showing VIP button after 15 second timeout');
+                        showVipButton();
+                    }
+                }, 15000);
+
+                // Emergency fallback: Always show after 30 seconds
+                setTimeout(() => {
+                    if (!buttonShown) {
+                        console.log('Emergency: Showing VIP button after 30 seconds');
+                        showVipButton();
+                    }
+                }, 30000);
+
+            }, 2000); // Wait 2 seconds for iframe to load
+        });
 
         // Add CSS animations
         const style = document.createElement('style');
