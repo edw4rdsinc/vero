@@ -388,86 +388,44 @@
         // --- Force Redirect After Quote Display ---
         // Monitor for quote display and redirect after user sees it
         let hasRedirected = false;
-        let formInteracted = false;
-        let initialPageHeight = document.body.scrollHeight;
+        let formSubmitted = false;
+        let initialIframeHeight = 0;
+        let monitoringStarted = false;
 
-        // Track when user interacts with form (reuse existing iframe variable from line 301)
-        if (iframe) {
-            // Detect when user clicks/focuses on iframe (form interaction)
-            iframe.addEventListener('mouseenter', () => { formInteracted = true; });
-            iframe.addEventListener('click', () => { formInteracted = true; });
-
-            // Also track if iframe is focused
-            window.addEventListener('blur', () => {
-                if (document.activeElement === iframe) {
-                    formInteracted = true;
-                    console.log('User is interacting with form');
-                }
-            });
+        // Get initial iframe height
+        const iframeElement = document.getElementById('quoter-iframe');
+        if (iframeElement) {
+            // Wait for iframe to load initially
+            setTimeout(() => {
+                initialIframeHeight = iframeElement.offsetHeight;
+                console.log('Initial iframe height:', initialIframeHeight);
+            }, 2000);
         }
 
-        // Only start checking after form interaction
-        let checkInterval;
-        const startChecking = () => {
-            if (!formInteracted || hasRedirected || checkInterval) return;
+        // Function to check if quote is likely displayed
+        const checkForQuoteDisplay = () => {
+            if (hasRedirected || !iframeElement) return false;
 
-            console.log('Form interaction detected, monitoring for quote...');
-            let checkCount = 0;
+            const currentHeight = iframeElement.offsetHeight;
+            const heightIncreased = currentHeight > initialIframeHeight + 50;
 
-            checkInterval = setInterval(() => {
-                checkCount++;
+            // Also check the page for any new text that appears after submission
+            const pageText = document.body.innerText.toLowerCase();
+            const hasQuoteText = pageText.includes('text stop to opt out') ||
+                                pageText.includes('msg & data rates may apply');
 
-                // Check if page height changed (new content added)
-                const currentPageHeight = document.body.scrollHeight;
-                const heightChanged = currentPageHeight > initialPageHeight + 100;
+            console.log(`Checking - Height: ${currentHeight}px (initial: ${initialIframeHeight}px), Height increased: ${heightIncreased}, Has quote text: ${hasQuoteText}`);
 
-                // Look for quote-specific indicators in Omega's iframe response
-                // These only appear AFTER submission, not on initial page load
-                const iframeElement = document.getElementById('quoter-iframe');
-
-                if (iframeElement && heightChanged) {
-                    try {
-                        // Try to check iframe content (may be blocked)
-                        const iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-                        const iframeContent = iframeDoc.body.innerText.toLowerCase();
-
-                        // Look for quote results (these appear AFTER submission)
-                        if ((iframeContent.includes('your quote') ||
-                             iframeContent.includes('instant quote') ||
-                             iframeContent.includes('estimated cost') ||
-                             iframeContent.includes('schedule')) &&
-                            !hasRedirected) {
-
-                            console.log('Quote results detected in iframe! Redirecting in 1.5 seconds...');
-                            triggerRedirect();
-                        }
-                    } catch(e) {
-                        // Cross-origin - check for other indicators
-                        // Look for Omega's confirmation message that only appears after submission
-                        // Check if iframe src or height changed significantly
-                        const iframeHeight = iframeElement.offsetHeight;
-
-                        // If iframe grew significantly (quote displayed) and form was interacted with
-                        if (iframeHeight > 500 && heightChanged && !hasRedirected) {
-                            console.log('Quote display detected (iframe expanded)! Redirecting in 1.5 seconds...');
-                            triggerRedirect();
-                        }
-                    }
-                }
-
-                // Stop checking after 30 seconds
-                if (checkCount > 60) {
-                    clearInterval(checkInterval);
-                    console.log('Stopped checking for quote after 30 seconds');
-                }
-            }, 500);
+            // If iframe grew significantly OR we see the "text stop" message that comes with quotes
+            return heightIncreased || hasQuoteText;
         };
 
         // Function to trigger redirect
         const triggerRedirect = () => {
             if (hasRedirected) return;
             hasRedirected = true;
-            if (checkInterval) clearInterval(checkInterval);
+
+            console.log('Quote detected! Redirecting in 1.5 seconds...');
 
             // Show user message before redirect
             const message = document.createElement('div');
@@ -494,12 +452,63 @@
             }, 1500);
         };
 
-        // Start monitoring when user interacts with form
-        setInterval(() => {
-            if (formInteracted && !checkInterval && !hasRedirected) {
-                startChecking();
-            }
-        }, 1000);
+        // Monitor for form submission indicators
+        // Start checking more aggressively after any iframe interaction
+        if (iframeElement) {
+            // Watch for any clicks near or on the iframe
+            document.addEventListener('click', (e) => {
+                // Check if click was on or near the iframe
+                const rect = iframeElement.getBoundingClientRect();
+                const clickNearIframe = e.clientX >= rect.left - 50 &&
+                                       e.clientX <= rect.right + 50 &&
+                                       e.clientY >= rect.top - 50 &&
+                                       e.clientY <= rect.bottom + 50;
+
+                if (clickNearIframe && !monitoringStarted) {
+                    console.log('Click detected near iframe, starting aggressive monitoring...');
+                    monitoringStarted = true;
+
+                    // Start checking every 500ms for changes
+                    let checkCount = 0;
+                    const checkInterval = setInterval(() => {
+                        checkCount++;
+
+                        if (checkForQuoteDisplay()) {
+                            clearInterval(checkInterval);
+                            triggerRedirect();
+                        }
+
+                        // Stop checking after 60 seconds
+                        if (checkCount > 120) {
+                            clearInterval(checkInterval);
+                            console.log('Stopped monitoring after 60 seconds');
+                        }
+                    }, 500);
+                }
+            });
+
+            // Also listen for focus/blur which might indicate form interaction
+            window.addEventListener('blur', () => {
+                if (document.activeElement === iframeElement && !monitoringStarted) {
+                    console.log('Iframe focused, starting monitoring...');
+                    monitoringStarted = true;
+
+                    let checkCount = 0;
+                    const checkInterval = setInterval(() => {
+                        checkCount++;
+
+                        if (checkForQuoteDisplay()) {
+                            clearInterval(checkInterval);
+                            triggerRedirect();
+                        }
+
+                        if (checkCount > 120) {
+                            clearInterval(checkInterval);
+                        }
+                    }, 500);
+                }
+            });
+        }
 
         // Add slide-in animation
         const style = document.createElement('style');
