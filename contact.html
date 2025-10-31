@@ -225,6 +225,28 @@
                                 allowfullscreen>
                             </iframe>
                          </div>
+
+                         <!-- VIP Experience Button with Conversion Tracking -->
+                         <div class="mt-6 text-center">
+                            <button
+                                onclick="trackConversionAndRedirect()"
+                                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                After reviewing your quote, click here for the Vero VIP Experience
+                            </button>
+                         </div>
+
+                         <script>
+                         function trackConversionAndRedirect() {
+                             // Event snippet for Quote Form Submission conversion page
+                             gtag('event', 'conversion', {'send_to': 'AW-16463589701/04agCLnL_JQaEMXiuao9'});
+
+                             // Wait a moment for the conversion to register, then redirect
+                             setTimeout(function() {
+                                 window.location.href = '/thank-you.html';
+                             }, 300);
+                         }
+                         </script>
+
                          <div class="mt-4 sm:mt-6 text-xs sm:text-sm text-gray-600 border-t pt-4">
                             <p class="mb-3">By providing your phone number, you consent to receive customer care and account notification messages from Vero Auto Glass Oregon LLC. Message frequency may vary. On average, 1-2 messages per month. Message and data rates may apply. For more information, please review our Privacy Policy: <a href="https://www.veroautoglass.com/privacy.html" class="text-[#ff4d00] hover:underline">https://www.veroautoglass.com/privacy.html</a> and Terms & Conditions: <a href="https://www.veroautoglass.com/terms.html" class="text-[#ff4d00] hover:underline">https://www.veroautoglass.com/terms.html</a></p>
                             <ul class="list-disc list-inside ml-2">
