@@ -83,10 +83,19 @@ The Las Vegas site currently uses the **Portland quote form**:
 - [ ] Check all links work correctly in Vegas site
 - [ ] Test quote form submissions (after Vegas form is added)
 
-### Root Domain Decision
-- [ ] Decide: Keep root domain as Portland site, or make it redirect to `/locations.html`?
-- [ ] Current setup: Root stays as Portland (preserves SEO)
-- [ ] Alternative: Make root a pure location selector
+### Root Domain Decision ✅ DECIDED
+- [x] **Decision Made**: Root stays as Portland site with location banner
+- [x] Added location selector banner to index.html
+- [x] Banner shows "Serving Portland, OR and Las Vegas, NV" with link to locations.html
+- [x] Preserves Portland SEO while promoting Vegas location
+- [x] Non-breaking, scalable solution
+
+### Brand Strategy (thebestautoglass.com)
+- [x] **Decision Made**: Phase out thebestautoglass.com domain
+- [ ] Keep 301 redirect temporarily during transition
+- [ ] Rebrand all Vegas marketing to "Vero Autoglass Las Vegas"
+- [ ] Eventually let thebestautoglass.com expire
+- [ ] **Strategy**: Build single unified brand for all locations
 
 ---
 
@@ -153,6 +162,32 @@ The Las Vegas site currently uses the **Portland quote form**:
 - **Non-breaking** - Root domain unchanged, all existing links work
 - **SEO-friendly** - Proper canonical tags, schema markup per location
 - **Scalable** - Easy to add more cities later
+
+### Scalability Strategy (10+ Locations)
+**Decision**: Single domain (`veroautoglass.com`) with subfolder structure
+
+**Why Single Domain Wins at Scale:**
+- ✅ All SEO authority consolidated under one brand
+- ✅ Easier management (1 domain vs 50 domains)
+- ✅ Consistent brand recognition
+- ✅ Simpler marketing (one URL pattern)
+- ✅ Lower costs (no multiple domain renewals)
+
+**Structure for Future Growth:**
+```
+veroautoglass.com/
+├── portland/          (current)
+├── las-vegas/         (current)
+├── phoenix/           (future)
+├── seattle/           (future)
+├── san-francisco/     (future)
+└── [unlimited cities...]
+```
+
+**Brand Consolidation:**
+- Phase out `thebestautoglass.com` (temporary redirect during transition)
+- All future marketing: "Vero Autoglass [City Name]"
+- One powerful brand across all markets
 
 ### Google Verification Solution
 **Problem**: IP-based routing showed Vegas content to Google's Portland verification
