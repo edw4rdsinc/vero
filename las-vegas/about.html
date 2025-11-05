@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-qIO5f43SzXJC0kP5s1pPz.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
+    <meta name="description" content="Portland's honest auto glass company. Quality materials, fair pricing, lifetime warranty. Serving Las Vegas, Beaverton, Lake Oswego and greater Portland metro.">
+    <title>About Vero Autoglass | Las Vegas, NV</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://veroautoglass.com/las-vegas/about.html">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://veroautoglass.com/las-vegas/about.html">
+    <meta property="og:title" content="About Vero Autoglass | Las Vegas, NV">
+    <meta property="og:description" content="Portland's honest auto glass company. Quality materials, fair pricing, lifetime warranty. Serving Las Vegas, Beaverton, Lake Oswego and greater Portland metro.">
+    <meta property="og:image" content="https://veroautoglass.com/images/vero-logo.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Vero Autoglass">
+
+    <!-- Breadcrumb Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://veroautoglass.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About",
+                "item": "https://veroautoglass.com/about.html"
+            }
+        ]
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2b2b2b;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* iOS backdrop-blur fallback */
+        @supports not (backdrop-filter: blur(12px)) {
+            header {
+                background-color: rgba(255, 255, 255, 0.95) !important;
+            }
+        }
+    </style>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Vero Autoglass",
+        "url": "https://www.veroautoglass.com",
+        "logo": "https://www.veroautoglass.com/images/vero-logo.png",
+        "description": "Professional auto glass repair and replacement serving Las Vegas Metro. ADAS certified, lifetime warranty, insurance billing.",
+        "telephone": "(702) 276-6749",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2300 W Sahara Ave #800",
+            "addressLocality": "Las Vegas",
+            "addressRegion": "NV",
+            "postalCode": "89102",
+            "addressCountry": "US"
+        },
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "45.4215",
+                "longitude": "-122.7698"
+            },
+            "geoRadius": "50000"
+        },
+        "sameAs": [],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "(702) 276-6749",
+            "contactType": "customer service",
+            "areaServed": "US",
+            "availableLanguage": "en"
+        }
+    }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16463589701"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16463589701');
+    </script>
+</head>
+<body class="bg-white">
+
+    <!-- HEADER & NAVIGATION -->
+    <header x-data="{ isOpen: false }" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html">
+                <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-12">
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="services.html" class="text-[#595959] hover:text-[#ff4d00]">Services</a>
+                <a href="resources/" class="text-[#595959] hover:text-[#ff4d00]">Resources</a>
+                <a href="insurance.html" class="text-[#595959] hover:text-[#ff4d00]">Insurance</a>
+                <a href="warranty.html" class="text-[#595959] hover:text-[#ff4d00]">Warranty</a>
+                <a href="about.html" class="text-[#ff4d00] font-semibold">About Us</a>
+                <a href="contact.html" class="text-[#595959] hover:text-[#ff4d00]">Contact Us</a>
+            </nav>
+            <a href="contact.html" class="hidden md:block bg-[#ff4d00] text-white font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
+                Get Your Quote
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button @click="isOpen = !isOpen" type="button" class="text-[#2b2b2b] hover:text-[#ff4d00] focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path x-show="!isOpen" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        <path x-show="isOpen" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
+            <div class="flex flex-col items-center py-8 space-y-6">
+                <a href="services.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Services</a>
+                <a href="resources/" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Resources</a>
+                <a href="insurance.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Insurance</a>
+                <a href="warranty.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Warranty</a>
+                <a href="about.html" @click="isOpen = false" class="text-lg text-[#ff4d00] font-semibold">About Us</a>
+                <a href="contact.html" @click="isOpen = false" class="text-lg text-[#595959] hover:text-[#ff4d00]">Contact Us</a>
+                <a href="contact.html" @click="isOpen = false" class="bg-[#ff4d00] text-white font-semibold px-8 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300">
+                    Get Your Quote
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- PAGE HERO -->
+        <section class="bg-[#f1f1f1] py-12 md:py-16">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-[#2b2b2b] px-4">We're Building Something Different</h1>
+            </div>
+        </section>
+
+        <!-- MAIN CONTENT -->
+        <section class="py-12 md:py-20">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="fade-in">
+                        <img src="images/mobile-service.png" alt="Vero Autoglass clean workshop" class="rounded-lg shadow-lg w-full" loading="lazy">
+                    </div>
+                    <div class="fade-in" style="transition-delay: 150ms;">
+                        <h2 class="text-2xl md:text-3xl font-bold text-[#2b2b2b] mb-4">Auto Glass Made Simple</h2>
+                        <p class="text-base md:text-lg text-[#595959] mb-4">
+                            Most auto glass companies make this process harder than it needs to be. Confusing estimates, surprise charges, corners cut when you're not looking. We started Vero to prove it doesn't have to be that way.
+                        </p>
+                        <p class="text-base md:text-lg text-[#595959]">
+                            Here's what matters to us: using quality materials, doing the job right the first time, and treating people fairly. No commission-based sales pressure. No bait-and-switch pricing. No skipping important steps like sensor recalibration to save time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center mt-12 md:mt-20">
+                    <div class="md:order-2 fade-in">
+                        <img src="images/financing.png" alt="Happy customer with their car" class="rounded-lg shadow-lg w-full" loading="lazy">
+                    </div>
+                    <div class="md:order-1 fade-in" style="transition-delay: 150ms;">
+                        <h2 class="text-2xl md:text-3xl font-bold text-[#2b2b2b] mb-4">Serving Portland Right</h2>
+                        <p class="text-base md:text-lg text-[#595959] mb-4">
+                           Our technicians are experienced professionals who take pride in their work. They'll explain what needs to be done, why it matters, and what it'll cost - in plain English. If insurance covers it, we'll handle the paperwork. If you're paying cash, you'll know the exact price before we start.
+                        </p>
+                        <p class="text-base md:text-lg text-[#595959]">
+                            We opened our shop in Las Vegas because we saw how Portland drivers were being underserved. You deserve better than a two-hour wait in a dingy lobby or a mobile tech who might show up sometime between noon and 5 PM.
+                        </p>
+                    </div>
+                </div>
+                 <div class="text-center mt-12 md:mt-20 fade-in">
+                    <p class="text-lg md:text-xl text-[#595959] mb-6 px-4">We're not trying to be the biggest auto glass company in Las Vegas. We're trying to be the one you trust and recommend to your friends.</p>
+                    <a href="contact.html" class="inline-block bg-[#ff4d00] text-white font-bold px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg hover:bg-opacity-90 transition-colors duration-300 shadow-md mx-4">
+                        Ready to experience the difference?
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#2b2b2b] text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-xl font-bold">Vero Autoglass</h3>
+            <p class="my-4 text-gray-400">Auto glass made simple.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="services.html" class="text-gray-400 hover:text-white">Services</a>
+                <a href="about.html" class="text-gray-400 hover:text-white">About Us</a>
+                <a href="insurance.html" class="text-gray-400 hover:text-white">Insurance</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a>
+            </div>
+            <div class="mt-4 flex justify-center items-center space-x-6">
+                <a href="terms.html" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
+                <a href="privacy.html" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2025 Vero Autoglass. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Google Conversion Tracking</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2b2b2b;
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d4f4dd;
+            color: #1e7e34;
+            border: 1px solid #1e7e34;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #721c24;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #856404;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #0c5460;
+        }
+        button {
+            background: #ff4d00;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #cc3d00;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #ff4d00;
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16463589701"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16463589701');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Google Conversion Tracking Tester</h1>
+
+        <div class="status info">
+            <strong>Purpose:</strong> This page helps you verify that Google Ads conversion tracking is properly configured on the thank-you page.
+        </div>
+
+        <h2>Setup Checklist</h2>
+        <div id="checklist"></div>
+
+        <h2>Test Actions</h2>
+        <button onclick="checkGtagPresence()">1. Check if gtag.js is loaded</button>
+        <button onclick="testConversionFire()">2. Test fire a conversion</button>
+        <button onclick="checkThankYouPage()">3. Check thank-you page setup</button>
+
+        <h2>Results</h2>
+        <div id="results"></div>
+
+        <h2>Manual Testing Steps</h2>
+        <div class="step">
+            <strong>Step 1:</strong> Open Google Tag Assistant Chrome Extension
+        </div>
+        <div class="step">
+            <strong>Step 2:</strong> Navigate to <a href="/contact.html" target="_blank">/contact.html</a>
+        </div>
+        <div class="step">
+            <strong>Step 3:</strong> Fill out and submit the Omega quote form
+        </div>
+        <div class="step">
+            <strong>Step 4:</strong> Verify redirect to thank-you page and check Tag Assistant for conversion event
+        </div>
+
+        <h2>Configuration Status</h2>
+        <pre id="config"></pre>
+    </div>
+
+    <script>
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            results.appendChild(div);
+        }
+
+        function checkGtagPresence() {
+            if (typeof gtag === 'function') {
+                addResult('✅ gtag.js is loaded and available', 'success');
+                if (window.dataLayer) {
+                    addResult(`DataLayer has ${window.dataLayer.length} events`, 'info');
+                }
+            } else {
+                addResult('❌ gtag.js is NOT loaded. Make sure Google tracking code is added to the page.', 'error');
+            }
+        }
+
+        function testConversionFire() {
+            if (typeof gtag !== 'function') {
+                addResult('❌ Cannot test conversion - gtag not loaded', 'error');
+                return;
+            }
+
+            try {
+                // Test fire a conversion event
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-XXXXXXXXX/TEST_LABEL',
+                    'value': 1.0,
+                    'currency': 'USD',
+                    'transaction_id': 'TEST_' + Date.now()
+                });
+                addResult('🚀 Test conversion event fired! Check Google Tag Assistant to verify.', 'success');
+                addResult('Note: This used placeholder values. Real tracking needs actual Google Ads IDs.', 'warning');
+            } catch (error) {
+                addResult(`❌ Error firing conversion: ${error.message}`, 'error');
+            }
+        }
+
+        async function checkThankYouPage() {
+            try {
+                const response = await fetch('/thank-you.html');
+                const html = await response.text();
+
+                // Check for Google tracking code
+                if (html.includes('googletagmanager.com/gtag/js')) {
+                    addResult('✅ Thank-you page has Google Tag Manager code', 'success');
+                } else {
+                    addResult('❌ Thank-you page missing Google Tag Manager code', 'error');
+                }
+
+                // Check for placeholder values
+                if (html.includes('AW-XXXXXXXXX')) {
+                    addResult('⚠️ Thank-you page still has placeholder Conversion ID (AW-XXXXXXXXX)', 'warning');
+                    addResult('Replace with your actual Google Ads Conversion ID', 'warning');
+                }
+
+                if (html.includes('CONVERSION_LABEL')) {
+                    addResult('⚠️ Thank-you page still has placeholder Conversion Label', 'warning');
+                    addResult('Replace with your actual conversion label from Google Ads', 'warning');
+                }
+
+                // Check for conversion event
+                if (html.includes("gtag('event', 'conversion'")) {
+                    addResult('✅ Thank-you page has conversion event code', 'success');
+                } else {
+                    addResult('❌ Thank-you page missing conversion event code', 'error');
+                }
+
+            } catch (error) {
+                addResult(`❌ Could not check thank-you page: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-run checks on page load
+        window.onload = function() {
+            const checklist = document.getElementById('checklist');
+            const config = document.getElementById('config');
+
+            // Show checklist
+            checklist.innerHTML = `
+                <div class="status info">
+                    <strong>Before Testing:</strong><br>
+                    ☐ Google Ads Conversion Action created<br>
+                    ☐ Conversion ID obtained (AW-...)<br>
+                    ☐ Conversion Label obtained<br>
+                    ☐ Placeholders replaced in thank-you.html<br>
+                    ☐ Google Tag Assistant extension installed
+                </div>
+            `;
+
+            // Show current config
+            config.innerHTML = `Current Page URL: ${window.location.href}
+User Agent: ${navigator.userAgent}
+Cookies Enabled: ${navigator.cookieEnabled}
+Do Not Track: ${navigator.doNotTrack || 'not set'}
+
+To update tracking IDs:
+1. Edit /thank-you.html
+2. Replace AW-XXXXXXXXX with your Conversion ID
+3. Replace CONVERSION_LABEL with your label
+4. Save and deploy`;
+        };
+    </script>
+</body>
+</html>

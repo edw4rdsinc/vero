@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive assessment tools to check your ADAS calibration needs, insurance coverage, and windshield safety. Expert guidance from Vero Autoglass.">
+    <title>Interactive Assessments | Vero Autoglass Resources</title>
+
+    <link rel="canonical" href="https://veroautoglass.com/las-vegas/resources/assessments/">
+
+    <!-- Plausible Analytics -->
+    <script defer data-domain="veroautoglass.com" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #2b2b2b;
+        }
+
+        /* Custom styling for quiz attribution - subtle but crawlable */
+        .quiz-attribution {
+            font-size: 0.75rem;
+            color: #6b7280;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            border-radius: 0 0 0.75rem 0.75rem;
+        }
+
+        .quiz-attribution a {
+            color: #ff4d00;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .quiz-attribution a:hover {
+            text-decoration: underline;
+        }
+
+        /* Make quiz container look native to Vero */
+        .vero-quiz-container {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-header {
+            background: linear-gradient(135deg, #2b2b2b 0%, #1a1a1a 100%);
+            color: white;
+            padding: 1.5rem;
+            border-bottom: 3px solid #ff4d00;
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16463589701"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16463589701');
+    </script>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header (Vero's existing header would go here) -->
+    <header x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-0 left-0 right-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index.html"><img src="../images/vero-logo.png" alt="Vero Autoglass Logo" class="h-10 md:h-12"></a>
+            <nav class="hidden md:flex space-x-10 items-center">
+                <a href="../services.html" class="text-gray-300 hover:text-white">Services</a>
+                <a href="./" class="text-white font-semibold border-b-2 border-[#ff4d00]">Resources</a>
+                <a href="../insurance.html" class="text-gray-300 hover:text-white">Insurance</a>
+                <a href="../about.html" class="text-gray-300 hover:text-white">About</a>
+                <a href="../contact.html" class="bg-[#ff4d00] text-white px-6 py-2 rounded-lg font-semibold hover:bg-opacity-90">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6 max-w-5xl">
+
+            <!-- Page Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-[#2b2b2b] mb-4">
+                    Interactive Vehicle Assessments
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Answer a few quick questions to get personalized recommendations for your vehicle's windshield and safety system needs.
+                </p>
+            </div>
+
+            <!-- Quiz 1: ADAS Calibration -->
+            <div class="vero-quiz-container mb-12">
+                <div class="quiz-header">
+                    <div class="flex items-center gap-3 mb-2">
+                        <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold">Does Your Car Need ADAS Calibration?</h2>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        Find out if your vehicle's safety systems need recalibration after windshield work • 4 minutes
+                    </p>
+                </div>
+
+                <!-- Quiz Widget Embed -->
+                <div
+                    class="windshield-advisor-quiz"
+                    data-quiz="adas-calibration"
+                    data-partner-id="vero-autoglass"
+                    data-partner-name="Vero Autoglass"
+                    data-seo-mode="true"
+                    data-primary-color="ff4d00"
+                    data-accent-color="cc3d00"
+                    data-text-color="2b2b2b"
+                    data-bg-color="ffffff"
+                    data-font-family="Inter"
+                    data-border-radius="0"
+                    data-show-branding="false"
+                ></div>
+
+                <!-- SEO Attribution (subtle but crawlable) -->
+                <div class="quiz-attribution">
+                    Assessment tool developed by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>,
+                    experts in windshield safety research.
+                    <a href="https://windshieldadvisor.info/quizzes/adas-calibration" target="_blank" rel="noopener">Learn more about this assessment</a> |
+                    <a href="https://windshieldadvisor.info/white-papers" target="_blank" rel="noopener">View research</a>
+                </div>
+            </div>
+
+            <!-- Quiz 2: Insurance Coverage -->
+            <div class="vero-quiz-container mb-12">
+                <div class="quiz-header">
+                    <div class="flex items-center gap-3 mb-2">
+                        <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold">What Will Your Insurance Cover?</h2>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        Calculate your estimated out-of-pocket costs based on your coverage • 5 minutes
+                    </p>
+                </div>
+
+                <div
+                    class="windshield-advisor-quiz"
+                    data-quiz="insurance-coverage"
+                    data-partner-id="vero-autoglass"
+                    data-partner-name="Vero Autoglass"
+                    data-seo-mode="true"
+                    data-primary-color="ff4d00"
+                    data-accent-color="cc3d00"
+                    data-text-color="2b2b2b"
+                    data-bg-color="ffffff"
+                    data-font-family="Inter"
+                    data-border-radius="0"
+                    data-show-branding="false"
+                ></div>
+
+                <div class="quiz-attribution">
+                    Insurance assessment tool by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                    <a href="https://windshieldadvisor.info/quizzes/insurance-coverage" target="_blank" rel="noopener">More details</a>
+                </div>
+            </div>
+
+            <!-- Quiz 3: Repair vs Replace -->
+            <div class="vero-quiz-container mb-12">
+                <div class="quiz-header">
+                    <div class="flex items-center gap-3 mb-2">
+                        <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold">Should You Repair or Replace?</h2>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        Get expert recommendations based on ROLAGS professional standards • 3 minutes
+                    </p>
+                </div>
+
+                <div
+                    class="windshield-advisor-quiz"
+                    data-quiz="repair-replace"
+                    data-partner-id="vero-autoglass"
+                    data-partner-name="Vero Autoglass"
+                    data-seo-mode="true"
+                    data-primary-color="ff4d00"
+                    data-accent-color="cc3d00"
+                    data-text-color="2b2b2b"
+                    data-bg-color="ffffff"
+                    data-font-family="Inter"
+                    data-border-radius="0"
+                    data-show-branding="false"
+                ></div>
+
+                <div class="quiz-attribution">
+                    Damage assessment based on research from <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                    <a href="https://windshieldadvisor.info/white-papers/repair-vs-replacement" target="_blank" rel="noopener">Read the research</a>
+                </div>
+            </div>
+
+            <!-- Quiz 4: Installer Qualifications -->
+            <div class="vero-quiz-container mb-12">
+                <div class="quiz-header">
+                    <div class="flex items-center gap-3 mb-2">
+                        <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold">Is Your Installer Qualified?</h2>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        Verify installer certifications and industry standards compliance • 3 minutes
+                    </p>
+                </div>
+
+                <div
+                    class="windshield-advisor-quiz"
+                    data-quiz="installer-qualified"
+                    data-partner-id="vero-autoglass"
+                    data-partner-name="Vero Autoglass"
+                    data-seo-mode="true"
+                    data-primary-color="ff4d00"
+                    data-accent-color="cc3d00"
+                    data-text-color="2b2b2b"
+                    data-bg-color="ffffff"
+                    data-font-family="Inter"
+                    data-border-radius="0"
+                    data-show-branding="false"
+                ></div>
+
+                <div class="quiz-attribution">
+                    Installer certification guide from <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                    <a href="https://windshieldadvisor.info/quizzes/installer-qualified" target="_blank" rel="noopener">Learn about certifications</a>
+                </div>
+            </div>
+
+            <!-- Quiz 5: Windshield Safety -->
+            <div class="vero-quiz-container mb-12">
+                <div class="quiz-header">
+                    <div class="flex items-center gap-3 mb-2">
+                        <svg class="w-8 h-8 text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold">Is Your Windshield Safe?</h2>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        Comprehensive safety evaluation of your windshield's condition • 5 minutes
+                    </p>
+                </div>
+
+                <div
+                    class="windshield-advisor-quiz"
+                    data-quiz="windshield-safety"
+                    data-partner-id="vero-autoglass"
+                    data-partner-name="Vero Autoglass"
+                    data-seo-mode="true"
+                    data-primary-color="ff4d00"
+                    data-accent-color="cc3d00"
+                    data-text-color="2b2b2b"
+                    data-bg-color="ffffff"
+                    data-font-family="Inter"
+                    data-border-radius="0"
+                    data-show-branding="false"
+                ></div>
+
+                <div class="quiz-attribution">
+                    Windshield safety assessment developed by <a href="https://windshieldadvisor.info" target="_blank" rel="noopener">Windshield Advisor</a>.
+                    <a href="https://windshieldadvisor.info/quizzes/windshield-safety" target="_blank" rel="noopener">View assessment details</a> |
+                    <a href="https://windshieldadvisor.info/white-papers" target="_blank" rel="noopener">Safety research</a>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="bg-gradient-to-r from-[#2b2b2b] to-[#1a1a1a] rounded-xl p-8 md:p-12 text-center text-white mt-16 border-t-4 border-[#ff4d00]">
+                <h2 class="text-3xl font-bold mb-4">Need Professional Service?</h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    AGSC Certified • ADAS Calibration Specialists • Lifetime Warranty
+                </p>
+                <a href="tel:+17022766749"
+                   class="inline-block text-5xl md:text-6xl font-bold text-[#ff4d00] hover:text-white transition-colors mb-4">
+                    (702) 276-6749
+                </a>
+                <p class="text-gray-400">Las Vegas Metro • Mobile Service Available</p>
+                <div class="mt-6">
+                    <a href="../contact.html"
+                       class="inline-block bg-[#ff4d00] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-opacity-90 transition-all">
+                        Schedule Online →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Back to Resources -->
+            <div class="text-center mt-12">
+                <a href="./" class="text-[#ff4d00] hover:text-[#cc3d00] font-semibold inline-flex items-center gap-2">
+                    ← Back to Resource Center
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Schema.org structured data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Interactive Vehicle Assessments",
+        "description": "Interactive assessment tools for ADAS calibration, insurance coverage, windshield safety, and damage evaluation from Vero Autoglass. Expert guidance based on industry research.",
+        "url": "https://veroautoglass.com/resources/assessments/",
+        "provider": {
+            "@type": "AutoRepair",
+            "name": "Vero Autoglass",
+            "url": "https://veroautoglass.com",
+            "telephone": "(702) 276-6749",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2300 W Sahara Ave #800",
+                "addressLocality": "Las Vegas",
+                "addressRegion": "NV",
+                "postalCode": "89102",
+                "addressCountry": "US"
+            }
+        },
+        "about": [
+            {
+                "@type": "Thing",
+                "name": "ADAS Calibration Assessment",
+                "sameAs": "https://windshieldadvisor.info/quizzes/adas-calibration"
+            },
+            {
+                "@type": "Thing",
+                "name": "Windshield Insurance Coverage Calculator",
+                "sameAs": "https://windshieldadvisor.info/quizzes/insurance-coverage"
+            },
+            {
+                "@type": "Thing",
+                "name": "Windshield Repair vs Replace Decision Tool",
+                "sameAs": "https://windshieldadvisor.info/quizzes/repair-replace"
+            },
+            {
+                "@type": "Thing",
+                "name": "Installer Qualification Check",
+                "sameAs": "https://windshieldadvisor.info/quizzes/installer-qualified"
+            },
+            {
+                "@type": "Thing",
+                "name": "Windshield Safety Assessment",
+                "sameAs": "https://windshieldadvisor.info/quizzes/windshield-safety"
+            }
+        ],
+        "citation": [
+            "https://windshieldadvisor.info",
+            "https://windshieldadvisor.info/white-papers"
+        ],
+        "mentions": {
+            "@type": "Organization",
+            "name": "Windshield Advisor",
+            "url": "https://windshieldadvisor.info",
+            "description": "Windshield safety research and ADAS calibration expertise"
+        }
+    }
+    </script>
+
+    <!-- Load Windshield Advisor quiz embed script -->
+    <script src="https://windshieldadvisor.info/quiz-embed-seo.js"></script>
+
+    <!-- Optional: Track quiz completions -->
+    <script>
+        document.addEventListener('windshieldAdvisorQuiz:completed', (e) => {
+            console.log('Quiz completed:', e.detail);
+
+            // Track in Plausible
+            if (window.plausible) {
+                plausible('Quiz Completed', {
+                    props: {
+                        quiz: e.detail.quizSlug,
+                        severity: e.detail.result?.severity
+                    }
+                });
+            }
+
+            // Could also show a modal encouraging them to call/schedule
+            // showSchedulingModal();
+        });
+    </script>
+
+</body>
+</html>

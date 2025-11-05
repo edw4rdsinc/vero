@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script defer data-domain="veroautoglass.com" src="https://plausible.io/js/script.js"></script>
+    <meta name="description" content="Vero Autoglass serves Portland, OR and Las Vegas, NV with professional windshield repair and replacement services.">
+    <title>Choose Your Location | Vero Autoglass</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://veroautoglass.com/locations.html">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://veroautoglass.com/locations.html">
+    <meta property="og:title" content="Choose Your Location | Vero Autoglass">
+    <meta property="og:description" content="Vero Autoglass serves Portland, OR and Las Vegas, NV with professional windshield repair and replacement services.">
+    <meta property="og:image" content="https://veroautoglass.com/images/vero-logo.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Vero Autoglass">
+
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical CSS Framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #2b2b2b;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .location-card {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+        }
+
+        .location-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #ff4d00;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-50 to-white">
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16463589701"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-16463589701');
+    </script>
+
+    <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+        <!-- Logo -->
+        <div class="mb-12 fade-in">
+            <img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-32 md:h-40 mx-auto" width="2732" height="2048" decoding="async">
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-5xl w-full">
+            <div class="text-center mb-12 fade-in">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">Choose Your Location</h1>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Select the location nearest you for local service, pricing, and contact information</p>
+            </div>
+
+            <!-- Location Cards -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Portland Card -->
+                <a href="portland/" class="location-card block bg-white rounded-2xl p-8 fade-in">
+                    <div class="text-center">
+                        <div class="mb-6">
+                            <svg class="w-16 h-16 mx-auto text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-3 text-gray-900">Portland, OR</h2>
+                        <p class="text-gray-600 mb-6">Serving the Greater Portland Metro Area</p>
+                        <div class="space-y-2 text-left mb-6">
+                            <p class="text-gray-700"><span class="font-semibold">Areas:</span> Portland, Tigard, Beaverton, Lake Oswego, Tualatin, Milwaukie, Oregon City, Hillsboro</p>
+                            <p class="text-gray-700"><span class="font-semibold">Phone:</span> <a href="tel:971-317-8376" class="text-[#ff4d00] hover:underline">971-317-8376</a></p>
+                        </div>
+                        <div class="bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-lg inline-block">
+                            Visit Portland Site →
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Las Vegas Card -->
+                <a href="las-vegas/" class="location-card block bg-white rounded-2xl p-8 fade-in">
+                    <div class="text-center">
+                        <div class="mb-6">
+                            <svg class="w-16 h-16 mx-auto text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-3 text-gray-900">Las Vegas, NV</h2>
+                        <p class="text-gray-600 mb-6">Serving the Greater Las Vegas Metro Area</p>
+                        <div class="space-y-2 text-left mb-6">
+                            <p class="text-gray-700"><span class="font-semibold">Areas:</span> Las Vegas, Henderson, Paradise, Summerlin, North Las Vegas, Enterprise, Spring Valley</p>
+                            <p class="text-gray-700"><span class="font-semibold">Phone:</span> <a href="tel:+17022766749" class="text-[#ff4d00] hover:underline">(702) 276-6749</a></p>
+                        </div>
+                        <div class="bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-lg inline-block">
+                            Visit Las Vegas Site →
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="text-center text-gray-600 fade-in">
+                <p class="mb-2">Both locations offer:</p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm">
+                    <span class="bg-white px-4 py-2 rounded-full border border-gray-200">✓ Free Mobile Service</span>
+                    <span class="bg-white px-4 py-2 rounded-full border border-gray-200">✓ Lifetime Warranty</span>
+                    <span class="bg-white px-4 py-2 rounded-full border border-gray-200">✓ Insurance Billing</span>
+                    <span class="bg-white px-4 py-2 rounded-full border border-gray-200">✓ ADAS Calibration</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-400">&copy; 2025 Vero Autoglass. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
