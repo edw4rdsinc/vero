@@ -23,6 +23,111 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Vero Autoglass">
 
+    <!-- Structured Data / Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://www.veroautoglass.com/#organization",
+                "name": "Vero Autoglass",
+                "url": "https://www.veroautoglass.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.veroautoglass.com/images/vero-logo.png",
+                    "width": 2732,
+                    "height": 2048
+                },
+                "description": "Professional auto glass repair and replacement serving Portland, OR and Las Vegas, NV. ADAS certified, lifetime warranty, insurance billing.",
+                "sameAs": [
+                    "https://www.veroautoglass.com"
+                ]
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://www.veroautoglass.com/locations.html#webpage",
+                "url": "https://www.veroautoglass.com/locations.html",
+                "name": "Choose Your Location | Vero Autoglass",
+                "description": "Vero Autoglass serves Portland, OR and Las Vegas, NV with professional windshield repair and replacement services.",
+                "isPartOf": {
+                    "@id": "https://www.veroautoglass.com/#website"
+                },
+                "about": {
+                    "@id": "https://www.veroautoglass.com/#organization"
+                },
+                "inLanguage": "en-US"
+            },
+            {
+                "@type": "ItemList",
+                "@id": "https://www.veroautoglass.com/locations.html#locations",
+                "name": "Vero Autoglass Service Locations",
+                "description": "Multi-location auto glass repair and replacement services",
+                "numberOfItems": 2,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "item": {
+                            "@type": "AutoRepair",
+                            "@id": "https://www.veroautoglass.com/portland/#autoshop",
+                            "name": "Vero Autoglass - Portland",
+                            "url": "https://www.veroautoglass.com/portland/",
+                            "telephone": "+19713178376",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "streetAddress": "12114 SW Garden Pl",
+                                "addressLocality": "Tigard",
+                                "addressRegion": "OR",
+                                "postalCode": "97223",
+                                "addressCountry": "US"
+                            },
+                            "areaServed": [
+                                "Portland",
+                                "Tigard",
+                                "Beaverton",
+                                "Lake Oswego",
+                                "Tualatin",
+                                "Milwaukie",
+                                "Oregon City",
+                                "Hillsboro"
+                            ]
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "item": {
+                            "@type": "AutoRepair",
+                            "@id": "https://www.veroautoglass.com/las-vegas/#autoshop",
+                            "name": "Vero Autoglass - Las Vegas",
+                            "url": "https://www.veroautoglass.com/las-vegas/",
+                            "telephone": "+17022766749",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "streetAddress": "2300 W Sahara Ave #800",
+                                "addressLocality": "Las Vegas",
+                                "addressRegion": "NV",
+                                "postalCode": "89102",
+                                "addressCountry": "US"
+                            },
+                            "areaServed": [
+                                "Las Vegas",
+                                "Henderson",
+                                "Paradise",
+                                "Summerlin",
+                                "North Las Vegas",
+                                "Enterprise",
+                                "Spring Valley"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
