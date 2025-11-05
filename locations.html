@@ -45,13 +45,11 @@
 
         .location-card {
             transition: all 0.3s ease;
-            border: 2px solid #e5e7eb;
         }
 
         .location-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: #ff4d00;
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(255, 77, 0, 0.15);
         }
 
         .fade-in {
@@ -90,42 +88,66 @@
             <!-- Location Cards -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <!-- Portland Card -->
-                <a href="portland/" class="location-card block bg-white rounded-2xl p-8 fade-in">
-                    <div class="text-center">
-                        <div class="mb-6">
-                            <svg class="w-16 h-16 mx-auto text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
+                <a href="portland/" class="location-card block bg-white rounded-2xl overflow-hidden shadow-lg fade-in">
+                    <!-- Skyline Image Placeholder - Replace with actual Portland skyline -->
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-blue-700 relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-white text-sm opacity-50">
+                            [Portland Skyline Image]
                         </div>
-                        <h2 class="text-3xl font-bold mb-3 text-gray-900">Portland, OR</h2>
+                    </div>
+                    <!-- Card Content -->
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold mb-2 text-gray-900">Portland, OR</h2>
                         <p class="text-gray-600 mb-6">Serving the Greater Portland Metro Area</p>
-                        <div class="space-y-2 text-left mb-6">
-                            <p class="text-gray-700"><span class="font-semibold">Areas:</span> Portland, Tigard, Beaverton, Lake Oswego, Tualatin, Milwaukie, Oregon City, Hillsboro</p>
-                            <p class="text-gray-700"><span class="font-semibold">Phone:</span> <a href="tel:971-317-8376" class="text-[#ff4d00] hover:underline">971-317-8376</a></p>
+
+                        <!-- Phone Number - Prominent -->
+                        <div class="bg-[#ff4d00]/10 border-2 border-[#ff4d00] rounded-lg p-4 mb-6">
+                            <div class="flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#ff4d00] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                <span class="text-2xl font-bold text-[#ff4d00]">971-317-8376</span>
+                            </div>
                         </div>
-                        <div class="bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-lg inline-block">
+
+                        <div class="space-y-2 text-left mb-6 text-sm">
+                            <p class="text-gray-700"><span class="font-semibold">Service Areas:</span> Portland, Tigard, Beaverton, Lake Oswego, Tualatin, Milwaukie, Oregon City, Hillsboro</p>
+                        </div>
+
+                        <div class="bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-lg text-center hover:bg-[#cc3d00] transition-colors">
                             Visit Portland Site →
                         </div>
                     </div>
                 </a>
 
                 <!-- Las Vegas Card -->
-                <a href="las-vegas/" class="location-card block bg-white rounded-2xl p-8 fade-in">
-                    <div class="text-center">
-                        <div class="mb-6">
-                            <svg class="w-16 h-16 mx-auto text-[#ff4d00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
+                <a href="las-vegas/" class="location-card block bg-white rounded-2xl overflow-hidden shadow-lg fade-in">
+                    <!-- Skyline Image Placeholder - Replace with actual Vegas skyline -->
+                    <div class="h-48 bg-gradient-to-br from-amber-500 to-red-600 relative">
+                        <div class="absolute inset-0 flex items-center justify-center text-white text-sm opacity-50">
+                            [Las Vegas Skyline Image]
                         </div>
-                        <h2 class="text-3xl font-bold mb-3 text-gray-900">Las Vegas, NV</h2>
+                    </div>
+                    <!-- Card Content -->
+                    <div class="p-8">
+                        <h2 class="text-3xl font-bold mb-2 text-gray-900">Las Vegas, NV</h2>
                         <p class="text-gray-600 mb-6">Serving the Greater Las Vegas Metro Area</p>
-                        <div class="space-y-2 text-left mb-6">
-                            <p class="text-gray-700"><span class="font-semibold">Areas:</span> Las Vegas, Henderson, Paradise, Summerlin, North Las Vegas, Enterprise, Spring Valley</p>
-                            <p class="text-gray-700"><span class="font-semibold">Phone:</span> <a href="tel:+17022766749" class="text-[#ff4d00] hover:underline">(702) 276-6749</a></p>
+
+                        <!-- Phone Number - Prominent -->
+                        <div class="bg-[#ff4d00]/10 border-2 border-[#ff4d00] rounded-lg p-4 mb-6">
+                            <div class="flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#ff4d00] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                <span class="text-2xl font-bold text-[#ff4d00]">(702) 276-6749</span>
+                            </div>
                         </div>
-                        <div class="bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-lg inline-block">
+
+                        <div class="space-y-2 text-left mb-6 text-sm">
+                            <p class="text-gray-700"><span class="font-semibold">Service Areas:</span> Las Vegas, Henderson, Paradise, Summerlin, North Las Vegas, Enterprise, Spring Valley</p>
+                        </div>
+
+                        <div class="bg-[#ff4d00] text-white font-bold px-6 py-3 rounded-lg text-center hover:bg-[#cc3d00] transition-colors">
                             Visit Las Vegas Site →
                         </div>
                     </div>
