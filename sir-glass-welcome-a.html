@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script defer data-domain="veroautoglass.com" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17668259433"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17668259433');
+    </script>
+
+    <!-- Supabase Client for Tracking -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <meta name="description" content="Your trusted Sir Glass Portland team is now Vero Auto Glass. Get 10% off + VIP experience. Same expert service, better pricing.">
+    <title>Welcome Former Sir Glass Customers | Vero Autoglass</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Welcome Former Sir Glass Customers | Vero Autoglass">
+    <meta property="og:description" content="Your trusted Sir Glass Portland team is now Vero Auto Glass. Get 10% off + VIP experience.">
+    <meta property="og:image" content="https://veroautoglass.com/images/vero-logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #2b2b2b;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Header -->
+    <header id="main-header" x-data="{ isOpen: false }" class="bg-[#2b2b2b] fixed top-0 left-0 right-0 z-40 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html"><img src="images/vero-logo.png" alt="Vero Autoglass Logo" class="h-10 md:h-12" width="200" height="150" decoding="async"></a>
+            <nav class="hidden md:flex space-x-10 items-center">
+                <a href="services.html" class="text-gray-300 hover:text-white">Services</a>
+                <a href="resources/" class="text-gray-300 hover:text-white">Resources</a>
+                <a href="insurance.html" class="text-gray-300 hover:text-white">Insurance</a>
+                <a href="warranty.html" class="text-gray-300 hover:text-white">Warranty</a>
+                <a href="about.html" class="text-gray-300 hover:text-white">About</a>
+                <a href="contact.html" class="text-gray-300 hover:text-white">Contact Us</a>
+            </nav>
+            <div class="hidden md:flex space-x-3">
+                <a href="tel:971-317-8376" data-phone="header" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-5 py-2 rounded-lg hover:bg-[#ff4d00] hover:text-white">Talk to a human</a>
+            </div>
+            <div class="md:hidden">
+                <button @click="isOpen = !isOpen" class="text-white focus:outline-none">
+                    <svg x-show="!isOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg x-show="isOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div x-show="isOpen" x-cloak @click.away="isOpen = false" class="md:hidden absolute top-full left-0 w-full bg-[#2b2b2b] shadow-lg">
+            <div class="flex flex-col items-center py-8 space-y-6">
+                <a href="services.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Services</a>
+                <a href="resources/" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Resources</a>
+                <a href="insurance.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Insurance</a>
+                <a href="warranty.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Warranty</a>
+                <a href="contact.html" @click="isOpen = false" class="text-lg text-gray-300 hover:text-white">Contact Us</a>
+                <a href="tel:971-317-8376" data-phone="mobile-menu" @click="isOpen = false" class="bg-transparent border-2 border-[#ff4d00] text-[#ff4d00] font-semibold px-8 py-3 rounded-lg hover:bg-[#ff4d00] hover:text-white w-3/4 text-center">Talk to a human</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-[80px]">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-br from-gray-50 to-white py-12 md:py-20">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <!-- Trust Signal -->
+                <div class="text-center mb-8">
+                    <p class="text-[#ff4d00] font-semibold text-lg">⭐ Same Portland team you've trusted since 2020  |  📍 Locally owned & operated</p>
+                </div>
+
+                <!-- Headline (Version A: Trust + Continuity) -->
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#2b2b2b] text-center mb-6 leading-tight">
+                    Your Trusted Sir Glass Portland Team Starts a New Chapter
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="text-xl md:text-2xl text-[#595959] text-center mb-10 max-w-3xl mx-auto">
+                    We left Sir Glass to do things differently at Vero Auto Glass. Same expert service you trust, with a VIP experience and exclusive pricing for our Sir Glass customers.
+                </p>
+
+                <!-- Primary CTA -->
+                <div class="text-center mb-8">
+                    <a href="#" data-cta="hero" class="cta-button inline-block bg-[#ff4d00] text-white font-bold px-12 py-5 md:py-6 rounded-lg hover:bg-[#cc3d00] transition-colors text-xl md:text-2xl shadow-xl hover:shadow-2xl">
+                        Claim My VIP Welcome Offer →
+                    </a>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="mt-12 rounded-xl overflow-hidden shadow-2xl">
+                    <img src="images/vero-hero.png" alt="Vero Auto Glass Portland Team - Your Trusted Sir Glass Technicians" class="w-full h-auto" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- The Offer Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#2b2b2b] text-center mb-12">
+                    Exclusive Welcome Offer for Former Sir Glass Customers
+                </h2>
+
+                <div class="bg-gradient-to-br from-[#ff4d00] to-[#cc3d00] rounded-2xl p-8 md:p-12 text-white shadow-2xl">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center">VIP Experience Includes:</h3>
+                    <div class="space-y-4 text-lg">
+                        <div class="flex items-start gap-4">
+                            <svg class="w-7 h-7 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <p><strong>10% off your first service</strong> - Our way of saying thank you</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-7 h-7 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <p><strong>White-glove mobile service</strong> - We come to you (Portland area)</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-7 h-7 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <p><strong>Lifetime warranty</strong> - Superior to Sir Glass coverage</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-7 h-7 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <p><strong>Priority scheduling</strong> - Former Sir Glass customers get first availability</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <svg class="w-7 h-7 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <p><strong>Direct line to the team</strong> - Same techs you know and trust</p>
+                        </div>
+                    </div>
+
+                    <!-- Urgency Element -->
+                    <div class="mt-8 pt-6 border-t border-white/30 text-center">
+                        <p class="text-xl font-semibold">⏰ Limited to first 500 Sir Glass customers</p>
+                        <p class="text-lg mt-2 text-white/90">Offer expires December 31, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why We Left Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#2b2b2b] text-center mb-8">
+                    Why We Started Vero Auto Glass
+                </h2>
+
+                <div class="bg-white rounded-xl p-8 md:p-10 shadow-lg">
+                    <p class="text-lg md:text-xl text-[#595959] leading-relaxed mb-6">
+                        After years at Sir Glass, we wanted to create something better for Portland. At Vero, we own the business, which means we can offer:
+                    </p>
+                    <ul class="space-y-3 text-lg md:text-xl text-[#595959] mb-6">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#ff4d00] font-bold">•</span>
+                            <span><strong>Better pricing</strong> (no corporate markup)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#ff4d00] font-bold">•</span>
+                            <span><strong>Better service</strong> (decisions made here, not out of state)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#ff4d00] font-bold">•</span>
+                            <span><strong>Better warranties</strong> (we stand behind our work 100%)</span>
+                        </li>
+                    </ul>
+                    <p class="text-lg md:text-xl text-[#595959] leading-relaxed font-semibold">
+                        It's the same team you've trusted for years, now with the freedom to serve you even better.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#2b2b2b] text-center mb-12">
+                    What Our Customers Say
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 rounded-xl p-8 shadow-md">
+                        <div class="flex mb-4">
+                            <span class="text-[#ff4d00] text-2xl">★★★★★</span>
+                        </div>
+                        <p class="text-lg text-[#595959] mb-4 italic">
+                            "I followed the team from Sir Glass to Vero. Same great service, better prices!"
+                        </p>
+                        <p class="font-semibold text-[#2b2b2b]">— Jennifer M., Portland</p>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 rounded-xl p-8 shadow-md">
+                        <div class="flex mb-4">
+                            <span class="text-[#ff4d00] text-2xl">★★★★★</span>
+                        </div>
+                        <p class="text-lg text-[#595959] mb-4 italic">
+                            "They came to my office and replaced my windshield during lunch. In and out in 45 minutes."
+                        </p>
+                        <p class="font-semibold text-[#2b2b2b]">— David K., Beaverton</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secondary CTA Section -->
+        <section class="py-16 bg-gradient-to-br from-[#ff4d00] to-[#cc3d00]">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                    Ready to Experience the Vero Difference?
+                </h2>
+                <p class="text-xl text-white/90 mb-8">
+                    Get your 10% VIP discount and priority scheduling today.
+                </p>
+                <a href="#" data-cta="middle" class="cta-button inline-block bg-white text-[#ff4d00] font-bold px-12 py-5 md:py-6 rounded-lg hover:bg-gray-100 transition-colors text-xl md:text-2xl shadow-xl">
+                    Claim My VIP Welcome Offer →
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#2b2b2b] text-center mb-12">
+                    Frequently Asked Questions
+                </h2>
+
+                <div class="space-y-6">
+                    <!-- FAQ 1 -->
+                    <div class="bg-gray-50 rounded-xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-[#2b2b2b] mb-3">
+                            Will the same technicians service my vehicle?
+                        </h3>
+                        <p class="text-lg text-[#595959]">
+                            Yes! It's the same Portland team you've worked with at Sir Glass. We just have a new name and better pricing.
+                        </p>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="bg-gray-50 rounded-xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-[#2b2b2b] mb-3">
+                            How long is the 10% discount valid?
+                        </h3>
+                        <p class="text-lg text-[#595959]">
+                            This exclusive offer for Sir Glass customers expires December 31, 2025.
+                        </p>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="bg-gray-50 rounded-xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-[#2b2b2b] mb-3">
+                            Do you offer mobile service?
+                        </h3>
+                        <p class="text-lg text-[#595959]">
+                            Absolutely. We'll come to your home or office anywhere in the Portland metro area.
+                        </p>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="bg-gray-50 rounded-xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-[#2b2b2b] mb-3">
+                            Is your warranty better than Sir Glass?
+                        </h3>
+                        <p class="text-lg text-[#595959]">
+                            Yes. We offer a lifetime warranty on all windshield replacements, backed by the team you already trust.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <h2 class="text-3xl md:text-5xl font-bold text-[#2b2b2b] mb-6">
+                    Let's Get You Scheduled
+                </h2>
+                <p class="text-xl text-[#595959] mb-10">
+                    Call us now or click below to claim your VIP welcome offer.
+                </p>
+
+                <!-- Phone CTA -->
+                <div class="mb-8">
+                    <a href="tel:971-317-8376" data-phone="footer" class="inline-block bg-[#2b2b2b] text-white font-bold px-12 py-5 rounded-lg hover:bg-[#1a1a1a] transition-colors text-xl md:text-2xl">
+                        📞 Call (971) 317-8376
+                    </a>
+                </div>
+
+                <p class="text-[#595959] mb-6">or</p>
+
+                <!-- Primary CTA -->
+                <a href="#" data-cta="footer" class="cta-button inline-block bg-[#ff4d00] text-white font-bold px-12 py-5 md:py-6 rounded-lg hover:bg-[#cc3d00] transition-colors text-xl md:text-2xl shadow-xl">
+                    Get My 10% VIP Discount →
+                </a>
+
+                <p class="text-sm text-[#595959] mt-6">
+                    🔒 Your info is safe. We'll never share it.  |  ⏰ Average callback time: 2 hours
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#2b2b2b] text-white py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact</h3>
+                    <p class="text-gray-300 mb-2">📞 (971) 317-8376</p>
+                    <p class="text-gray-300 mb-2">📧 team@veroautoglass.com</p>
+                    <p class="text-gray-300">📍 Portland, OR</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-300 hover:text-white">Services</a></li>
+                        <li><a href="insurance.html" class="text-gray-300 hover:text-white">Insurance</a></li>
+                        <li><a href="warranty.html" class="text-gray-300 hover:text-white">Warranty</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2025 Vero Autoglass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase Tracking Script -->
+    <script>
+        // Initialize Supabase
+        // REPLACE WITH YOUR ACTUAL CREDENTIALS
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const trackingId = urlParams.get('tid') || urlParams.get('t');
+        const campaign = urlParams.get('campaign') || 'sir-glass-welcome-a';
+
+        // Track page visit
+        async function trackPageVisit() {
+            if (!trackingId) {
+                console.warn('No tracking ID found in URL');
+                return;
+            }
+
+            try {
+                const { data, error } = await supabase
+                    .from('email_campaign_tracking')
+                    .update({
+                        link_clicked_at: new Date().toISOString(),
+                        visit_timestamp: new Date().toISOString(),
+                        landing_page_visited: window.location.pathname
+                    })
+                    .eq('tracking_id', trackingId);
+
+                if (error) {
+                    console.error('Supabase tracking error:', error);
+                } else {
+                    console.log('Page visit tracked successfully');
+                }
+
+                // Store in localStorage for later use
+                localStorage.setItem('vero_tracking_id', trackingId);
+                localStorage.setItem('vero_campaign', campaign);
+            } catch (err) {
+                console.error('Tracking error:', err);
+            }
+        }
+
+        // Track phone clicks
+        function trackPhoneClicks() {
+            document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+                link.addEventListener('click', async (e) => {
+                    const location = link.getAttribute('data-phone') || 'unknown';
+
+                    // Track in Plausible
+                    if (window.plausible) {
+                        plausible('Phone Click', {
+                            props: {
+                                location: location,
+                                page: 'sir-glass-welcome-a'
+                            }
+                        });
+                    }
+
+                    // Track in Supabase
+                    if (trackingId) {
+                        try {
+                            await supabase
+                                .from('email_campaign_tracking')
+                                .update({
+                                    phone_button_clicked: true,
+                                    phone_click_timestamp: new Date().toISOString()
+                                })
+                                .eq('tracking_id', trackingId);
+
+                            console.log('Phone click tracked');
+                        } catch (err) {
+                            console.error('Phone tracking error:', err);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Track CTA clicks and redirect to contact page
+        function trackCTAClicks() {
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const location = button.getAttribute('data-cta') || 'unknown';
+
+                    // Track in Plausible
+                    if (window.plausible) {
+                        plausible('CTA Click', {
+                            props: {
+                                location: location,
+                                page: 'sir-glass-welcome-a'
+                            }
+                        });
+                    }
+
+                    // Track in Supabase
+                    if (trackingId) {
+                        try {
+                            await supabase
+                                .from('email_campaign_tracking')
+                                .update({
+                                    cta_clicked: true,
+                                    cta_click_timestamp: new Date().toISOString()
+                                })
+                                .eq('tracking_id', trackingId);
+
+                            console.log('CTA click tracked');
+                        } catch (err) {
+                            console.error('CTA tracking error:', err);
+                        }
+                    }
+
+                    // Redirect to contact page after short delay
+                    setTimeout(() => {
+                        window.location.href = 'contact.html';
+                    }, 300);
+                });
+            });
+        }
+
+        // Initialize all tracking
+        document.addEventListener('DOMContentLoaded', () => {
+            trackPageVisit();
+            trackPhoneClicks();
+            trackCTAClicks();
+
+            // Fade-in animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
