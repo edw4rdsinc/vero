@@ -15,10 +15,12 @@
     <link rel="canonical" href="https://veroautoglass.com/portland/portland-offer.html">
 
     <!-- Resource Hints for Performance -->
+    <link rel="preload" href="images/vero-hero.png" as="image">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="preconnect" href="https://app.omegaedi.com">
 
     <!-- Critical CSS Framework - Must be in head for initial render -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -115,6 +117,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            /* Image optimization note: 1.4MB - needs compression to <200KB */
         }
         /* iOS-friendly parallax effect */
         @supports (-webkit-touch-callout: none) {
@@ -286,6 +289,7 @@
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <img src="images/replacement.png" alt="Windshield Replacement" class="h-20 mb-4 rounded-md" width="1539" height="1026" loading="lazy" decoding="async">
+                                    <!-- TODO: Compress from 1.5MB to <200KB -->
                                     <h3 class="text-xl font-bold text-[#2b2b2b] mb-2">Windshield Replacement</h3>
                                     <p class="text-gray-600 text-sm">Full installation with lifetime warranty</p>
                                 </div>
@@ -301,6 +305,7 @@
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <img src="images/recalibration.png" alt="Chip Repair" class="h-20 mb-4 rounded-md" width="774" height="660" loading="lazy" decoding="async">
+                                    <!-- TODO: Compress from 620KB to <200KB -->
                                     <h3 class="text-xl font-bold text-[#2b2b2b] mb-2">Chip Repair</h3>
                                     <p class="text-gray-600 text-sm">Quick fix for chips and small cracks</p>
                                 </div>
@@ -316,6 +321,7 @@
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <img src="images/insurance-claim.png" alt="Insurance Claim" class="h-20 mb-4 rounded-md" width="1500" height="1258" loading="lazy" decoding="async">
+                                    <!-- TODO: Compress from 1.1MB to <200KB -->
                                     <h3 class="text-xl font-bold text-[#2b2b2b] mb-2">Insurance Claim</h3>
                                     <p class="text-gray-600 text-sm">We handle all the paperwork</p>
                                 </div>
@@ -331,6 +337,7 @@
                             <div class="flip-card-inner" style="background: #fef3c7;">
                                 <div class="flip-card-front" style="background: #fef3c7; border-color: #fbbf24;">
                                     <img src="images/deductiblehelp.jpg" alt="Need Help Deciding" class="h-20 mb-4 rounded-md" width="512" height="512" loading="lazy" decoding="async">
+                                    <!-- Already optimized: 40KB -->
                                     <h3 class="text-xl font-bold text-[#92400e] mb-2">Not Sure?</h3>
                                     <p class="text-gray-700 text-sm">Take our 3-minute quiz</p>
                                 </div>
