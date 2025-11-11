@@ -8,7 +8,7 @@
     <meta name="format-detection" content="telephone=no">
     <!-- Privacy-friendly analytics by Plausible -->
     <script defer data-domain="veroautoglass.com" src="https://plausible.io/js/script.js"></script>
-    <meta name="description" content="Special offer for Portland customers - The local glass team you know just got better at Vero Auto Glass. 10% off your first service.">
+    <meta name="description" content="Email Exclusive: $50 off services $400+ at Vero Auto Glass. 72-hour offer for Portland customers. Same-day service available. Use code: PORTLAND50">
     <title>Portland Welcome Offer | Vero Autoglass</title>
 
     <!-- Canonical URL -->
@@ -204,7 +204,7 @@
                     <h1 id="hero-headline" class="text-4xl md:text-6xl font-bold mb-6">The Local Glass Team You Know Just Got Better</h1>
                     <p id="hero-subheadline" class="text-xl md:text-2xl mb-8">Same expert team, same quality work—now with better pricing, white-glove service, and a lifetime warranty on every windshield.</p>
                     <!-- Primary CTA Button -->
-                    <div class="mt-10 mb-8">
+                    <div class="mt-10 mb-6">
                         <a href="tel:971-317-8376"
                            class="inline-block bg-[#ff4d00] text-white text-xl md:text-2xl font-bold px-12 py-6 rounded-xl hover:bg-[#cc3d00] shadow-2xl transition-all transform hover:scale-105"
                            style="min-height: 80px; display: inline-flex; align-items: center; justify-content: center;">
@@ -212,6 +212,19 @@
                         </a>
                         <p class="text-white/90 text-base mt-4">
                             Same-day service available • Or <a href="#service-selector" class="underline hover:text-[#ff4d00]">get a quote below</a>
+                        </p>
+                    </div>
+
+                    <!-- Urgency Offer Banner -->
+                    <div class="mt-8 bg-yellow-400 text-[#2b2b2b] py-5 px-6 md:px-10 rounded-xl inline-block shadow-2xl">
+                        <p class="font-bold text-lg md:text-2xl mb-2">
+                            🎁 Email Exclusive: $50 Off Services $400+
+                        </p>
+                        <p class="text-base md:text-lg">
+                            ⏰ Offer expires in <span id="countdown" class="font-bold text-[#ff4d00]">72 hours</span>
+                        </p>
+                        <p class="text-sm md:text-base mt-2 font-semibold">
+                            Use code: <span class="bg-[#2b2b2b] text-yellow-400 px-3 py-1 rounded font-mono">PORTLAND50</span>
                         </p>
                     </div>
 
@@ -442,34 +455,33 @@
             </div>
         </section>
 
-        <!-- Welcome Offer -->
+        <!-- Why Choose Vero -->
         <section class="py-20 bg-gradient-to-r from-[#ff4d00] to-[#ff6a2b] text-white">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-4xl font-bold mb-6">Welcome to Vero</h2>
-                    <div class="grid md:grid-cols-2 gap-6 text-left mb-8">
-                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
-                            <div class="text-3xl mb-2">✓</div>
-                            <h3 class="font-bold text-xl mb-2">10% off your first service with us</h3>
-                            <p class="text-white/90">Our way of saying welcome</p>
-                        </div>
+                    <h2 class="text-4xl font-bold mb-6">Why Choose Vero Auto Glass?</h2>
+                    <div class="grid md:grid-cols-2 gap-6 text-left">
                         <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
                             <div class="text-3xl mb-2">✓</div>
                             <h3 class="font-bold text-xl mb-2">Free mobile service</h3>
-                            <p class="text-white/90">Portland metro area</p>
+                            <p class="text-white/90">We come to you anywhere in Portland metro</p>
                         </div>
                         <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
                             <div class="text-3xl mb-2">✓</div>
                             <h3 class="font-bold text-xl mb-2">Lifetime warranty</h3>
-                            <p class="text-white/90">On all installations</p>
+                            <p class="text-white/90">Every installation backed forever</p>
                         </div>
                         <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
                             <div class="text-3xl mb-2">✓</div>
-                            <h3 class="font-bold text-xl mb-2">Same-day availability</h3>
-                            <p class="text-white/90">Often possible</p>
+                            <h3 class="font-bold text-xl mb-2">Same-day service</h3>
+                            <p class="text-white/90">Often available - just ask</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+                            <div class="text-3xl mb-2">✓</div>
+                            <h3 class="font-bold text-xl mb-2">ADAS calibration included</h3>
+                            <p class="text-white/90">Safety tech that competitors often skip</p>
                         </div>
                     </div>
-                    <p class="text-lg opacity-90">Limited to first 500 customers. Offer expires December 31, 2025.</p>
                 </div>
             </div>
         </section>
@@ -603,6 +615,47 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
+    </script>
+
+    <!-- 72-Hour Countdown Timer -->
+    <script>
+        (function() {
+            // Calculate expiration time (72 hours from now)
+            const expirationTime = new Date();
+            expirationTime.setHours(expirationTime.getHours() + 72);
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeRemaining = expirationTime - now;
+
+                if (timeRemaining <= 0) {
+                    document.getElementById('countdown').textContent = 'EXPIRED';
+                    return;
+                }
+
+                // Calculate hours and minutes remaining
+                const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+
+                // Format display
+                let countdownText = '';
+                if (hoursRemaining > 24) {
+                    const daysRemaining = Math.floor(hoursRemaining / 24);
+                    const remainingHours = hoursRemaining % 24;
+                    countdownText = `${daysRemaining} day${daysRemaining > 1 ? 's' : ''}, ${remainingHours} hours`;
+                } else if (hoursRemaining > 0) {
+                    countdownText = `${hoursRemaining} hour${hoursRemaining > 1 ? 's' : ''}, ${minutesRemaining} min`;
+                } else {
+                    countdownText = `${minutesRemaining} minutes`;
+                }
+
+                document.getElementById('countdown').textContent = countdownText;
+            }
+
+            // Update immediately and then every minute
+            updateCountdown();
+            setInterval(updateCountdown, 60000); // Update every 60 seconds
+        })();
     </script>
 
     <!-- Dynamic Headline/Subheadline Based on Email Variant -->
