@@ -240,17 +240,34 @@
             </div>
         </section>
 
-        <!-- Service Selector Section -->
+        <!-- Universal Quote Form Section -->
         <section id="service-selector" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
-                    <div class="text-center mb-16 fade-in visible">
-                        <h2 class="text-4xl font-bold text-[#2b2b2b] mb-4">What Can We Help You With?</h2>
-                        <p class="text-xl text-gray-600">Select your service to get started</p>
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-12 fade-in visible">
+                        <h2 class="text-4xl font-bold text-[#2b2b2b] mb-4">Get Your Free Quote in 2 Minutes</h2>
+                        <p class="text-xl text-gray-600">No commitment required • Same-day service available</p>
                     </div>
 
-                    <!-- Service Options (Flip Cards) -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Single Universal Omega EDI Form -->
+                    <div class="bg-white p-4 sm:p-8 rounded-lg shadow-2xl">
+                        <iframe
+                            id="quoter-iframe"
+                            src="https://app.omegaedi.com/quoter/?folder=veroautoglass&redirect_url=https%3A%2F%2Fveroautoglass.com%2Fthank-you.html&primary_color=ff4d00&font_family=Inter&text_color=2b2b2b&accent_color=cc3d00&smart=true&campaign=sam-email-portland"
+                            frameborder="0"
+                            class="w-full rounded"
+                            style="height: 1000px;"
+                            scrolling="yes"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <!-- Service Options Collapsed (Optional Educational Content) -->
+                    <details class="mt-16 text-center">
+                        <summary class="text-lg text-gray-600 cursor-pointer hover:text-[#ff4d00] transition-colors">
+                            Want to learn about our specific services first? Click here
+                        </summary>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
                         <!-- Windshield Replacement -->
                         <div class="flip-card" onclick="selectService('replacement')">
                             <div class="flip-card-inner">
@@ -310,7 +327,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
