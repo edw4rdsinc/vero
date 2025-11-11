@@ -127,6 +127,21 @@
                 background-attachment: fixed;
             }
         }
+        /* Scroll indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
         [x-cloak] { display: none !important; }
     </style>
 </head>
@@ -182,7 +197,7 @@
 
     <main class="pt-[100px]">
         <!-- Hero Section with Parallax Background -->
-        <section class="relative h-screen flex items-center justify-center text-center parallax-bg -mt-[100px]">
+        <section class="relative flex items-center justify-center text-center parallax-bg -mt-[100px]" style="height: 80vh;">
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 container mx-auto px-6 text-white">
                 <div class="max-w-4xl mx-auto fade-in visible">
@@ -203,6 +218,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 scroll-indicator">
+                <svg class="w-8 h-8 text-white opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
             </div>
         </section>
 
