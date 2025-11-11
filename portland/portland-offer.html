@@ -201,8 +201,8 @@
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="relative z-10 container mx-auto px-6 text-white">
                 <div class="max-w-4xl mx-auto fade-in visible">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6">The Local Glass Team You Know Just Got Better</h1>
-                    <p class="text-xl md:text-2xl mb-8">We started Vero Auto Glass to serve Portland the right way. Same expert team, same quality work—now with better pricing, white-glove service, and a lifetime warranty on every windshield.</p>
+                    <h1 id="hero-headline" class="text-4xl md:text-6xl font-bold mb-6">The Local Glass Team You Know Just Got Better</h1>
+                    <p id="hero-subheadline" class="text-xl md:text-2xl mb-8">Same expert team, same quality work—now with better pricing, white-glove service, and a lifetime warranty on every windshield.</p>
                     <div class="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-base md:text-lg">
                         <div class="flex items-center space-x-2">
                             <span class="text-2xl">⭐</span>
@@ -572,6 +572,48 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
+    </script>
+
+    <!-- Dynamic Headline/Subheadline Based on Email Variant -->
+    <script>
+        (function() {
+            // Get variant from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const variant = urlParams.get('v');
+
+            // Define headline and subheadline for each variant
+            const variants = {
+                'a': {
+                    headline: "The Local Glass Team You Know Just Got Better",
+                    subheadline: "Same expert team, same quality work—now with better pricing, white-glove service, and a lifetime warranty on every windshield."
+                },
+                'b': {
+                    headline: "Portland's Mobile Glass Team Has An Update For You",
+                    subheadline: "The technicians you've trusted before are now Vero Auto Glass. Here's what's changed—and what's even better."
+                },
+                'c': {
+                    headline: "We Left To Do Things Differently—Here's Why",
+                    subheadline: "We started Vero Auto Glass to serve Portland the right way. Better pricing, better service, and complete ownership of your experience."
+                },
+                'd': {
+                    headline: "Better Pricing, Better Service—From The Team You Know",
+                    subheadline: "The Portland glass experts you've worked with before now own the business. That means lower prices and higher quality for you."
+                }
+            };
+
+            // Update headline and subheadline if variant exists
+            if (variant && variants[variant]) {
+                const headlineEl = document.getElementById('hero-headline');
+                const subheadlineEl = document.getElementById('hero-subheadline');
+
+                if (headlineEl) {
+                    headlineEl.textContent = variants[variant].headline;
+                }
+                if (subheadlineEl) {
+                    subheadlineEl.textContent = variants[variant].subheadline;
+                }
+            }
+        })();
     </script>
 </body>
 </html>
